@@ -7,6 +7,11 @@
 const _fs_utils = require(
   "./fs-utils");
 
+function _app_name_get() {
+  return _fs_utils._basename(
+    __filename);
+}
+
 function _msg_info(
   _msg) {
   if ( quiet == "n" ) {
@@ -34,7 +39,7 @@ module.exports = {
   _basename: _fs_utils._basename,
   _dirname: _fs_utils._dirname,
   _file_exists: _fs_utils._file_exists,
-  _file_read: _fs.utils._file_read,
+  _file_read: _fs_utils._file_read,
   _msg_info: _msg_info,
   _msg_error: _msg_error
 };
