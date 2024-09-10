@@ -9,10 +9,18 @@ const _fs = require(
 const _path = require(
   'path');
 
+function _basename(
+  _file_path) {
+  _dir = _path.basename(
+    _file_path);
+  return _dir;
+}
+
 function _dirname(
   _file_path) {
-  _dir = _path.dirname(_file_path);
-  return _dir 
+  _dir = _path.dirname(
+    _file_path);
+  return _dir;
 }
 
 function _file_exists(
@@ -34,6 +42,7 @@ function _file_read(
 }
 
 module.exports = {
+  _basename: _dirname,
   _dirname: _dirname,
   _file_exists: _file_exists,
   _file_read: _file_read,

@@ -30,8 +30,8 @@ function _msg_error(
   }
 }
 
-
 module.exports = {
+  _basename: _fs_utils._basename,
   _dirname: _fs_utils._dirname,
   _file_exists: _fs_utils._file_exists,
   _file_read: _fs.utils._file_read,
