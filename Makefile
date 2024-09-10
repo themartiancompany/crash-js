@@ -22,6 +22,7 @@ install: install-scripts install-doc
 install-scripts:
 
 	install -vDm 755 "$(_PROJECT)/fs-utils" "$(LIB_DIR)/fs-utils"
+	install -vDm 755 "$(_PROJECT)/$(_PROJECT)" "$(LIB_DIR)/$(_PROJECT)"
 
 install-doc:
 

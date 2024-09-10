@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+//
+
+const _fs_utils = require(
+  "./fs-utils");
+
+function _msg_info(
+  _msg) {
+  if ( quiet == "n" ) {
+    console.log(
+      "[address-view] INFO: {_msg}".replace(
+        "{_msg}",
+        _msg));
+  }
+}
+
+function _msg_error(
+  _msg,
+  _exit) {
+  _full = "[address-view] ERROR: {_msg}".replace(
+    "{_msg}",
+    _msg)
+  console.error(
+    _full);
+  if (_exit == "1" ) {
+    process.exit();
+  }
+}
+
+
+module.exports = {
+  _dirname: _fs_utils._dirname,
+  _file_exists: _fs_utils._file_exists,
+  _file_read: _fs.utils._file_read,
+  _msg_info: _msg_info,
+  _msg_error: _msg_error
+};

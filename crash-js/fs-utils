@@ -4,7 +4,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 //
 
-const _fs = require("fs");
+const _fs = require(
+  "fs");
 const _path = require(
   'path');
 
