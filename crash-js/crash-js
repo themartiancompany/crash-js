@@ -36,6 +36,7 @@ function _msg_error(
 }
 
 module.exports = {
+  _app_name_get: _app_name_get,
   _basename: _fs_utils._basename,
   _dirname: _fs_utils._dirname,
   _file_exists: _fs_utils._file_exists,
