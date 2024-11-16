@@ -4,43 +4,124 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 //
 
-const _fs_utils = require(
-  "./fs-utils");
+const
+  _fs_utils =
+    require(
+      "./fs-utils");
+_basename =
+  _fs_utils._basename
+
 
 function _app_name_get() {
-  return _fs_utils._basename(
-    __filename);
+  let
+    _filename;
+  _filename =
+    _basename(
+      __filename);
+  return _filename;
 }
+
+
+function _msg_template(
+  _type) {
+  let
+    _app_name
+    _template
+    _partial
+    _out;
+  _app_name =
+    _app_name_get();
+  _template =
+    "[{_app_name}] {_type}: {_msg}"
+  _partial =
+    _template.replace(
+      "{_app_name}",
+      _app_name);
+  _out =
+    _partial.replace(
+      "{_type}",
+      _type);
+  console.log(
+    _out);
+}
+
 
 function _msg_info(
   _msg) {
+  let
+    _out;
   if ( quiet == "n" ) {
-    console.log(
-      "[address-view] INFO: {_msg}".replace(
+    _template =
+      _msg_template(
+        'INFO');
+    _out =
+      _template.replace(
         "{_msg}",
-        _msg));
+        _msg);
+    console.log(
+      _out);
   }
 }
+
 
 function _msg_error(
   _msg,
   _exit) {
-  _full = "[address-view] ERROR: {_msg}".replace(
-    "{_msg}",
-    _msg)
+  let
+    _template
+    _out;
+  _template =
+    _msg_template(
+      'ERROR');
+  _out =
+    _template.replace(
+      "{_msg}",
+      _msg);
   console.error(
-    _full);
+    _out);
   if (_exit == "1" ) {
     process.exit();
   }
 }
 
+
+function _msg_info_obj(
+  _name,
+  _obj) {
+  let
+    _template
+    _partial
+    _msg;
+  _template =
+    "{_name} '{_obj}'"
+  _partial =
+    _template.replace(
+      "{_name}",
+      _name);
+  _msg =
+    _partial.replace(
+      "{_obj}",
+      _obj);
+  _msg_info(
+    _msg);
+}
+
+
 module.exports = {
-  _app_name_get: _app_name_get,
-  _basename: _fs_utils._basename,
-  _dirname: _fs_utils._dirname,
-  _file_exists: _fs_utils._file_exists,
-  _file_read: _fs_utils._file_read,
-  _msg_info: _msg_info,
-  _msg_error: _msg_error
+  _app_name_get:
+    _app_name_get,
+  _basename:
+    _fs_utils._basename,
+  _dirname:
+    _fs_utils._dirname,
+  _file_exists:
+    _fs_utils._file_exists,
+  _file_read:
+    _fs_utils._file_read,
+  _msg_info:
+    _msg_info,
+  _msg_error:
+    _msg_error
+  _msg_info_obj:
+    _msg_info_obj,
 };
