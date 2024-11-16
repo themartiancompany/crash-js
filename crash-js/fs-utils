@@ -45,13 +45,13 @@ function
     _exists,
     _return;
   _return =
-    'false';
+    false;
   _exists =
     _fs.existsSync(
       _path);
   if (_exists) {
     _return =
-      'true';
+      true;
   }
   return _return;
 }
