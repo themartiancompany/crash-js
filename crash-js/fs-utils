@@ -4,46 +4,80 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 //
 
-const _fs = require(
-  "fs");
-const _path = require(
-  'path');
+const
+  _fs =
+    require(
+      "fs");
+const
+  _path =
+    require(
+      'path');
 
-function _basename(
-  _file_path) {
-  _dir = _path.basename(
-    _file_path);
+function
+  _basename(
+    _file_path) {
+  let
+    _dir;
+  _dir =
+    _path.basename(
+      _file_path);
   return _dir;
 }
 
-function _dirname(
-  _file_path) {
-  _dir = _path.dirname(
-    _file_path);
+function
+  _dirname(
+    _file_path) {
+  let
+    _dir;
+  _dir =
+    _path.dirname(
+      _file_path);
   return _dir;
 }
 
-function _file_exists(
-  _path) {
-  _return = false
-  if (_fs.existsSync(
-        _path)) {
-  _return = true;
+function
+  _file_exists(
+    _path) {
+  let
+    _exists
+    _return;
+  _return =
+    'false'
+  _exists =
+    _fs.existsSync(
+      _path)
+  if (_exists) {
+    _return =
+      'true';
   }
   return _return;
 }
 
-function _file_read(
-  _path) {
-  return _fs.readFileSync(
-    _path,
-    {"encoding": "utf8",
-     "flag": 'r'});
+function
+  _file_read(
+    _path) {
+  let
+    _read_opts
+    _return;
+  _read_opts =
+   {"encoding":
+      "utf8",
+    "flag":
+      'r'};
+  _return =
+    _fs.readFileSync(
+      _path,
+      _read_opts);
+  return _return;
 }
 
 module.exports = {
-  _basename: _basename,
-  _dirname: _dirname,
-  _file_exists: _file_exists,
-  _file_read: _file_read,
+  _basename:
+    _basename,
+  _dirname:
+    _dirname,
+  _file_exists:
+    _file_exists,
+  _file_read:
+    _file_read,
 };
