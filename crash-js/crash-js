@@ -25,14 +25,12 @@ function
 
 function 
   _msg_template(
+    _app_name,
     _type) {
   let
-    _app_name,
-    _template,
+    _out,
     _partial,
-    _out;
-  _app_name =
-    _app_name_get();
+    _template;
   _template =
     "[{_app_name}] {_type}: {_msg}"
   _partial =
@@ -55,6 +53,7 @@ function
   if ( quiet == "n" ) {
     _template =
       _msg_template(
+	app_name,
         'INFO');
     _out =
       _template.replaceAll(
@@ -75,6 +74,7 @@ function
     _out;
   _template =
     _msg_template(
+      app_name,
       'ERROR');
   _out =
     _template.replaceAll(
