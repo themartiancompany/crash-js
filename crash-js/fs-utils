@@ -13,6 +13,7 @@ const
     require(
       'path');
 
+
 function
   _basename(
     _file_path) {
@@ -23,6 +24,7 @@ function
       _file_path);
   return _dir;
 }
+
 
 function
   _dirname(
@@ -35,17 +37,18 @@ function
   return _dir;
 }
 
+
 function
   _file_exists(
     _path) {
   let
-    _exists
+    _exists,
     _return;
   _return =
-    'false'
+    'false';
   _exists =
     _fs.existsSync(
-      _path)
+      _path);
   if (_exists) {
     _return =
       'true';
@@ -53,11 +56,12 @@ function
   return _return;
 }
 
+
 function
   _file_read(
     _path) {
   let
-    _read_opts
+    _read_opts,
     _return;
   _read_opts =
    {"encoding":
@@ -71,6 +75,17 @@ function
   return _return;
 }
 
+
+function
+  _file_write(
+    _path,
+    _content) {
+  _fs.writeFileSync(
+    _path,
+    _content);
+}
+
+
 module.exports = {
   _basename:
     _basename,
@@ -80,4 +95,6 @@ module.exports = {
     _file_exists,
   _file_read:
     _file_read,
+  _file_write:
+    _file_write,
 };

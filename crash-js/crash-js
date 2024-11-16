@@ -12,7 +12,8 @@ _basename =
   _fs_utils._basename
 
 
-function _app_name_get() {
+function
+  _app_name_get() {
   let
     _filename;
   _filename =
@@ -22,32 +23,33 @@ function _app_name_get() {
 }
 
 
-function _msg_template(
-  _type) {
+function 
+  _msg_template(
+    _type) {
   let
-    _app_name
-    _template
-    _partial
+    _app_name,
+    _template,
+    _partial,
     _out;
   _app_name =
     _app_name_get();
   _template =
     "[{_app_name}] {_type}: {_msg}"
   _partial =
-    _template.replace(
+    _template.replaceAll(
       "{_app_name}",
       _app_name);
   _out =
-    _partial.replace(
+    _partial.replaceAll(
       "{_type}",
       _type);
-  console.log(
-    _out);
+  return _out;
 }
 
 
-function _msg_info(
-  _msg) {
+function
+  _msg_info(
+    _msg) {
   let
     _out;
   if ( quiet == "n" ) {
@@ -55,7 +57,7 @@ function _msg_info(
       _msg_template(
         'INFO');
     _out =
-      _template.replace(
+      _template.replaceAll(
         "{_msg}",
         _msg);
     console.log(
@@ -64,17 +66,18 @@ function _msg_info(
 }
 
 
-function _msg_error(
-  _msg,
-  _exit) {
+function
+  _msg_error(
+    _msg,
+    _exit) {
   let
-    _template
+    _template,
     _out;
   _template =
     _msg_template(
       'ERROR');
   _out =
-    _template.replace(
+    _template.replaceAll(
       "{_msg}",
       _msg);
   console.error(
@@ -85,21 +88,22 @@ function _msg_error(
 }
 
 
-function _msg_info_obj(
-  _name,
-  _obj) {
+function 
+  _msg_info_obj(
+    _name,
+    _obj) {
   let
-    _template
-    _partial
+    _template,
+    _partial,
     _msg;
   _template =
     "{_name} '{_obj}'"
   _partial =
-    _template.replace(
+    _template.replaceAll(
       "{_name}",
       _name);
   _msg =
-    _partial.replace(
+    _partial.replaceAll(
       "{_obj}",
       _obj);
   _msg_info(
@@ -121,7 +125,7 @@ module.exports = {
   _msg_info:
     _msg_info,
   _msg_error:
-    _msg_error
+    _msg_error,
   _msg_info_obj:
     _msg_info_obj,
 };
