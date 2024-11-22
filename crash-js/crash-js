@@ -97,7 +97,7 @@ function
     _partial,
     _msg;
   _template =
-    "{_name} '{_obj}'"
+    "{_name}: '{_obj}'"
   _partial =
     _template.replaceAll(
       "{_name}",
@@ -128,4 +128,6 @@ module.exports = {
     _msg_error,
   _msg_info_obj:
     _msg_info_obj,
+  _path_join:
+    _fs_utils._path_join
 };

@@ -85,6 +85,17 @@ function
     _content);
 }
 
+function
+  _path_join(
+    _paths) {
+  let
+    _path;
+  _path =
+    _paths.join(
+      "/");
+  return _path;
+}
+
 
 module.exports = {
   _basename:
@@ -97,4 +108,6 @@ module.exports = {
     _file_read,
   _file_write:
     _file_write,
+  _path_join:
+    _path_join
 };
