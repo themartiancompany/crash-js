@@ -13,6 +13,9 @@ const
     require(
       'path');
 
+const
+  _json_parse =
+    JSON.parse;
 
 function
   _basename(
@@ -96,6 +99,20 @@ function
   return _path;
 }
 
+function
+  _json_read(
+    _json_path) {
+  let
+    _json_str,
+    _json;
+  _json_str =
+    _file_read(
+      _json_path);
+  _json =
+    _json_parse(
+      _json_str);
+  return _json;
+}
 
 module.exports = {
   _basename:
@@ -109,5 +126,7 @@ module.exports = {
   _file_write:
     _file_write,
   _path_join:
-    _path_join
+    _path_join,
+  _json_read:
+    _json_read
 };
