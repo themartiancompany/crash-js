@@ -83,7 +83,8 @@ function
   console.error(
     _out);
   if (_exit == "1" ) {
-    process.exit();
+    process.exit(
+      1);
   }
 }
 
