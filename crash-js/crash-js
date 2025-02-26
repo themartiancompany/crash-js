@@ -141,8 +141,7 @@ function
   _program_name =
     _basename(
       _program);
-  if ( require.main === module &&
-       _program_name == _app_name ) {
+  if ( _program_name == _app_name ) {
     return true;
   }
   else {
