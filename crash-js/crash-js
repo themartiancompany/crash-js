@@ -21,13 +21,14 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+_argv =
+  process.argv
 const
   _fs_utils =
     require(
       "./fs-utils");
 _basename =
   _fs_utils._basename
-
 
 function
   _app_name_get() {
@@ -128,14 +129,38 @@ function
     _msg);
 }
 
+function
+  _cmdline_check(
+    _app_name) {
+  let
+    _program,
+    _program_name;
+  _program =
+    _argv[
+      1];
+  _program_name =
+    _basename(
+      _program);
+  if ( require.main === module &&
+       _program_name == _app_name ) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 
 module.exports = {
   _app_name_get:
     _app_name_get,
   _basename:
     _fs_utils._basename,
+  _cmdline_check:
+    _cmdline_check,
   _dirname:
     _fs_utils._dirname,
+  _ext_rm:
+    _fs_utils._ext_rm,
   _file_exists:
     _fs_utils._file_exists,
   _file_read:

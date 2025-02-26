@@ -26,10 +26,17 @@ const
     require(
       "fs");
 const
-  _path =
+  _path_module =
     require(
       'path');
-
+_path_module_basename =
+  _path_module.basename;
+_path_module_dirname =
+  _path_module.dirname;
+_path_module_join =
+  _path_module.join;
+_path_module_parse =
+  _path_module.parse;
 const
   _json_parse =
     JSON.parse;
@@ -40,7 +47,7 @@ function
   let
     _dir;
   _dir =
-    _path.basename(
+    _path_basename(
       _file_path);
   return _dir;
 }
@@ -52,7 +59,7 @@ function
   let
     _dir;
   _dir =
-    _path.dirname(
+    _path_dirname(
       _file_path);
   return _dir;
 }
@@ -105,16 +112,40 @@ function
     _content);
 }
 
+
 function
   _path_join(
     _paths) {
   let
     _path;
   _path =
-    _paths.join(
-      "/");
+    _path_module_join.apply(
+      null,
+      _paths);
   return _path;
 }
+
+
+function
+  _ext_rm(
+    _path) {
+  let
+    _dir,
+    _name,
+    _paths;
+  _dir =
+    _path_module_parse(
+      _path).dir;
+  _name =
+    _path_module_parse(
+      _path).name;
+  _paths = [
+    _dir,
+    _filename];
+  return _path_join(
+    _paths); 
+}
+
 
 function
   _json_read(
@@ -136,6 +167,8 @@ module.exports = {
     _basename,
   _dirname:
     _dirname,
+  _ext_rm:
+    _ext_rm,
   _file_exists:
     _file_exists,
   _file_read:
