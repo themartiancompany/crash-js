@@ -47,7 +47,7 @@ function
   let
     _dir;
   _dir =
-    _path_basename(
+    _path_module_basename(
       _file_path);
   return _dir;
 }
