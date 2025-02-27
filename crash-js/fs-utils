@@ -59,7 +59,7 @@ function
   let
     _dir;
   _dir =
-    _path_dirname(
+    _path_module_dirname(
       _file_path);
   return _dir;
 }
