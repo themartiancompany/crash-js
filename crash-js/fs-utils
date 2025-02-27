@@ -141,7 +141,7 @@ function
       _path).name;
   _paths = [
     _dir,
-    _filename];
+    _name];
   return _path_join(
     _paths); 
 }
