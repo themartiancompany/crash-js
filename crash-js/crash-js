@@ -100,7 +100,7 @@ function
       _msg);
   console.error(
     _out);
-  if (_exit == "1" ) {
+  if ( _exit == "1" ) {
     process.exit(
       1);
   }
