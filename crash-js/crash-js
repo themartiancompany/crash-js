@@ -149,6 +149,25 @@ function
   }
 }
 
+// This function is actually not a format
+// print, but just how the author of this
+// library calls a display function which
+// does not add a goddamn newline at the
+// end of the input text to display
+function
+  _printf(
+    _text) {
+  process.stdout.write(
+    _text);
+}
+
+function
+  _echo(
+    _text) {
+  console.log(
+    _text);
+}
+
 module.exports = {
   _app_name_get:
     _app_name_get,
@@ -158,6 +177,8 @@ module.exports = {
     _cmdline_check,
   _dirname:
     _fs_utils._dirname,
+  _echo:
+    _echo,
   _ext_rm:
     _fs_utils._ext_rm,
   _file_exists:
@@ -175,5 +196,7 @@ module.exports = {
   _msg_info_obj:
     _msg_info_obj,
   _path_join:
-    _fs_utils._path_join
+    _fs_utils._path_join,
+  _printf:
+    _printf
 };
