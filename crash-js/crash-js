@@ -187,6 +187,8 @@ module.exports = {
     _fs_utils._file_read,
   _file_write:
     _fs_utils._file_write,
+  _json_display:
+    _fs_utils._json_display,
   _json_read:
     _fs_utils._json_read,
   _msg_info:
