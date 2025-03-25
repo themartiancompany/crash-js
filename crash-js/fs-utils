@@ -40,6 +40,9 @@ _path_module_parse =
 const
   _json_parse =
     JSON.parse;
+const
+  _json_display =
+    JSON.stringify;
 
 function
   _basename(

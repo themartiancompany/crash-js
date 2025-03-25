@@ -1,5 +1,5 @@
 =====================================
-Crash Javascript Authors
+Crash JavaScript Authors
 =====================================
 
 * Pellegrino Prevete <pellegrinoprevete@gmail.com>
