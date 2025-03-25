@@ -180,6 +180,8 @@ module.exports = {
     _file_write,
   _path_join:
     _path_join,
+  _json_display:
+    _json_display,
   _json_read:
     _json_read
 };
