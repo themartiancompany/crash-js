@@ -40,7 +40,6 @@ function
   return _filename;
 }
 
-
 function 
   _msg_template(
     _app_name,
@@ -62,7 +61,6 @@ function
   return _out;
 }
 
-
 function
   _msg_info(
     _msg) {
@@ -81,7 +79,6 @@ function
       _out);
   }
 }
-
 
 function
   _msg_error(
@@ -106,7 +103,6 @@ function
   }
 }
 
-
 function 
   _msg_info_obj(
     _name,
@@ -127,6 +123,45 @@ function
       _obj);
   _msg_info(
     _msg);
+}
+
+function
+  _error_display(
+    _error) {
+  let
+    _message;
+  if ( typeof(error) == "object" ) {
+    if ( 'error' in _error && 
+         _error[
+           'error'] != undefined &&
+         'message' in _error[
+                        'error'] ) {
+      _message =
+        _error[
+          'error'][
+            'message'];
+    }
+    else if ( 'shortMessage' in _error ) {
+      _message =
+        _error[
+          'shortMessage'];
+    }
+    else {
+      _message =
+        _error;
+    }
+    console.error(
+      _error);
+  }
+  else {
+    _message =
+      _error;
+    console.error(
+      _error);
+  }
+  _msg_error(
+    _message,
+    0);
 }
 
 function
@@ -179,6 +214,8 @@ module.exports = {
     _fs_utils._dirname,
   _echo:
     _echo,
+  _error_display:
+    _error_display,
   _ext_rm:
     _fs_utils._ext_rm,
   _file_exists:
