@@ -203,6 +203,15 @@ function
     _text);
 }
 
+function
+  _sleep(
+    _time) {
+  return new Promise(
+               resolve => setTimeout(
+                            resolve,
+                            _time));
+}
+
 module.exports = {
   _app_name_get:
     _app_name_get,
@@ -237,5 +246,7 @@ module.exports = {
   _path_join:
     _fs_utils._path_join,
   _printf:
-    _printf
+    _printf,
+  _sleep:
+    _sleep;
 };
