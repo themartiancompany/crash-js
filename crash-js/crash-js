@@ -248,5 +248,5 @@ module.exports = {
   _printf:
     _printf,
   _sleep:
-    _sleep;
+    _sleep
 };
