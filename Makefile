@@ -125,13 +125,6 @@ install-npm:
 	    view \
 	      "$$(pwd)" \
 	      "version")"; \
-	_node_dir="$$( \
-	  npm \
-	    -g \
-	    list | \
-	    head \
-	      -n \
-	      1)"; \
 	npm \
 	  install \
 	    "$${_npm_opts[@]}" \
@@ -140,11 +133,11 @@ install-npm:
 	  "$(LIB_DIR)"; \
 	ln \
 	  -s \
-	  "$${_node_dir}/fs-utils" \
+	  "$(NODE_DIR)/fs-utils" \
 	  "$(LIB_DIR)/fs-utils"; \
 	ln \
 	  -s \
-	  "$${_node_dir}/$(_PROJECT)" \
+	  "$(NODE_DIR)/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)";
 
 publish-npm:
