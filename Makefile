@@ -22,9 +22,12 @@
 PREFIX ?= /usr/local
 _PROJECT=crash-js
 DOC_DIR=$(DESTDIR)$(PREFIX)/share/doc/$(_PROJECT)
+USR_DIR=$(DESTDIR)$(PREFIX)
 BIN_DIR=$(DESTDIR)$(PREFIX)/bin
 LIB_DIR=$(DESTDIR)$(PREFIX)/lib/lib$(_PROJECT)
 MAN_DIR?=$(DESTDIR)$(PREFIX)/share/man
+NODE_DIR=$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)
+BUILD_NPM_DIR=build
 
 _INSTALL_FILE=\
   install \
@@ -38,10 +41,17 @@ _INSTALL_DIR=\
 
 DOC_FILES=\
   $(wildcard \
-      *.rst)
+      *.rst) \
+  $(wildcard \
+      *.md)
 SCRIPT_FILES=\
   $(wildcard \
       $(_PROJECT)/*)
+NPM_FILES=\
+  $(_PROJECT) \
+  $(DOC_FILES) \
+  COPYING \
+  package.json
 
 all: build-node
 
@@ -54,7 +64,7 @@ shellcheck:
 	    "bash" \
 	  $(SCRIPT_FILES)
 
-install: install-scripts install-doc
+install: install-scripts install-doc install-npm
 
 install-scripts:
 
@@ -65,10 +75,54 @@ install-scripts:
 	  "$(_PROJECT)/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)"
 
-build-node:
+build-npm:
 
+	mkdir \
+	  -p \
+	  "build"
+	cp \
+	  -r \
+	  "$(_PROJECT)" \
+	  "README.md" \
+	  "COPYING" \
+	  "AUTHORS.rst" \
+	  "package.json"
 	npm \
 	  pack
+
+install-npm:
+
+	_npm_opts=( \
+	  -g \
+	  --prefix \
+	    "$(USR_DIR)" \
+	); \
+	_version="$$( \
+	  npm \
+	    view \
+	      "$$(pwd)" \
+	      "version")"; \
+	_node_dir="$$( \
+	  npm \
+	    -g \
+	    list | \
+	    head \
+	      -n \
+	      1)"; \
+	npm \
+	  install \
+	    "$${_npm_opts[@]}" \
+	    "$(_PROJECT)-$${_version}.tgz"; \
+	$(_INSTALL_DIR) \
+	  "$(LIB_DIR)"; \
+	ln \
+	  -s \
+	  "$${_node_dir}/fs-utils" \
+	  "$(LIB_DIR)/fs-utils"; \
+	ln \
+	  -s \
+	  "$${_node_dir}/$(_PROJECT)" \
+	  "$(LIB_DIR)/$(_PROJECT)";
 
 install-doc:
 
@@ -85,4 +139,4 @@ install-man:
 	  "man/$(_PROJECT).1.rst" \
 	  "$(MAN_DIR)/man1/lib$(_PROJECT).1"
 
-.PHONY: check install install-doc install-man build-node install-scripts shellcheck
+.PHONY: check install install-doc install-man build-npm install-npm install-scripts shellcheck

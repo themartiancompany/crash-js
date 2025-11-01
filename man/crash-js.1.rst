@@ -37,20 +37,10 @@ Synopsis
 
 ..  code-block:: bash
 
-  _bin="$( \
-    dirname \
-      "$( \
-        command \
-          -v \
-  	  "env")")"
-  _lib="$( \
-    realpath \
-      "${_bin}/../lib")"
-  _crash_bash="${_lib}/libcrash-bash/crash-bash"
-  _sourced \
-    "${_crash_bash}" 2>/dev/null || \
-    source \
-      "${_crash_bash}"
+  const
+    _libcrash =
+    require(
+      'crash-js');
 
 
 Description
