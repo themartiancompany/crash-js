@@ -40,7 +40,9 @@ Synopsis
   const
     _libcrash =
     require(
-      'crash-js');
+      'crash-js') ||
+    require(
+      '../libcrash-js/crash-js');
 
 
 Description
