@@ -136,6 +136,13 @@ install-npm:
 	  "$${_node_dir}/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)";
 
+publish-npm:
+
+	cd \
+	  "build"; \
+	npm \
+	  publish
+
 install-doc:
 
 	$(_INSTALL_FILE) \
