@@ -86,9 +86,14 @@ build-man:
 
 build-npm:
 
+	_version="$$( \
+	  npm \
+	    view \
+	      "$$(pwd)" \
+	      "version")"; \
 	mkdir \
 	  -p \
-	  "build"
+	  "build"; \
 	cp \
 	  -r \
 	  "$(_PROJECT)" \
@@ -96,11 +101,14 @@ build-npm:
 	  "COPYING" \
 	  "AUTHORS.rst" \
 	  "package.json" \
-	  "build"
+	  "build"; \
 	cd \
 	  "build"; \
 	npm \
-	  pack
+	  pack; \
+	mv \
+	  "build/$(_PROJECT)-$${_version}.tgz" \
+	  ".."
 
 install-npm:
 
