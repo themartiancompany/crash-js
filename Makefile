@@ -24,23 +24,46 @@ _PROJECT=crash-js
 DOC_DIR=$(DESTDIR)$(PREFIX)/share/doc/$(_PROJECT)
 BIN_DIR=$(DESTDIR)$(PREFIX)/bin
 LIB_DIR=$(DESTDIR)$(PREFIX)/lib/lib$(_PROJECT)
+MAN_DIR?=$(DESTDIR)$(PREFIX)/share/man
 
-DOC_FILES=$(wildcard *.rst)
-SCRIPT_FILES=$(wildcard $(_PROJECT)/*)
+_INSTALL_FILE=\
+  install \
+    -vDm644
+_INSTALL_EXE=\
+  install \
+    -vDm755
+_INSTALL_DIR=\
+  install \
+    -vdm755
+
+DOC_FILES=\
+  $(wildcard \
+      *.rst)
+SCRIPT_FILES=\
+  $(wildcard \
+      $(_PROJECT)/*)
 
 all:
 
 check: shellcheck
 
 shellcheck:
-	shellcheck -s bash $(SCRIPT_FILES)
+
+	shellcheck \
+	  -s \
+	    "bash" \
+	  $(SCRIPT_FILES)
 
 install: install-scripts install-doc install-node
 
 install-scripts:
 
-	install -vDm 755 "$(_PROJECT)/fs-utils" "$(LIB_DIR)/fs-utils"
-	install -vDm 755 "$(_PROJECT)/$(_PROJECT)" "$(LIB_DIR)/$(_PROJECT)"
+	$(_INSTALL_EXE) \
+	  "$(_PROJECT)/fs-utils" \
+	  "$(LIB_DIR)/fs-utils"
+	$(_INSTALL_EXE) \
+	  "$(_PROJECT)/$(_PROJECT)" \
+	  "$(LIB_DIR)/$(_PROJECT)"
 
 install-node:
 
@@ -51,6 +74,17 @@ install-node:
 
 install-doc:
 
-	install -vDm 644 $(DOC_FILES) -t $(DOC_DIR)
+	$(_INSTALL_FILE) \
+	  $(DOC_FILES) \
+	  -t \
+	  $(DOC_DIR)
 
-.PHONY: check install install-doc install-node install-scripts shellcheck
+install-man:
+
+	$(_INSTALL_DIR) \
+	  "$(MAN_DIR)/man1"
+	rst2man \
+	  "man/$(_PROJECT).1.rst" \
+	  "$(MAN_DIR)/man1/lib$(_PROJECT).1"
+
+.PHONY: check install install-doc install-man install-node install-scripts shellcheck
