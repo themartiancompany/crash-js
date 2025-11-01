@@ -37,12 +37,21 @@ Synopsis
 
 ..  code-block:: bash
 
-  const
-    _libcrash =
-    require(
-      'crash-js') ||
-    require(
-      '../libcrash-js/crash-js');
+  try {
+    const
+      _libcrash =
+        require(
+          "crash-js")
+    } catch(
+        _error) {
+      const
+        _libcrash =
+          require(
+            "../libcrash-js/crash-js")
+      _msg =
+        "Install Crash Javascript."
+      throw _msg;
+    }
 
 
 Description
