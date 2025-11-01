@@ -53,7 +53,7 @@ NPM_FILES=\
   COPYING \
   package.json
 
-all: build-node
+all: build-man build-node
 
 check: shellcheck
 
@@ -75,6 +75,15 @@ install-scripts:
 	  "$(_PROJECT)/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)"
 
+build-man:
+
+	mkdir \
+	  -p \
+	  "build"
+	rst2man \
+	  "man/$(_PROJECT).1.rst" \
+	  "build/man/lib$(_PROJECT).1"
+
 build-npm:
 
 	mkdir \
@@ -86,7 +95,10 @@ build-npm:
 	  "README.md" \
 	  "COPYING" \
 	  "AUTHORS.rst" \
-	  "package.json"
+	  "package.json" \
+	  "build"
+	cd \
+	  "build"; \
 	npm \
 	  pack
 
