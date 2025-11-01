@@ -67,8 +67,6 @@ install-scripts:
 
 build-node:
 
-	cd \
-	  "$(_PROJECT)"; \
 	npm \
 	  pack
 

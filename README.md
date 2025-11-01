@@ -37,6 +37,14 @@ make \
   install
 ```
 
+or from npm
+
+```bash
+npm \
+  install \
+    "crash-js"
+```
+
 The library is officially published on the
 the uncensorable
 [Ur](
