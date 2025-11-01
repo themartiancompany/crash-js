@@ -43,7 +43,7 @@ SCRIPT_FILES=\
   $(wildcard \
       $(_PROJECT)/*)
 
-all:
+all: build-node
 
 check: shellcheck
 
@@ -54,7 +54,7 @@ shellcheck:
 	    "bash" \
 	  $(SCRIPT_FILES)
 
-install: install-scripts install-doc install-node
+install: install-scripts install-doc
 
 install-scripts:
 
@@ -65,7 +65,7 @@ install-scripts:
 	  "$(_PROJECT)/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)"
 
-install-node:
+build-node:
 
 	cd \
 	  "$(_PROJECT)"; \
@@ -87,4 +87,4 @@ install-man:
 	  "man/$(_PROJECT).1.rst" \
 	  "$(MAN_DIR)/man1/lib$(_PROJECT).1"
 
-.PHONY: check install install-doc install-man install-node install-scripts shellcheck
+.PHONY: check install install-doc install-man build-node install-scripts shellcheck
