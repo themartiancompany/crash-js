@@ -86,6 +86,12 @@ build-man:
 
 build-npm:
 
+	mkdir \
+	  -p \
+	  "build/man"
+	rst2man \
+	  "man/$(_PROJECT).1.rst" \
+	  "build/lib$(_PROJECT).1"
 	_version="$$( \
 	  npm \
 	    view \
@@ -93,7 +99,7 @@ build-npm:
 	      "version")"; \
 	mkdir \
 	  -p \
-	  "build"; \
+	  "build/man"; \
 	cp \
 	  -r \
 	  "$(_PROJECT)" \
