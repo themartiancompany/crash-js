@@ -97,9 +97,6 @@ build-npm:
 	    view \
 	      "$$(pwd)" \
 	      "version")"; \
-	mkdir \
-	  -p \
-	  "build/man"; \
 	cp \
 	  -r \
 	  "$(_PROJECT)" \
