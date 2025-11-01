@@ -16,7 +16,11 @@
     "url": "git+https://github.com/themartiancompany/crash-js.git"
   },
   "license": "AGPL-3.0-or-later",
-  "author": "Pellegrino Prevete",
+  "author": {
+    "name": "Pellegrino Prevete",
+    "email": "pellegrinoprevete@gmail.com",
+    "url": "https://github.com/tallero"
+  },
   "type": "commonjs",
   "main": "crash-js/crash-js",
   "scripts": {
