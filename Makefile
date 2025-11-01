@@ -35,15 +35,22 @@ check: shellcheck
 shellcheck:
 	shellcheck -s bash $(SCRIPT_FILES)
 
-install: install-scripts install-doc
+install: install-scripts install-doc install-node
 
 install-scripts:
 
 	install -vDm 755 "$(_PROJECT)/fs-utils" "$(LIB_DIR)/fs-utils"
 	install -vDm 755 "$(_PROJECT)/$(_PROJECT)" "$(LIB_DIR)/$(_PROJECT)"
 
+install-node:
+
+	cd \
+	  "$(_PROJECT)"; \
+	npm \
+	  pack
+
 install-doc:
 
 	install -vDm 644 $(DOC_FILES) -t $(DOC_DIR)
 
-.PHONY: check install install-doc install-scripts shellcheck
+.PHONY: check install install-doc install-node install-scripts shellcheck
