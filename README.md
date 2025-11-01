@@ -37,7 +37,9 @@ make \
   install
 ```
 
-or from npm
+or from the
+[NPM Registry](
+  https://www.npmjs.com/package/crash-js)
 
 ```bash
 npm \
