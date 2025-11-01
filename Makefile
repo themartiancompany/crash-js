@@ -107,7 +107,7 @@ build-npm:
 	npm \
 	  pack; \
 	mv \
-	  "build/$(_PROJECT)-$${_version}.tgz" \
+	  "$(_PROJECT)-$${_version}.tgz" \
 	  ".."
 
 install-npm:
