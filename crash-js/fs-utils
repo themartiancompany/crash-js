@@ -21,10 +21,29 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+_window_type =
+  typeof
+    window
+if ( _window_type === 'undefined' ) {
+  _fs_module =
+    "fs";
+}
+else {
+  _fs_module =
+    "happy-opfs";
+  // Maybe not neeeded here
+  // window.addEventListener(
+  //   'load',
+  //   function () {
+  //     navigator
+  //       .serviceWorker
+  //       .register('/service-worker.js');
+  // });
+}
 const
   _fs =
     require(
-      "fs");
+      _fs_module);
 const
   _path_module =
     require(
@@ -85,7 +104,6 @@ function
   }
   return _return;
 }
-
 
 function
   _file_read(
