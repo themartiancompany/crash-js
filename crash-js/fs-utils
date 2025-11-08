@@ -27,10 +27,14 @@ _window_type =
 if ( _window_type === 'undefined' ) {
   _fs_module =
     "fs";
+  _path_module =
+    "path";
 }
 else {
   _fs_module =
     "happy-opfs";
+  _path_module =
+    "@std/path";
   // Maybe not neeeded here
   // window.addEventListener(
   //   'load',
