@@ -48,10 +48,82 @@ function
     "ahsi";
 }
 
+function
+  _ahsi() {
+  _msg_info(
+    "ciao");
+}
+
+function
+  _usage(
+    _exit_code) {
+  let
+    _line,
+    _text;
+  _text = [
+    "wadddis",
+    "",
+    "Usage:",
+    "  ahsi",
+    "    <quiet>",
+    "",
+    "Args:",
+    "  <quiet>                          Can be 'y' or 'n'",
+    "                                   Default: y",
+    "  <index_end>                      Final chunk index to download.",
+    "  <checkpoint_file_path>           Checkpoint file on which latest",
+    "  <chunks_files_type>              Can be 'file' or 'list. If file",
+    "                                   it will consider the next arguments",
+    "                                   files, if 'list' it the next argument",
+    "                                   will be considered a JSON list containing",
+    "                                   the files paths.",
+    "  [chunks_files_paths]             File chunks to publish.",
+  ];
+  for ( _line of _text ) {
+    _msg_info(
+      _line);
+  }
+  process.exit(
+    _exit_code);
+}
+
+function 
+  _cmdline_parse() {
+  quiet = 
+    "y";
+  process.argv.forEach(
+    function (
+      _value,
+      _index,
+      _array) {
+      if ( _index == 2 ) {
+        quiet =
+          _value;
+      }
+      if ( _value == "-h" ||
+           _value == "--help" ) {
+        quiet =
+          "n";
+        _usage(
+          0);
+      }
+  });
+}
+
 _global_variables();
 
 quiet =
   "n";
 
-_msg_info(
-  "ciao");
+if ( _cmdline_check(
+       "ahsi") == true ) {
+  _global_variables();
+  _cmdline_parse();
+  app_opts = [
+  ];
+  _ahsi.apply(
+    null,
+    app_opts);
+}
+
+
