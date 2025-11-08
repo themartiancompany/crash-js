@@ -1,12 +1,12 @@
 {
-  "name": "crash-js",
-  "version": "0.1.4",
-  "description": "Crash Javascript library.",
+  "name": "ahsi",
+  "version": "0.0.1",
+  "description": "Crash Javascript library example program.",
   "funding": {
     "type": "patreon",
     "url": "https://patreon.com/tallero"
   },
-  "man": "./man/libcrash-js.1",
+  "man": "./man/ahsi.1",
   "keywords": [
     "ur",
     "themartiancompany",
@@ -27,11 +27,10 @@
     "url": "https://github.com/tallero"
   },
   "dependencies": {
-    "browser-stdout": "^1.3.1",
-    "happy-opfs": "npm:@themartiancompany/happy-opfs@^1.8.7"
+    "crash-js": "^0.1.4"
   },
   "type": "commonjs",
-  "main": "crash-js/crash-js",
+  "main": "ahsi",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }

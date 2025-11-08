@@ -107,15 +107,20 @@ _global_variables();
 quiet =
   "n";
 
-if ( _cmdline_check(
-       "ahsi") == true ) {
-  _global_variables();
-  _cmdline_parse();
-  app_opts = [
-  ];
-  _ahsi.apply(
-    null,
-    app_opts);
-}
+app_opts = [
+];
+_ahsi.apply(
+  null,
+  app_opts);
+// if ( _cmdline_check(
+//        "ahsi") == true ) {
+//   _global_variables();
+//   _cmdline_parse();
+//   app_opts = [
+//   ];
+//   _ahsi.apply(
+//     null,
+//     app_opts);
+// }
 
 

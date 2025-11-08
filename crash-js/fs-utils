@@ -21,19 +21,17 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-_window_type =
-  typeof
-    window
-if ( _window_type === 'undefined' ) {
-  _fs_module =
+_window_type = typeof window;
+if ( typeof window === 'undefined' ) {
+  _fs_module_name =
     "fs";
-  _path_module =
+  _path_module_name =
     "path";
 }
 else {
-  _fs_module =
+  _fs_module_name =
     "happy-opfs";
-  _path_module =
+  _path_module_name =
     "@std/path";
   // Maybe not neeeded here
   // window.addEventListener(
@@ -47,11 +45,11 @@ else {
 const
   _fs =
     require(
-      _fs_module);
+      _fs_module_name);
 const
   _path_module =
     require(
-      _path_module);
+      _path_module_name);
 _path_module_basename =
   _path_module.basename;
 _path_module_dirname =

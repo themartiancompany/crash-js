@@ -21,25 +21,32 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+function
+  _process_exit(
+    _exit) {
+  return _exit;
+}
+
 _window_type =
   typeof
     window
 if ( _window_type === 'undefined' ) {
   _argv =
-    process.argv
-  _fs_module =
-    "fs";
-  _path_module =
-    "path";
+    process.argv;
+  _process_exit =
+    process.exit;
+  _stdout_write =
+    process.stdout.write
 }
 else {
   _argv = [
-    "crash-js"
+    "crash",
+    "javascript"
   ]
-  _fs_module =
-    "happy-opfs";
-  _path_module =
-    "@std/path";
+  const
+    _stdout_write =
+      require(
+        "browser-stdout");
 }
 const
   _fs_utils =
@@ -117,7 +124,7 @@ function
   console.error(
     _out);
   if ( _exit == "1" ) {
-    process.exit(
+    _process_exit(
       1);
   }
 }
@@ -220,7 +227,7 @@ function
 function
   _printf(
     _text) {
-  process.stdout.write(
+  _stdout_write(
     _text);
 }
 
