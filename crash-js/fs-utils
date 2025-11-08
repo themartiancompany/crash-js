@@ -51,7 +51,7 @@ const
 const
   _path_module =
     require(
-      'path');
+      _path_module);
 _path_module_basename =
   _path_module.basename;
 _path_module_dirname =

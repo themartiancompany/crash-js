@@ -70,14 +70,6 @@ function
     "Args:",
     "  <quiet>                          Can be 'y' or 'n'",
     "                                   Default: y",
-    "  <index_end>                      Final chunk index to download.",
-    "  <checkpoint_file_path>           Checkpoint file on which latest",
-    "  <chunks_files_type>              Can be 'file' or 'list. If file",
-    "                                   it will consider the next arguments",
-    "                                   files, if 'list' it the next argument",
-    "                                   will be considered a JSON list containing",
-    "                                   the files paths.",
-    "  [chunks_files_paths]             File chunks to publish.",
   ];
   for ( _line of _text ) {
     _msg_info(
