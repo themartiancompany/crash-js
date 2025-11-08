@@ -67,7 +67,7 @@ ur \
 
 A censorable HTTP Github mirror of the recipe published there
 is hosted on
-[libcrash-bash-ur](
+[libcrash-js-ur](
   https://github.com/themartiancompany/libcrash-js-ur).
 Be aware it could go offline any time.
 
