@@ -21,14 +21,33 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-_argv =
-  process.argv
+_window_type =
+  typeof
+    window
+if ( _window_type === 'undefined' ) {
+  _argv =
+    process.argv
+  _fs_module =
+    "fs";
+  _path_module =
+    "path";
+}
+else {
+  _argv = [
+    "crash-js"
+  ]
+  _fs_module =
+    "happy-opfs";
+  _path_module =
+    "@std/path";
+}
 const
   _fs_utils =
     require(
       "./fs-utils");
 _basename =
-  _fs_utils._basename
+  _fs_utils._basename;
+
 
 function
   _app_name_get() {
@@ -169,15 +188,24 @@ function
     _app_name) {
   let
     _program,
-    _program_name;
-  _program =
-    _argv[
-      1];
-  _program_name =
-    _basename(
-      _program);
-  if ( _program_name == _app_name ) {
-    return true;
+    _program_name,
+    _window_type;
+  _window_type =
+    typeof
+      window
+  if ( _window_type === 'undefined' ) {
+    _program =
+      _argv[
+        1];
+    _program_name =
+      _basename(
+        _program);
+    if ( _program_name == _app_name ) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
   else {
     return false;
