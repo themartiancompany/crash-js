@@ -42,6 +42,14 @@ _msg_info =
 _msg_error =
   _libcrash._msg_error;
 
+function
+  _global_variables() {
+  app_name =
+    "ahsi";
+}
+
+_global_variables();
+
 quiet =
   "n";
 
