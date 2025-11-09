@@ -24,4 +24,23 @@ module.exports = {
     './ahsi',
   output:
     _output,
+  optimization: {
+    moduleIds: 'deterministic',
+  },
+  resolve: {
+    fallback: {
+      "fs":
+        false,
+      "happy-opfs":
+        _path.resolve(
+          __dirname,
+          'node_modules/happy-opfs/dist/main.mjs'),
+      "path":
+        false,
+      "@std/path":
+        _path.resolve(
+          __dirname,
+          'node_modules/@std/path/mod.js')
+    }
+  }
 };

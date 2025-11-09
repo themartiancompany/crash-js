@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 //    ----------------------------------------------------------------------
@@ -19,18 +21,35 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-_window_type = typeof window;
-if ( typeof window === 'undefined' ) {
-  _fs_module_path =
-    "fs";
-  _path_module_path =
-    "path";
+function
+  _is_node() {
+  return typeof global !== 'undefined' && global.global === global;
+}
+
+function
+  _is_webpack() {
+  return typeof __webpack_require__ === 'function';
+}
+
+function
+  _is_not_browser() {
+  return typeof window === 'undefined';
+}
+
+if ( _is_not_browser() &&
+     _is_node() &&
+     ( ! is_webpack() ) ) {
+  _fs =
+    require(
+      "fs");
+  _path_module =
+    require("path");
 }
 else {
-  _fs_module_path =
-    "happy-opfs";
-  _path_module_path =
-    "@std/path";
+  _fs =
+    require("happy-opfs");
+  _path_module =
+    require("@std/path");
   // Maybe not neeeded here
   // window.addEventListener(
   //   'load',
@@ -40,14 +59,6 @@ else {
   //       .register('/service-worker.js');
   // });
 }
-const
-  _fs =
-    require(
-      _fs_module_path);
-const
-  _path_module =
-    require(
-      _path_module_path);
 _path_module_basename =
   _path_module.basename;
 _path_module_dirname =
@@ -73,7 +84,6 @@ function
       _file_path);
   return _dir;
 }
-
 
 function
   _dirname(
