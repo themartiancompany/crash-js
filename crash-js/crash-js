@@ -215,17 +215,16 @@ function
   let
     _stdout_write;
   if ( typeof window === 'undefined' ) {
-    process.stdout.write(
-      _text);
+    _stdout =
+      process.stdout;
   }
   if ( typeof window != 'undefined' ) {
-    console.error("hello");
-    _stdout_write =
+    _stdout =
       require(
-        "browser-stdout");
-    _stdout_write(
-      _text);
+        "stream-browserify");
   }
+  _stdout.write(
+    _text);
 }
 
 function

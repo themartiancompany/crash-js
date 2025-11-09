@@ -23,5 +23,6 @@ module.exports = {
   entry:
     './ahsi',
   output:
-    _output
+    _output,
+  },
 };

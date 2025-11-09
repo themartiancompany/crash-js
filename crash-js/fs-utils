@@ -23,6 +23,9 @@ _window_type = typeof window;
 if ( typeof window === 'undefined' ) {
   _fs_module_name =
     "fs";
+  _fs =
+    require(
+      _fs_module_name);
   _path_module_name =
     "path";
 }
