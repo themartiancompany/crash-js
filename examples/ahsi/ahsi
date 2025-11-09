@@ -19,26 +19,26 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-// const
-//   _libcrash =
-//   require(
-//     'crash-js');
-// _cmdline_check =
-//   _libcrash._cmdline_check;
-// _error_display =
-//   _libcrash._error_display;
-// _ext_rm =
-//   _libcrash._ext_rm;
-// _file_read =
-//   _libcrash._file_read;
-// _file_write =
-//   _libcrash._file_write;
-// _json_read =
-//   _libcrash._json_read;
-// _msg_info =
-//   _libcrash._msg_info;
-// _msg_error =
-//   _libcrash._msg_error;
+const
+  _libcrash =
+  require(
+    'crash-js');
+_cmdline_check =
+  _libcrash._cmdline_check;
+_error_display =
+  _libcrash._error_display;
+_ext_rm =
+  _libcrash._ext_rm;
+_file_read =
+  _libcrash._file_read;
+_file_write =
+  _libcrash._file_write;
+_json_read =
+  _libcrash._json_read;
+_msg_info =
+  _libcrash._msg_info;
+_msg_error =
+  _libcrash._msg_error;
 
 const
   _happy_opfs =

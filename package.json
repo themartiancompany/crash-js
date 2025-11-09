@@ -1,6 +1,6 @@
 {
   "name": "crash-js",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Crash Javascript library.",
   "funding": {
     "type": "patreon",
@@ -35,6 +35,7 @@
     "url": "https://github.com/tallero"
   },
   "dependencies": {
+    "buffer": "^6.0.3",
     "stream-browserify": "^3.0.0",
     "happy-opfs": "npm:@themartiancompany/happy-opfs@^1.8.8"
   },

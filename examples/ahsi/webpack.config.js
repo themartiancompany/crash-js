@@ -24,5 +24,4 @@ module.exports = {
     './ahsi',
   output:
     _output,
-  },
 };

@@ -27,7 +27,7 @@
     "url": "https://github.com/tallero"
   },
   "dependencies": {
-    "crash-js": "^0.1.10",
+    "crash-js": "^0.1.11",
     "webpack": "^5.102.1",
     "webpack-cli": "^6.0.1"
   },
