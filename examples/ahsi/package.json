@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "crash-js": "^0.1.8",
-    "webpack": "^5.102.1",
-    "webpack-cli": "^6.0.1"
+    "webpack": "^4.4.7",
+    "webpack-cli": "^4.10.0"
   },
   "type": "commonjs",
   "main": "ahsi",
