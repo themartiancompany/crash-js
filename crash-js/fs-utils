@@ -21,16 +21,18 @@
 
 _window_type = typeof window;
 if ( typeof window === 'undefined' ) {
-  _fs_module_name =
+  _fs_module_path =
     "fs";
-  _path_module_name =
+  _path_module_path =
     "path";
 }
 else {
-  _fs_module_name =
-    "happy-opfs";
-  _path_module_name =
-    "@std/path";
+  _fs_module_path =
+    require.resolve(
+      "happy-opfs");
+  _path_module_path =
+    require.resolve(
+      "@std/path");
   // Maybe not neeeded here
   // window.addEventListener(
   //   'load',
@@ -42,12 +44,12 @@ else {
 }
 const
   _fs =
-    require.resolve(
-      _fs_module_name);
+    require(
+      _fs_module_path);
 const
   _path_module =
-    require.resolve(
-      _path_module_name);
+    require(
+      _path_module_path);
 _path_module_basename =
   _path_module.basename;
 _path_module_dirname =
