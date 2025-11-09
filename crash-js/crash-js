@@ -27,24 +27,17 @@ function
   return _exit;
 }
 
-const
-  _stdout_write;
 if ( typeof window === 'undefined' ) {
   _argv =
     process.argv;
   _process_exit =
     process.exit;
-  _stdout_write =
-    process.stdout.write
 }
 else {
   _argv = [
     "crash",
     "javascript"
   ]
-  _stdout_write =
-    require(
-      "browser-stdout");
 }
 const
   _fs_utils =
@@ -221,6 +214,15 @@ function
 function
   _printf(
     _text) {
+  let
+    _stdout_write;
+  _stdout_write =
+    process.stdout.write;
+  if ( typeof window != 'undefined' ) {
+    _stdout_write =
+      require(
+        "browser-stdout");
+  }
   _stdout_write(
     _text);
 }
