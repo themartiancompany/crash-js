@@ -27,10 +27,9 @@ function
   return _exit;
 }
 
-_window_type =
-  typeof
-    window
-if ( _window_type === 'undefined' ) {
+const
+  _stdout_write;
+if ( typeof window === 'undefined' ) {
   _argv =
     process.argv;
   _process_exit =
@@ -43,10 +42,9 @@ else {
     "crash",
     "javascript"
   ]
-  const
-    _stdout_write =
-      require(
-        "browser-stdout");
+  _stdout_write =
+    require(
+      "browser-stdout");
 }
 const
   _fs_utils =
@@ -195,12 +193,8 @@ function
     _app_name) {
   let
     _program,
-    _program_name,
-    _window_type;
-  _window_type =
-    typeof
-      window
-  if ( _window_type === 'undefined' ) {
+    _program_name;
+  if ( typeof window === 'undefined' ) {
     _program =
       _argv[
         1];

@@ -1,11 +1,19 @@
 {
   "name": "crash-js",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Crash Javascript library.",
   "funding": {
     "type": "patreon",
     "url": "https://patreon.com/tallero"
   },
+  "files": [
+    "AUTHORS.rst",
+    "COPYING",
+    "README.md",
+    "package.json",
+    "crash-js",
+    "examples"
+  ],
   "man": "./man/libcrash-js.1",
   "keywords": [
     "ur",
