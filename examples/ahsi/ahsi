@@ -50,10 +50,6 @@ function
 
 function
   _ahsi() {
-  // console.log(
-  //   require("happy-opfs"));
-  // console.log(
-  //   "ciao");
   _msg_info(
     "ciao");
 }
@@ -65,7 +61,7 @@ function
     _line,
     _text;
   _text = [
-    "wadddis",
+    "Hello world application for browsers and computers",
     "",
     "Usage:",
     "  ahsi",
