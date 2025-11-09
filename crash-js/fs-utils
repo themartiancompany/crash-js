@@ -28,11 +28,9 @@ if ( typeof window === 'undefined' ) {
 }
 else {
   _fs_module_path =
-    require.resolve(
-      "happy-opfs");
+    "happy-opfs";
   _path_module_path =
-    require.resolve(
-      "@std/path");
+    "@std/path";
   // Maybe not neeeded here
   // window.addEventListener(
   //   'load',
