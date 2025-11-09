@@ -23,9 +23,6 @@ _window_type = typeof window;
 if ( typeof window === 'undefined' ) {
   _fs_module_name =
     "fs";
-  _fs =
-    require(
-      _fs_module_name);
   _path_module_name =
     "path";
 }
@@ -45,11 +42,11 @@ else {
 }
 const
   _fs =
-    require(
+    require.resolve(
       _fs_module_name);
 const
   _path_module =
-    require(
+    require.resolve(
       _path_module_name);
 _path_module_basename =
   _path_module.basename;
