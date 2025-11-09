@@ -24,7 +24,7 @@
 const
   _libcrash =
   require(
-    '../../crash-js/crash-js');
+    'crash-js');
 _cmdline_check =
   _libcrash._cmdline_check;
 _error_display =
