@@ -96,7 +96,6 @@ function
   return _dir;
 }
 
-
 function
   _file_exists(
     _path) {
@@ -133,7 +132,6 @@ function
   return _return;
 }
 
-
 function
   _file_write(
     _path,
@@ -142,7 +140,6 @@ function
     _path,
     _content);
 }
-
 
 function
   _path_join(
@@ -155,7 +152,6 @@ function
       _paths);
   return _path;
 }
-
 
 function
   _ext_rm(
@@ -177,7 +173,6 @@ function
     _paths); 
 }
 
-
 function
   _json_read(
     _json_path) {
@@ -193,6 +188,18 @@ function
   return _json;
 }
 
+function
+  _fs_worker_new(
+  ) {
+  let
+    _crash_js_worker;
+  _crash_js_worker =
+    new Worker(
+      "./fs-worker",
+      import.meta.url);
+  return _crash_js_worker;
+}
+
 module.exports = {
   _basename:
     _basename,
@@ -200,6 +207,8 @@ module.exports = {
     _dirname,
   _ext_rm:
     _ext_rm,
+  _fs_worker_new:
+    _fs_worker_new,
   _file_exists:
     _file_exists,
   _file_read:
