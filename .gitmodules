@@ -1,0 +1,3 @@
+[submodule "examples/ahsi"]
+	path = examples/ahsi
+	url = https://github.com/themartiancompany/ahsi
