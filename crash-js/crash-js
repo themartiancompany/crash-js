@@ -21,13 +21,26 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+const
+  _utils =
+    require(
+      "utils");
+_is_node =
+  _utils._is_node;
+_is_not_browser =
+  _utils._is_webpack;
+_is_webpack =
+  _utils._is_webpack;
+
 function
   _process_exit(
     _exit) {
   return _exit;
 }
 
-if ( typeof window === 'undefined' ) {
+if ( _is_not_browser() &&
+     _is_node() &&
+     ( ! _is_webpack() ) ) {
   _argv =
     process.argv;
   _process_exit =

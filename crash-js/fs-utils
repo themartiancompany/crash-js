@@ -21,20 +21,16 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-function
-  _is_node() {
-  return typeof global !== 'undefined' && global.global === global;
-}
-
-function
-  _is_webpack() {
-  return typeof __webpack_require__ === 'function';
-}
-
-function
-  _is_not_browser() {
-  return typeof window === 'undefined';
-}
+const
+  _utils =
+    require(
+      "utils");
+_is_node =
+  _utils._is_node;
+_is_not_browser =
+  _utils._is_webpack;
+_is_webpack =
+  _utils._is_webpack;
 
 if ( _is_not_browser() &&
      _is_node() &&
