@@ -83,7 +83,7 @@ build-man:
 
 	mkdir \
 	  -p \
-	  "build/ahsi"
+	  "build/man"
 	rst2man \
 	  "man/lib$(_PROJECT).1.rst" \
 	  "build/man/lib$(_PROJECT).1"
