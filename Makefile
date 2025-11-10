@@ -147,15 +147,18 @@ install-npm:
 	ln \
 	  -s \
 	  "$(NODE_DIR)/$(_PROJECT)" \
-	  "$(LIB_DIR)/$(_PROJECT)";
+	  "$(LIB_DIR)/$(_PROJECT)" || \
+	true; \
 	ln \
 	  -s \
 	  "$(NODE_DIR)/fs-utils" \
-	  "$(LIB_DIR)/fs-utils"; \
+	  "$(LIB_DIR)/fs-utils" || \
+	true; \
 	ln \
 	  -s \
 	  "$(NODE_DIR)/fs-worker" \
-	  "$(LIB_DIR)/fs-worker"; \
+	  "$(LIB_DIR)/fs-worker" || \
+	true
 
 publish-npm:
 
