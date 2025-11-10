@@ -76,6 +76,9 @@ install-scripts:
 	  "$(_PROJECT)/fs-utils" \
 	  "$(LIB_DIR)/fs-utils"
 	$(_INSTALL_EXE) \
+	  "$(_PROJECT)/utils" \
+	  "$(LIB_DIR)/utils"
+	$(_INSTALL_EXE) \
 	  "$(_PROJECT)/fs-worker" \
 	  "$(LIB_DIR)/fs-worker"
 
@@ -158,6 +161,11 @@ install-npm:
 	  -s \
 	  "$(NODE_DIR)/fs-worker" \
 	  "$(LIB_DIR)/fs-worker" || \
+	true; \
+	ln \
+	  -s \
+	  "$(NODE_DIR)/utils" \
+	  "$(LIB_DIR)/utils" || \
 	true
 
 publish-npm:

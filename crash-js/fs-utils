@@ -32,29 +32,30 @@ _is_not_browser =
 _is_webpack =
   _utils._is_webpack;
 
-if ( _is_not_browser() &&
-     _is_node() &&
-     ( ! _is_webpack() ) ) {
-  _fs =
-    require(
-      "fs");
-  _path_module =
-    require("path");
+function
+  _fs_module_get() {
+  let
+    _fs;
+  if ( _is_not_browser() &&
+       _is_node() &&
+       ( ! _is_webpack() ) ) {
+    _fs =
+      require(
+        "fs");
+    _path_module =
+      require("path");
+  }
+  else {
+    _fs =
+      require("happy-opfs");
+    _path_module =
+      require("@std/path");
+  }
+  return _fs;
 }
-else {
+const
   _fs =
-    require("happy-opfs");
-  _path_module =
-    require("@std/path");
-  // Maybe not neeeded here
-  // window.addEventListener(
-  //   'load',
-  //   function () {
-  //     navigator
-  //       .serviceWorker
-  //       .register('/service-worker.js');
-  // });
-}
+    _fs_module_get();
 _path_module_basename =
   _path_module.basename;
 _path_module_dirname =

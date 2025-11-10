@@ -1,0 +1,111 @@
+#!/usr/bin/env node
+
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+//    ----------------------------------------------------------------------
+//    Copyright © 2024, 2025  Pellegrino Prevete
+//
+//    All rights reserved
+//    ----------------------------------------------------------------------
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU Affero General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Affero General Public License for more details.
+//
+//    You should have received a copy of the GNU Affero General Public License
+//    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+function
+  _is_node() {
+  let
+    _global_type,
+    _global_type_defined;
+  _global_type =
+    typeof global;
+  _global_type_defined =
+    _global_type !== 'undefined';
+  return _global_type_defined && global.global === global;
+}
+
+function
+  _is_not_browser() {
+  let
+    _window_type,
+    _window_type_defined;
+  _window_type =
+    typeof window;
+  _window_type_defined =
+    _window_type === 'undefined'
+  return _window_type_defined;
+}
+
+function
+  _is_webpack() {
+  let
+    _webpack_require_type;
+  _webpack_require_type =
+    typeof __webpack_require__;
+  _webpack_require_is_function =
+    _webpack_require_type === 'function'
+  return _webpack_require_is_function;
+}
+
+function
+  _argv_get() {
+  let
+    _argv;
+  if ( _is_not_browser() &&
+       _is_node() &&
+       ( ! _is_webpack() ) ) {
+    _argv =
+      process.argv;
+    _process_exit =
+      process.exit;
+  }
+  else {
+    _argv = [
+      "crash",
+      "javascript"
+    ]
+  return _argv
+}
+
+function
+  _process_exit_get() {
+  let
+    _process_exit;
+  if ( _is_not_browser() &&
+       _is_node() &&
+       ( ! _is_webpack() ) ) {
+    _process_exit =
+      process.exit;
+  }
+  else {
+    _process_exit =
+      function
+        (_exit) {
+        return _exit;
+     };
+  return _process_exit
+}
+
+
+module.exports = {
+  _argv_get:
+    _argv_get,
+  _is_node:
+    _is_node,
+  _is_not_browser:
+    _is_not_browser,
+  _is_webpack:
+    _is_webpack,
+  _process_exit_get:
+    _process_exit_get,
+};

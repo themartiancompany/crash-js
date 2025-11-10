@@ -25,33 +25,20 @@ const
   _utils =
     require(
       "utils");
+_argv_get =
+  _utils._argv_get;
 _is_node =
   _utils._is_node;
 _is_not_browser =
   _utils._is_webpack;
 _is_webpack =
   _utils._is_webpack;
-
-function
-  _process_exit(
-    _exit) {
-  return _exit;
-}
-
-if ( _is_not_browser() &&
-     _is_node() &&
-     ( ! _is_webpack() ) ) {
-  _argv =
-    process.argv;
-  _process_exit =
-    process.exit;
-}
-else {
-  _argv = [
-    "crash",
-    "javascript"
-  ]
-}
+_process_exit_get =
+  _utils._process_exit_get;
+_argv =
+  _argv_get();
+_process_exit =
+  _process_exit_get();
 const
   _fs_utils =
     require(
