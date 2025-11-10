@@ -27,6 +27,7 @@ BIN_DIR=$(DESTDIR)$(PREFIX)/bin
 LIB_DIR=$(DESTDIR)$(PREFIX)/lib/lib$(_PROJECT)
 MAN_DIR?=$(DESTDIR)$(PREFIX)/share/man
 NODE_DIR=$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)
+AHSI_DIR=$(PREFIX)/lib/node_modules/ahsi
 BUILD_NPM_DIR=build
 
 _INSTALL_FILE=\
@@ -64,7 +65,7 @@ shellcheck:
 	    "bash" \
 	  $(SCRIPT_FILES)
 
-install: install-scripts install-doc install-man
+install: install-scripts install-doc install-examples install-man
 
 install-scripts:
 
@@ -75,11 +76,36 @@ install-scripts:
 	  "$(_PROJECT)/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)"
 
+build-examples:
+
+        mkdir \
+	  -p \
+  	  "build/examples"	  
+	rst2man \
+	  "man/ahsi.1.rst" \
+	  "build/examples/ahsi.1"
+	_version="$$( \
+	  npm \
+	    view \
+	      "$$(pwd)/examples/ahsisi" \
+	      "version")"; \
+	cp \
+	  -r \
+	  "examples/ahsisi/"* \
+	  "build/examples"; \
+	cd \
+	  "build/examples"; \
+	npm \
+	  pack; \
+	mv \
+	  "ahsi-$${_version}.tgz" \
+	  "../.."
+
 build-man:
 
 	mkdir \
 	  -p \
-	  "build"
+	  "build/ahsi"
 	rst2man \
 	  "man/$(_PROJECT).1.rst" \
 	  "build/man/lib$(_PROJECT).1"
@@ -140,6 +166,30 @@ install-npm:
 	  "$(NODE_DIR)/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)";
 
+
+install-examples:
+
+	_npm_opts=( \
+	  -g \
+	  --prefix \
+	    "$(USR_DIR)" \
+	); \
+	_version="$$( \
+	  npm \
+	    view \
+	      "$$(pwd)/examples/ahsi" \
+	      "version")"; \
+	npm \
+	  install \
+	    "$${_npm_opts[@]}" \
+	    "ahsi-$${_version}.tgz"; \
+	$(_INSTALL_DIR) \
+	  "$(DESTDIR)$(PREFIX)/lib/ahsi"; \
+	ln \
+	  -s \
+	  "$(AHSI_DIR)/ahsi" \
+	  "$(DESTDIR)$(PREFIX)/lib/ahsi/ahsi"; \
+
 publish-npm:
 
 	cd \
@@ -162,4 +212,4 @@ install-man:
 	  "man/lib$(_PROJECT).1.rst" \
 	  "$(MAN_DIR)/man1/lib$(_PROJECT).1"
 
-.PHONY: check install install-doc install-man build-npm install-npm install-scripts shellcheck
+.PHONY: check install install-doc install-examples install-man build-npm install-npm install-scripts shellcheck
