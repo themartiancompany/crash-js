@@ -82,7 +82,7 @@ build-man:
 	  -p \
 	  "build/ahsi"
 	rst2man \
-	  "man/$(_PROJECT).1.rst" \
+	  "man/lib$(_PROJECT).1.rst" \
 	  "build/man/lib$(_PROJECT).1"
 
 build-npm:
