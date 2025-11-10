@@ -193,14 +193,13 @@ function
     _url) {
   let
     _worker;
-    // _url;
-  // _url =
-  //   new URL(
-  //     "fs-worker",
-  //     _import_meta_url);
+  if ( typeof _url === 'undefined' ) {
+    _url =
+      "fs-worker";
+  }
   _worker =
     new Worker(
-      "fs_worker");
+      _url);
   return _worker;
 }
 
