@@ -25,7 +25,7 @@ const
   _fs =
     require("happy-opfs");
 _sync_agent =
-  _happy_opfs.startSyncAgent;
+  _fs.startSyncAgent;
 
 module.exports = {
   _sync_agent:
