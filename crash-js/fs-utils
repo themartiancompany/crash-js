@@ -262,7 +262,7 @@ module.exports = {
     _fs_worker_new,
   _fs_worker_start:
     _fs_worker_start,
-  _ls =
+  _ls:
     _fs.readDirSync,
   _mkdir:
     _fs.mkdirSync;
