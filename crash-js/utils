@@ -58,6 +58,63 @@ function
 }
 
 function
+  _argv_url_get(
+    _key_name) {
+  let
+    _assignment,
+    _assignments,
+    _key,
+    _key_name_type,
+    _key_value,
+    _location,
+    _argv,
+    _url,
+    _value;
+  _key_name_type =
+    typeof
+      _keyname;
+  if ( _key_name_type === 'undefined' ) {
+    _key_name =
+      "";
+  }
+  _argv =
+    [];
+  _location =
+    window.location;
+  _url =
+    _location.search.substring(
+      1);
+  _assignments =
+    _url.split(
+      '&');
+  for ( let
+          _result =
+            0;
+        _result <
+          _assignments.length;
+        _result++ ) {
+    _assignment =
+      _assignments[
+        _result];
+    _key_value =
+      _assignment.split(
+        '=');
+    _key =
+      _key_value[
+        0];
+    if ( _key == _key_name ||
+         _key_name == "" ) {
+      _value =
+        _key_value[
+          1];
+      _argv.push(
+        _value);
+    }
+  }
+  return _argv;
+}
+
+function
   _argv_get() {
   let
     _argv;
@@ -70,10 +127,8 @@ function
       process.exit;
   }
   else {
-    _argv = [
-      "crash",
-      "javascript"
-    ]
+    _argv =
+      _argv_url_get();
   return _argv
 }
 
@@ -100,6 +155,8 @@ function
 module.exports = {
   _argv_get:
     _argv_get,
+  _argv_url_get:
+    _argv_url_get,
   _is_node:
     _is_node,
   _is_not_browser:

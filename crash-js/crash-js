@@ -187,7 +187,7 @@ function
   let
     _program,
     _program_name;
-  if ( typeof window === 'undefined' ) {
+  if ( _is_not_browser() ) {
     _program =
       _argv[
         1];
@@ -246,6 +246,8 @@ function
 }
 
 module.exports = {
+  _argv_get:
+    _argv_get,
   _app_name_get:
     _app_name_get,
   _basename:
