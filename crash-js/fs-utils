@@ -265,7 +265,7 @@ module.exports = {
   _ls:
     _fs.readDirSync,
   _mkdir:
-    _fs.mkdirSync;
+    _fs.mkdirSync,
   _path_join:
     _path_join,
   _json_display:
