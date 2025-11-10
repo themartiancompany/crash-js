@@ -91,7 +91,7 @@ build-npm:
 	  -p \
 	  "build/man"
 	rst2man \
-	  "man/$(_PROJECT).1.rst" \
+	  "man/lib$(_PROJECT).1.rst" \
 	  "build/lib$(_PROJECT).1"
 	_version="$$( \
 	  npm \
