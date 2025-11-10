@@ -24,7 +24,7 @@
 const
   _utils =
     require(
-      "utils");
+      "./utils");
 _argv_get =
   _utils._argv_get;
 _argv_url_get =
