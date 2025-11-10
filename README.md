@@ -71,6 +71,24 @@ is hosted on
   https://github.com/themartiancompany/libcrash-js-ur).
 Be aware it could go offline any time.
 
+## Documentation
+
+The manual can be accessed with
+
+```bash
+man \
+  libcrash-js
+```
+
+An example program using both this library and the
+[Crash Bash](
+  https://github.com/themartiancompany/crash-bash)
+library,
+[ahsi](
+  https://github.com/themartiancompany/ahsi),
+is been made available as a submodule in the
+`examples` directory.
+
 ## License
 
 Crash JavaScript is released by Pellegrino Prevete
