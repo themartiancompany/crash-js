@@ -200,9 +200,7 @@ function
       _import_meta_url);
   _worker =
     new Worker(
-      _url
-      "./fs-worker",
-      _import_meta_url);
+      _url);
   return _crash_js_worker;
 }
 
