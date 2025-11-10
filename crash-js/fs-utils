@@ -190,18 +190,18 @@ function
 
 function
   _fs_worker_new(
-    _import_meta_url) {
+    _url) {
   let
-    _worker,
-    _url;
-  _url =
-    new URL(
-      "fs-worker",
-      _import_meta_url);
+    _worker;
+    // _url;
+  // _url =
+  //   new URL(
+  //     "fs-worker",
+  //     _import_meta_url);
   _worker =
     new Worker(
-      _url);
-  return _crash_js_worker;
+      "fs_worker");
+  return _worker;
 }
 
 module.exports = {
