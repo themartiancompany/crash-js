@@ -280,6 +280,10 @@ module.exports = {
     _fs_utils._json_display,
   _json_read:
     _fs_utils._json_read,
+  _ls:
+    _fs_utils._ls,
+  _mkdir:
+    _fs_utils._mkdir,
   _msg_info:
     _msg_info,
   _msg_error:

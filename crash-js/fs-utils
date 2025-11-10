@@ -262,6 +262,10 @@ module.exports = {
     _fs_worker_new,
   _fs_worker_start:
     _fs_worker_start,
+  _ls =
+    _fs.readDirSync;
+  _mkdir:
+    _fs.mkdirSync;
   _path_join:
     _path_join,
   _json_display:
