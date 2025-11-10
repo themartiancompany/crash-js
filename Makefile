@@ -54,7 +54,7 @@ NPM_FILES=\
   COPYING \
   package.json
 
-all: build-man build-node
+all: build-man build-npm
 
 check: shellcheck
 
@@ -75,31 +75,6 @@ install-scripts:
 	$(_INSTALL_EXE) \
 	  "$(_PROJECT)/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)"
-
-build-examples:
-
-        mkdir \
-	  -p \
-  	  "build/examples"	  
-	rst2man \
-	  "man/ahsi.1.rst" \
-	  "build/examples/ahsi.1"
-	_version="$$( \
-	  npm \
-	    view \
-	      "$$(pwd)/examples/ahsisi" \
-	      "version")"; \
-	cp \
-	  -r \
-	  "examples/ahsisi/"* \
-	  "build/examples"; \
-	cd \
-	  "build/examples"; \
-	npm \
-	  pack; \
-	mv \
-	  "ahsi-$${_version}.tgz" \
-	  "../.."
 
 build-man:
 
@@ -139,6 +114,15 @@ build-npm:
 	  "$(_PROJECT)-$${_version}.tgz" \
 	  ".."
 
+install-examples:
+
+	cd \
+	  "examples/ahsi"; \
+	make \
+	 all; \
+	make \
+	  install;
+
 install-npm:
 
 	_npm_opts=( \
@@ -165,30 +149,6 @@ install-npm:
 	  -s \
 	  "$(NODE_DIR)/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)";
-
-
-install-examples:
-
-	_npm_opts=( \
-	  -g \
-	  --prefix \
-	    "$(USR_DIR)" \
-	); \
-	_version="$$( \
-	  npm \
-	    view \
-	      "$$(pwd)/examples/ahsi" \
-	      "version")"; \
-	npm \
-	  install \
-	    "$${_npm_opts[@]}" \
-	    "ahsi-$${_version}.tgz"; \
-	$(_INSTALL_DIR) \
-	  "$(DESTDIR)$(PREFIX)/lib/ahsi"; \
-	ln \
-	  -s \
-	  "$(AHSI_DIR)/ahsi" \
-	  "$(DESTDIR)$(PREFIX)/lib/ahsi/ahsi"; \
 
 publish-npm:
 
