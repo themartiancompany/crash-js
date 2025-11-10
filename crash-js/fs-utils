@@ -24,7 +24,7 @@
 const
   _utils =
     require(
-      "utils");
+      "./utils");
 _is_node =
   _utils._is_node;
 _is_not_browser =
