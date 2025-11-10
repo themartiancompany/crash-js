@@ -42,6 +42,7 @@
   "type": "commonjs",
   "main": "crash-js/crash-js",
   "scripts": {
+    "build": "make all",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
