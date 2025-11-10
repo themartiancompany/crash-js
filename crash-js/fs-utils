@@ -195,12 +195,57 @@ function
     _worker;
   if ( typeof _url === 'undefined' ) {
     _url =
-      "fs-worker";
+      "fs-worker.js";
   }
   _worker =
     new Worker(
       _url);
   return _worker;
+}
+
+async function
+  _fs_worker_start(
+    _worker_path,
+    _buffer_length,
+    _op_timeout) {
+  let
+    _agent,
+    _agent_connect,
+    _connect_opts,
+    _worker;
+  if ( typeof _worker_path === 'undefined' ) {
+    _worker_path =
+      "fs-worker.js";
+  }
+  if ( typeof _buffer_length !== 'Number' ) {
+    // SharedArrayBuffer size between
+    // main thread and worker
+    _buffer_length =
+      10 * 1024 * 1024;
+  }
+  if ( typeof _buffer_length !== 'Number' ) {
+    // SharedArrayBuffer size between
+    // main thread and worker
+    _op_timeout =
+      10 * 1024 * 1024;
+  }
+  _agent_connect =
+    _fs.connectSyncAgent;
+  _worker =
+    _fs_worker_new(
+      _worker_path);
+  _connect_opts = {
+    worker:
+      _worker,
+    bufferLength:
+      _buffer_length,
+    opTimeout:
+      _op_timeout
+  }
+  _agent =
+    _agent_connect(
+      _connect_opts);
+  return _agent;
 }
 
 module.exports = {
@@ -218,6 +263,8 @@ module.exports = {
     _file_write,
   _fs_worker_new:
     _fs_worker_new,
+  _fs_worker_start:
+    _fs_worker_start,
   _path_join:
     _path_join,
   _json_display:
