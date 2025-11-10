@@ -207,14 +207,14 @@ module.exports = {
     _dirname,
   _ext_rm:
     _ext_rm,
-  _fs_worker_new:
-    _fs_worker_new,
   _file_exists:
     _file_exists,
   _file_read:
     _file_read,
   _file_write:
     _file_write,
+  _fs_worker_new:
+    _fs_worker_new,
   _path_join:
     _path_join,
   _json_display:

@@ -266,8 +266,8 @@ module.exports = {
     _fs_utils._file_read,
   _file_write:
     _fs_utils._file_write,
-  _fs_worker:
-    _fs_utils._fs_worker,
+  _fs_worker_new:
+    _fs_utils._fs_worker_new,
   _json_display:
     _fs_utils._json_display,
   _json_read:
