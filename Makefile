@@ -70,11 +70,14 @@ install: install-scripts install-doc install-examples install-man
 install-scripts:
 
 	$(_INSTALL_EXE) \
+	  "$(_PROJECT)/$(_PROJECT)" \
+	  "$(LIB_DIR)/$(_PROJECT)"
+	$(_INSTALL_EXE) \
 	  "$(_PROJECT)/fs-utils" \
 	  "$(LIB_DIR)/fs-utils"
 	$(_INSTALL_EXE) \
-	  "$(_PROJECT)/$(_PROJECT)" \
-	  "$(LIB_DIR)/$(_PROJECT)"
+	  "$(_PROJECT)/fs-worker" \
+	  "$(LIB_DIR)/fs-worker"
 
 build-man:
 
@@ -143,12 +146,16 @@ install-npm:
 	  "$(LIB_DIR)"; \
 	ln \
 	  -s \
+	  "$(NODE_DIR)/$(_PROJECT)" \
+	  "$(LIB_DIR)/$(_PROJECT)";
+	ln \
+	  -s \
 	  "$(NODE_DIR)/fs-utils" \
 	  "$(LIB_DIR)/fs-utils"; \
 	ln \
 	  -s \
-	  "$(NODE_DIR)/$(_PROJECT)" \
-	  "$(LIB_DIR)/$(_PROJECT)";
+	  "$(NODE_DIR)/fs-worker" \
+	  "$(LIB_DIR)/fs-worker"; \
 
 publish-npm:
 
