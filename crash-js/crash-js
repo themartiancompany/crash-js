@@ -27,6 +27,8 @@ const
       "utils");
 _argv_get =
   _utils._argv_get;
+_argv_url_get =
+  _utils._argv_url_get;
 _is_node =
   _utils._is_node;
 _is_not_browser =
@@ -248,6 +250,8 @@ function
 module.exports = {
   _argv_get:
     _argv_get,
+  _argv_url_get:
+    _argv_url_get,
   _app_name_get:
     _app_name_get,
   _basename:
