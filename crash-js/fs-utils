@@ -190,7 +190,7 @@ function
 
 function
   _fs_worker_new(
-  _import_meta_url) {
+    _import_meta_url) {
   let
     _worker,
     _url;
