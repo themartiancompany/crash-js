@@ -38,7 +38,7 @@ function
 
 if ( _is_not_browser() &&
      _is_node() &&
-     ( ! is_webpack() ) ) {
+     ( ! _is_webpack() ) ) {
   _fs =
     require(
       "fs");
