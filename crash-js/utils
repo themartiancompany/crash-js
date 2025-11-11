@@ -21,18 +21,6 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-const
-  _yargs_module =
-    require(
-      "yargs");
-_yargs =
-  _yargs_module.yargs;
-const
-  _yargs_helpers_module =
-    require(
-      "yargs/helpers");
-_hide_bin =
-  _yargs_helpers_module.hideBin;
 
 
 function
@@ -114,7 +102,20 @@ function
   _yargv_get() {
   let
     _argv,
+    _hide_bin,
+    _yargs,
+    _yargs_module,
     _yargs_object;
+  _yargs_module =
+    require(
+      "yargs");
+  _yargs =
+    _yargs_module.yargs;
+    _yargs_helpers_module =
+      require(
+        "yargs/helpers");
+  _hide_bin =
+    _yargs_helpers_module.hideBin;
   _yargs_object =
     _yargs(
       _hide_bin(
