@@ -32,7 +32,7 @@ _argv_url_get =
 _is_node =
   _utils._is_node;
 _is_not_browser =
-  _utils._is_webpack;
+  _utils._is_not_browser;
 _is_webpack =
   _utils._is_webpack;
 _process_exit_get =
