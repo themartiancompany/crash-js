@@ -82,8 +82,6 @@ function
   _argv_get() {
   let
     _argv;
-  console.log(
-    "hello");
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
        typeof __webpack_require__ !== 'function' ) {
