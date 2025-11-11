@@ -60,10 +60,8 @@ check: shellcheck
 
 shellcheck:
 
-	shellcheck \
-	  -s \
-	    "bash" \
-	  $(SCRIPT_FILES)
+	eslint \
+	  .
 
 install: install-scripts install-doc install-examples install-man
 
