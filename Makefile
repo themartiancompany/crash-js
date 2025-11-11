@@ -56,12 +56,13 @@ NPM_FILES=\
 
 all: build-man build-npm
 
-check: shellcheck
+check: eslint
 
-shellcheck:
+eslint:
 
-	eslint \
-	  .
+	npx \
+	  eslint \
+	    "."
 
 install: install-scripts install-doc install-examples install-man
 
