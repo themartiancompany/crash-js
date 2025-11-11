@@ -185,8 +185,6 @@ function
   if ( typeof window === 'undefined' ) {
     _argv =
       _argv_get();
-    console.log(
-      _argv)
     _program =
       _argv[
         1];
