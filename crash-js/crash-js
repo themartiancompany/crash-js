@@ -33,6 +33,8 @@ _process_exit_get =
   _utils._process_exit_get;
 _process_exit =
   _process_exit_get();
+_yargv_get =
+  _utils._yargv_get;
 const
   _fs_utils =
     require(
@@ -290,5 +292,7 @@ module.exports = {
   _printf:
     _printf,
   _sleep:
-    _sleep
+    _sleep,
+  _yargv_get:
+    _yargv_get
 };

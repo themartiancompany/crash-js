@@ -21,6 +21,20 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+const
+  _yargs_module =
+    require(
+      "yargs");
+_yargs =
+  _yargs_module.yargs;
+const
+  _yargs_helpers_module =
+    require(
+      "yargs/helpers");
+_hide_bin =
+  _yargs_helpers_module.hideBin;
+
+
 function
   _argv_url_get(
     _key_name) {
@@ -97,6 +111,18 @@ function
 }
 
 function
+  _yargv_get() {
+  let
+    _argv,
+    _yargs_object;
+  _yargs_object =
+    _yargs(
+      _hide_bin(
+        process.argv));
+  return _yargs_object.parse();
+}
+
+function
   _process_exit_get() {
   let
     _process_exit;
@@ -122,5 +148,7 @@ module.exports = {
   _argv_url_get:
     _argv_url_get,
   _process_exit_get:
-    _process_exit_get
+    _process_exit_get,
+  _yargv_get:
+    _yargv_get
 };

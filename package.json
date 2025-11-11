@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "0.1.51",
+    "0.1.52",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -61,7 +61,9 @@
     "happy-opfs":
       "npm:@themartiancompany/happy-opfs@^1.8.10",
     "stream-browserify":
-      "^3.0.0"
+      "^3.0.0",
+    "yargs":
+      "18.0.0"
   },
   "type":
     "commonjs",
