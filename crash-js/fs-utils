@@ -25,9 +25,9 @@ function
   _fs_module_get() {
   let
     _fs;
-  if ( _is_not_browser() &&
-       _is_node() &&
-       ( ! _is_webpack() ) ) {
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
     _fs =
       require(
         "fs");
