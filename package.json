@@ -5,12 +5,11 @@
     "0.1.44",
   "description":
     "Crash Javascript library.",
-  "funding": {
-    "type":
-      "patreon",
-    "url":
-      "https://patreon.com/tallero"
-  },
+  "funding":
+    { "type":
+        "patreon",
+      "url":
+        "https://patreon.com/tallero" },
   "files": [
     "AUTHORS.rst",
     "COPYING",
@@ -28,42 +27,37 @@
   ],
   "homepage":
     "https://github.com/themartiancompany/crash-js",
-  "bugs": {
-    "url":
-      "https://github.com/themartiancompany/crash-js/issues"
-  },
-  "repository": {
-    "type":
-      "git",
-    "url":
-      "git+https://github.com/themartiancompany/crash-js.git"
-  },
+  "bugs":
+    { "url":
+        "https://github.com/themartiancompany/crash-js/issues" },
+  "repository":
+    { "type":
+        "git",
+      "url":
+        "git+https://github.com/themartiancompany/crash-js.git" },
   "license":
     "AGPL-3.0-or-later",
-  "author": {
-    "name":
-      "Pellegrino Prevete",
-    "email":
-      "pellegrinoprevete@gmail.com",
-    "url":
-      "https://github.com/tallero"
-  },
-  "dependencies": {
-    "buffer":
-      "^6.0.3",
-    "stream-browserify":
-      "^3.0.0",
-    "happy-opfs":
-      "npm:@themartiancompany/happy-opfs@^1.8.8"
-  },
+  "author":
+    { "name":
+        "Pellegrino Prevete",
+      "email":
+        "pellegrinoprevete@gmail.com",
+      "url":
+        "https://github.com/tallero" },
+  "dependencies":
+    { "buffer":
+        "^6.0.3",
+      "stream-browserify":
+        "^3.0.0",
+      "happy-opfs":
+        "npm:@themartiancompany/happy-opfs@^1.8.8" },
   "type":
     "commonjs",
   "main":
     "crash-js/crash-js",
-  "scripts": {
-    "build":
-      "make all",
-    "test":
-      "echo \"Error: no test specified\" && exit 1"
-  }
+  "scripts":
+    { "build":
+        "make all",
+      "test":
+        "echo \"Error: no test specified\" && exit 1" }
 }
