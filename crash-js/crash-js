@@ -37,8 +37,6 @@ _is_webpack =
   _utils._is_webpack;
 _process_exit_get =
   _utils._process_exit_get;
-_argv =
-  _argv_get();
 _process_exit =
   _process_exit_get();
 const
@@ -187,9 +185,14 @@ function
   _cmdline_check(
     _app_name) {
   let
+    _argv,
     _program,
     _program_name;
-  if ( _is_not_browser() ) {
+  if ( typeof window === 'undefined' ) {
+    _argv =
+      _argv_get();
+    console.log(
+      _argv)
     _program =
       _argv[
         1];

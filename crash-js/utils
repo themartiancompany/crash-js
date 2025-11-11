@@ -22,41 +22,6 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 function
-  _is_node() {
-  let
-    _global_type,
-    _global_type_defined;
-  _global_type =
-    typeof global;
-  _global_type_defined =
-    _global_type !== 'undefined';
-  return _global_type_defined && global.global === global;
-}
-
-function
-  _is_not_browser() {
-  let
-    _window_type,
-    _window_type_defined;
-  _window_type =
-    typeof window;
-  _window_type_defined =
-    _window_type === 'undefined'
-  return _window_type_defined;
-}
-
-function
-  _is_webpack() {
-  let
-    _webpack_require_type;
-  _webpack_require_type =
-    typeof __webpack_require__;
-  _webpack_require_is_function =
-    _webpack_require_type === 'function'
-  return _webpack_require_is_function;
-}
-
-function
   _argv_url_get(
     _key_name) {
   let
@@ -117,28 +82,28 @@ function
   _argv_get() {
   let
     _argv;
-  if ( _is_not_browser() &&
-       _is_node() &&
-       ( ! _is_webpack() ) ) {
+  console.log(
+    "hello");
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
     _argv =
       process.argv;
-    _process_exit =
-      process.exit;
   }
   else {
     _argv =
       _argv_url_get();
-  return _argv
   }
+  return _argv;
 }
 
 function
   _process_exit_get() {
   let
     _process_exit;
-  if ( _is_not_browser() &&
-       _is_node() &&
-       ( ! _is_webpack() ) ) {
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ === 'function' ) {
     _process_exit =
       process.exit;
   }
@@ -148,8 +113,8 @@ function
         (_exit) {
         return _exit;
      };
-  return _process_exit
   }
+  return _process_exit
 }
 
 module.exports = {
