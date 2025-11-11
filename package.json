@@ -1,10 +1,15 @@
 {
-  "name": "crash-js",
-  "version": "0.1.44",
-  "description": "Crash Javascript library.",
+  "name":
+    "crash-js",
+  "version":
+    "0.1.44",
+  "description":
+    "Crash Javascript library.",
   "funding": {
-    "type": "patreon",
-    "url": "https://patreon.com/tallero"
+    "type":
+      "patreon",
+    "url":
+      "https://patreon.com/tallero"
   },
   "files": [
     "AUTHORS.rst",
@@ -14,35 +19,51 @@
     "crash-js",
     "examples"
   ],
-  "man": "./man/libcrash-js.1",
+  "man":
+    "./man/libcrash-js.1",
   "keywords": [
     "ur",
     "themartiancompany",
     "dogeos"
   ],
-  "homepage": "https://github.com/themartiancompany/crash-js",
+  "homepage":
+    "https://github.com/themartiancompany/crash-js",
   "bugs": {
-    "url": "https://github.com/themartiancompany/crash-js/issues"
+    "url":
+      "https://github.com/themartiancompany/crash-js/issues"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/themartiancompany/crash-js.git"
+    "type":
+      "git",
+    "url":
+      "git+https://github.com/themartiancompany/crash-js.git"
   },
-  "license": "AGPL-3.0-or-later",
+  "license":
+    "AGPL-3.0-or-later",
   "author": {
-    "name": "Pellegrino Prevete",
-    "email": "pellegrinoprevete@gmail.com",
-    "url": "https://github.com/tallero"
+    "name":
+      "Pellegrino Prevete",
+    "email":
+      "pellegrinoprevete@gmail.com",
+    "url":
+      "https://github.com/tallero"
   },
   "dependencies": {
-    "buffer": "^6.0.3",
-    "stream-browserify": "^3.0.0",
-    "happy-opfs": "npm:@themartiancompany/happy-opfs@^1.8.8"
+    "buffer":
+      "^6.0.3",
+    "stream-browserify":
+      "^3.0.0",
+    "happy-opfs":
+      "npm:@themartiancompany/happy-opfs@^1.8.8"
   },
-  "type": "commonjs",
-  "main": "crash-js/crash-js",
+  "type":
+    "commonjs",
+  "main":
+    "crash-js/crash-js",
   "scripts": {
-    "build": "make all",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build":
+      "make all",
+    "test":
+      "echo \"Error: no test specified\" && exit 1"
   }
 }
