@@ -25,19 +25,20 @@ function
   _argv_url_get(
     _key_name) {
   let
+    _argv,
     _assignment,
     _assignments,
     _key,
-    _key_name_type,
     _key_value,
     _location,
-    _argv,
+    _msg,
     _url,
     _value;
-  _key_name_type =
-    typeof
-      _keyname;
-  if ( _key_name_type === 'undefined' ) {
+  if ( typeof _key_name === 'undefined' ) {
+    _msg =
+      "Getting all values."
+    _msg_info(
+      _msg);
     _key_name =
       "";
   }
