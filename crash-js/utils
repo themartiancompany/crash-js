@@ -107,8 +107,7 @@ function
     _yargs_module,
     _yargs_object;
   if ( typeof window === 'undefined' &&
-       ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ === 'function' ) {
+       ( typeof global !== 'undefined' && global.global === global ) ) {
     _yargs_module =
       require(
         "yargs");
