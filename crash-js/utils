@@ -104,18 +104,15 @@ function
     _argv,
     _hide_bin,
     _yargs,
-    _yargs_module,
     _yargs_object;
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) ) {
-    _yargs_module =
+    _yargs =
       require(
         "yargs");
-    _yargs =
-      _yargs_module.yargs;
-      _yargs_helpers_module =
-        require(
-          "yargs/helpers");
+    _yargs_helpers_module =
+      require(
+        "yargs/helpers");
     _hide_bin =
       _yargs_helpers_module.hideBin;
     _yargs_object =
