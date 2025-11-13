@@ -31,20 +31,67 @@ function
     _fs =
       require(
         "fs");
-    _path_module =
-      require("path");
   }
   else {
     _fs =
       require("happy-opfs");
-    _path_module =
-      require("@std/path");
   }
   return _fs;
 }
+
+function
+  _path_module_get() {
+  let
+    _path;
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
+    _path =
+      require("path");
+  }
+  else {
+    _path =
+      require("@std/path");
+  }
+  return _path;
+}
+
+function
+  _split_opfs() {
+  console.log(
+    "hello");
+}
+
+function
+  _split_module_get() {
+  let
+    _split;
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
+    _split =
+      require(
+        "split-file");
+  }
+  else {
+    _split =
+      _split_opfs;
+  }
+  return _split;
+}
+
 const
   _fs =
     _fs_module_get();
+const
+  _json_parse =
+    JSON.parse;
+const
+  _json_display =
+    JSON.stringify;
+const
+  _path_module =
+    _path_module_get();
 _path_module_basename =
   _path_module.basename;
 _path_module_dirname =
@@ -54,11 +101,8 @@ _path_module_join =
 _path_module_parse =
   _path_module.parse;
 const
-  _json_parse =
-    JSON.parse;
-const
-  _json_display =
-    JSON.stringify;
+  _split_module =
+    _split_module_get();
 
 function
   _basename(
@@ -80,6 +124,26 @@ function
     _path_module_dirname(
       _file_path);
   return _dir;
+}
+
+function
+  _ext_rm(
+    _path) {
+  let
+    _dir,
+    _name,
+    _paths;
+  _dir =
+    _path_module_parse(
+      _path).dir;
+  _name =
+    _path_module_parse(
+      _path).name;
+  _paths = [
+    _dir,
+    _name];
+  return _path_join(
+    _paths); 
 }
 
 function
@@ -125,53 +189,6 @@ function
   _fs.writeFileSync(
     _path,
     _content);
-}
-
-function
-  _path_join(
-    _paths) {
-  let
-    _path;
-  _path =
-    _path_module_join.apply(
-      null,
-      _paths);
-  return _path;
-}
-
-function
-  _ext_rm(
-    _path) {
-  let
-    _dir,
-    _name,
-    _paths;
-  _dir =
-    _path_module_parse(
-      _path).dir;
-  _name =
-    _path_module_parse(
-      _path).name;
-  _paths = [
-    _dir,
-    _name];
-  return _path_join(
-    _paths); 
-}
-
-function
-  _json_read(
-    _json_path) {
-  let
-    _json_str,
-    _json;
-  _json_str =
-    _file_read(
-      _json_path);
-  _json =
-    _json_parse(
-      _json_str);
-  return _json;
 }
 
 function
@@ -232,6 +249,42 @@ async function
     _agent_connect(
       _connect_opts);
   return _agent;
+}
+
+function
+  _json_read(
+    _json_path) {
+  let
+    _json_str,
+    _json;
+  _json_str =
+    _file_read(
+      _json_path);
+  _json =
+    _json_parse(
+      _json_str);
+  return _json;
+}
+
+function
+  _path_join(
+    _paths) {
+  let
+    _path;
+  _path =
+    _path_module_join.apply(
+      null,
+      _paths);
+  return _path;
+}
+
+function
+  _split(
+    _in,
+    _parts,
+    _out) {
+  console.log(
+    _split_module);
 }
 
 module.exports = {
