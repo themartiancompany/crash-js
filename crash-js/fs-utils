@@ -304,14 +304,16 @@ module.exports = {
     _fs_worker_new,
   _fs_worker_start:
     _fs_worker_start,
+  _json_display:
+    _json_display,
+  _json_read:
+    _json_read,
   _ls:
     _fs.readDirSync,
   _mkdir:
     _fs.mkdirSync,
   _path_join:
     _path_join,
-  _json_display:
-    _json_display,
-  _json_read:
-    _json_read
+  _split:
+    _split
 };

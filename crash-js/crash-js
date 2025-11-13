@@ -42,7 +42,6 @@ const
 _basename =
   _fs_utils._basename;
 
-
 function
   _app_name_get() {
   let
@@ -293,6 +292,8 @@ module.exports = {
     _printf,
   _sleep:
     _sleep,
+  _split:
+    _fs_utils._split,
   _yargv_get:
     _yargv_get
 };
