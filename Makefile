@@ -49,10 +49,11 @@ SCRIPT_FILES=\
   $(wildcard \
       $(_PROJECT)/*)
 NPM_FILES=\
-  $(_PROJECT) \
-  $(DOC_FILES) \
-  COPYING \
-  package.json
+  "$(_PROJECT)" \
+  "README.md" \
+  "COPYING" \
+  "AUTHORS.rst" \
+  "package.json"
 
 all: build-man build-npm
 
@@ -60,9 +61,9 @@ check: eslint
 
 eslint:
 
-	npx \
-	  eslint \
-	    "."
+	npm \
+	  run \
+	    lint
 
 install: install-scripts install-doc install-examples install-man
 
@@ -105,11 +106,7 @@ build-npm:
 	      "version")"; \
 	cp \
 	  -r \
-	  "$(_PROJECT)" \
-	  "README.md" \
-	  "COPYING" \
-	  "AUTHORS.rst" \
-	  "package.json" \
+	  $(NPM_FILES) \
 	  "build"; \
 	cd \
 	  "build"; \
