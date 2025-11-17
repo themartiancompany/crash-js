@@ -80,6 +80,9 @@ function
   return _split;
 }
 
+const _worker_module =
+  require(
+    "web-worker");
 const
   _fs =
     _fs_module_get();
@@ -195,15 +198,15 @@ function
   _fs_worker_new(
     _url) {
   let
-    _worker;
+    _fs_worker;
   if ( typeof _url === 'undefined' ) {
     _url =
       "fs-worker.js";
   }
-  _worker =
-    new Worker(
+  _fs_worker =
+    new _worker(
       _url);
-  return _worker;
+  return _fs_worker;
 }
 
 async function
@@ -215,7 +218,7 @@ async function
     _agent,
     _agent_connect,
     _connect_opts,
-    _worker;
+    _fs_worker;
   if ( typeof _worker_path === 'undefined' ) {
     _worker_path =
       "fs-worker.js";
@@ -234,12 +237,12 @@ async function
   }
   _agent_connect =
     _fs.connectSyncAgent;
-  _worker =
+  _fs_worker =
     _fs_worker_new(
       _worker_path);
   _connect_opts = {
     worker:
-      _worker,
+      _fs_worker,
     bufferLength:
       _buffer_length,
     opTimeout:
