@@ -13,6 +13,24 @@ const
   _output_file_name =
     `${_input_file_name}.js`;
 const
+  _input_file_path =
+    `./${_input_file_name}/${_input_file_name}`;
+const
+  _webpack =
+    require(
+     "webpack");
+const
+  _ignore_plugin =
+    _webpack.IgnorePlugin; 
+const
+  _yargs_ignore_plugin =
+    new _ignore_plugin(
+          _yargs_ignore);
+const
+  _yargs_helpers_ignore_plugin =
+    new _ignore_plugin(
+          _yargs_helpers_ignore);
+const
   _output =
   { path:
       _output_dir,
@@ -20,14 +38,14 @@ const
       _output_file_name };
 module.exports = {
   entry:
-    `./${_input_file_name}`,
+    _input_file_path,
   output:
     _output,
   optimization: {
     moduleIds: 'deterministic',
   },
   resolve: {
-    fallback: {
+    alias: {
       "fs":
         _path.resolve(
           __dirname,
@@ -36,8 +54,19 @@ module.exports = {
         _path.resolve(
           __dirname,
           'node_modules/path/mod.js'),
+    },
+    fallback: {
+      "utils":
+        false,
       "web-worker":
         false
     },
   },
+  externals:
+    { yargs:
+        'yargs' },
+  plugins: [
+    _yargs_ignore_plugin,
+    _yargs_helpers_ignore_plugin
+  ]
 };

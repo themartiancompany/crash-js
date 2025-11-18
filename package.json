@@ -17,6 +17,7 @@
     "README.md",
     "eslint.config.mjs",
     "crash-js",
+    "crash-js.js",
     "examples",
     "package.json",
     "webpack.config.cjs"
