@@ -53,7 +53,9 @@ NPM_FILES=\
   "README.md" \
   "COPYING" \
   "AUTHORS.rst" \
-  "package.json"
+  "eslint.config.mjs" \
+  "package.json" \
+  "webpack.config.cjs"
 
 all: build-man build-npm
 
@@ -110,6 +112,9 @@ build-npm:
 	  "build"; \
 	cd \
 	  "build"; \
+	npm \
+	  run \
+	    build; \
 	npm \
 	  pack; \
 	mv \

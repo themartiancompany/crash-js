@@ -22,41 +22,6 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 function
-  _fs_module_get() {
-  let
-    _fs;
-  if ( typeof window === 'undefined' &&
-       ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ !== 'function' ) {
-    _fs =
-      require(
-        "fs");
-  }
-  else {
-    _fs =
-      require("happy-opfs");
-  }
-  return _fs;
-}
-
-function
-  _path_module_get() {
-  let
-    _path;
-  if ( typeof window === 'undefined' &&
-       ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ !== 'function' ) {
-    _path =
-      require("path");
-  }
-  else {
-    _path =
-      require("@std/path");
-  }
-  return _path;
-}
-
-function
   _split_opfs() {
   console.log(
     "hello");
@@ -80,12 +45,14 @@ function
   return _split;
 }
 
-const _worker =
-  require(
-    "web-worker");
 const
   _fs =
-    _fs_module_get();
+    require(
+      "fs");
+_fs_worker_new =
+  _fs.fsWorkerNew;
+_fs_worker_start =
+  _fs.fsWorkerStart;
 const
   _json_parse =
     JSON.parse;
@@ -94,7 +61,8 @@ const
     JSON.stringify;
 const
   _path_module =
-    _path_module_get();
+    require(
+      "path");
 _path_module_basename =
   _path_module.basename;
 _path_module_dirname =
@@ -192,66 +160,6 @@ function
   _fs.writeFileSync(
     _path,
     _content);
-}
-
-function
-  _fs_worker_new(
-    _url) {
-  let
-    _fs_worker;
-  if ( typeof _url === 'undefined' ) {
-    _url =
-      "fs-worker.js";
-  }
-  _fs_worker =
-    new _worker(
-      _url);
-  return _fs_worker;
-}
-
-async function
-  _fs_worker_start(
-    _worker_path,
-    _buffer_length,
-    _op_timeout) {
-  let
-    _agent,
-    _agent_connect,
-    _connect_opts,
-    _fs_worker;
-  if ( typeof _worker_path === 'undefined' ) {
-    _worker_path =
-      "fs-worker.js";
-  }
-  if ( typeof _buffer_length !== 'Number' ) {
-    // SharedArrayBuffer size between
-    // main thread and worker
-    _buffer_length =
-      10 * 1024 * 1024;
-  }
-  if ( typeof _buffer_length !== 'Number' ) {
-    // SharedArrayBuffer size between
-    // main thread and worker
-    _op_timeout =
-      10 * 1024 * 1024;
-  }
-  _agent_connect =
-    _fs.connectSyncAgent;
-  _fs_worker =
-    _fs_worker_new(
-      _worker_path);
-  _connect_opts = {
-    worker:
-      _fs_worker,
-    bufferLength:
-      _buffer_length,
-    opTimeout:
-      _op_timeout
-  }
-  _agent =
-    _agent_connect(
-      _connect_opts);
-  return _agent;
 }
 
 function
