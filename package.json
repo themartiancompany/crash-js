@@ -55,6 +55,8 @@
         "https://github.com/tallero"
   },
   "devDependencies": {
+    "buffer":
+      "^6.0.3",
     "fs":
       "npm:@themartiancompany/fs@^0.0.2",
     "eslint":

@@ -16,6 +16,15 @@ const
   _input_file_path =
     `./${_input_file_name}/${_input_file_name}`;
 const
+  _yargs_ignore =
+  { resourceRegExp:
+      /^yargs$/ };
+const
+  _yargs_helpers_ignore = {
+    resourceRegExp:
+      /^yargs\/helpers$/
+};
+const
   _webpack =
     require(
      "webpack");
@@ -49,7 +58,7 @@ module.exports = {
       "fs":
         _path.resolve(
           __dirname,
-          'node_modules/@themartiancompany/fs/fs'),
+          'node_modules/fs/fs'),
       "path":
         _path.resolve(
           __dirname,

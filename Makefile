@@ -113,7 +113,8 @@ build-npm:
 	cd \
 	  "build"; \
 	npm \
-	  install; \
+	  install \
+	    --save-dev; \
 	npm \
 	  run \
 	    build; \
