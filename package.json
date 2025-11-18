@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "0.1.65",
+    "0.1.66",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -55,20 +55,10 @@
         "https://github.com/tallero"
   },
   "devDependencies": {
-    "buffer":
-      "^6.0.3",
-    "fs":
-      "npm:@themartiancompany/fs@^0.0.2",
+    "crash-js-webpack":
+      "^0.0.2",
     "eslint":
       "^9.32.0",
-    "opfs":
-      "npm:@themartiancompany/opfs@^2.0.3",
-    "path":
-      "npm:@themartiancompany/std__path@^1.1.1",
-    "stream-browserify":
-      "^3.0.0",
-    "web-worker":
-      "1.5.0",
     "webpack":
       "^5.102.1",
     "webpack-cli":
