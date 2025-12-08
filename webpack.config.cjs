@@ -66,8 +66,6 @@ module.exports = {
     },
     fallback: {
       "utils":
-        false,
-      "web-worker":
         false
     },
   },

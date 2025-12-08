@@ -21,30 +21,6 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-function
-  _split_opfs() {
-  console.log(
-    "hello");
-}
-
-function
-  _split_module_get() {
-  let
-    _split;
-  if ( typeof window === 'undefined' &&
-       ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ !== 'function' ) {
-    _split =
-      require(
-        "split-file");
-  }
-  else {
-    _split =
-      _split_opfs;
-  }
-  return _split;
-}
-
 const
   _fs =
     require(
@@ -71,9 +47,6 @@ _path_module_join =
   _path_module.join;
 _path_module_parse =
   _path_module.parse;
-const
-  _split_module =
-    _split_module_get();
 
 function
   _basename(
@@ -195,7 +168,7 @@ function
     _parts,
     _out) {
   console.log(
-    _split_module);
+    "hi");
 }
 
 module.exports = {
