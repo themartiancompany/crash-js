@@ -19,6 +19,7 @@
     "crash-js",
     "crash-js.js",
     "examples",
+    "man",
     "package.json",
     "webpack.config.cjs"
   ],
