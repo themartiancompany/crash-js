@@ -16,6 +16,10 @@ const
   _input_file_path =
     `./${_input_file_name}/${_input_file_name}`;
 const
+  _web_worker_ignore =
+  { resourceRegExp:
+      /^web-worker$/ };
+const
   _yargs_ignore =
   { resourceRegExp:
       /^yargs$/ };
@@ -63,6 +67,10 @@ module.exports = {
         _path.resolve(
           __dirname,
           'node_modules/path/mod.js'),
+      "web-worker":
+        _path.resolve(
+          __dirname,
+          'node_modules/web-workerpath/mod.js'),
     },
     fallback: {
       "utils":
