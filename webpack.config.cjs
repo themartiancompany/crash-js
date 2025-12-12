@@ -70,7 +70,7 @@ module.exports = {
       "web-worker":
         _path.resolve(
           __dirname,
-          'node_modules/web-workerpath/mod.js'),
+          'node_modules/web-worker/dist/browser/index.cjs'),
     },
     fallback: {
       "utils":
