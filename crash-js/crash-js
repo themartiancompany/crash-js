@@ -25,22 +25,28 @@ const
   _utils =
     require(
       "./utils");
-_argv_get =
-  _utils._argv_get;
-_argv_url_get =
-  _utils._argv_url_get;
-_process_exit_get =
-  _utils._process_exit_get;
-_process_exit =
-  _process_exit_get();
-_yargv_get =
-  _utils._yargv_get;
+const
+  _argv_get =
+    _utils._argv_get;
+const
+  _argv_url_get =
+    _utils._argv_url_get;
+const
+  _process_exit_get =
+    _utils._process_exit_get;
+const
+  _process_exit =
+    _process_exit_get();
+const
+  _yargv_get =
+    _utils._yargv_get;
 const
   _fs_utils =
     require(
       "./fs-utils");
-_basename =
-  _fs_utils._basename;
+const
+  _basename =
+    _fs_utils._basename;
 
 function
   _app_name_get() {
@@ -290,6 +296,8 @@ module.exports = {
     _fs_utils._path_join,
   _printf:
     _printf,
+  _process_exit:
+    _process_exit,
   _sleep:
     _sleep,
   _split:
