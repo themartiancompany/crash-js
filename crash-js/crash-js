@@ -38,6 +38,12 @@ const
   _process_exit =
     _process_exit_get();
 const
+  _process_cwd_get =
+    _utils._process_cwd_get;
+const
+  _process_exit =
+    _process_exit_get();
+const
   _yargv_get =
     _utils._yargv_get;
 const
@@ -298,6 +304,8 @@ module.exports = {
     _printf,
   _process_exit:
     _process_exit,
+  _process_cwd:
+    _process_cwd,
   _sleep:
     _sleep,
   _split:

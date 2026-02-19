@@ -141,6 +141,27 @@ function
   return _process_exit
 }
 
+
+function
+  _process_cwd_get() {
+  let
+    _process_cwd;
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ === 'function' ) {
+    _process_cwd =
+      process.cwd;
+  }
+  else {
+    _process_cwd =
+      function
+        () {
+        return ".";
+     };
+  }
+  return _process_cwd
+}
+
 module.exports = {
   _argv_get:
     _argv_get,
