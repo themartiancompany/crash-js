@@ -41,8 +41,11 @@ const
   _process_cwd_get =
     _utils._process_cwd_get;
 const
-  _process_exit =
-    _process_exit_get();
+  _process_cwd =
+    _process_cwd_get();
+const
+  _pwd =
+    _process_cwd;
 const
   _yargv_get =
     _utils._yargv_get;
@@ -306,6 +309,8 @@ module.exports = {
     _process_exit,
   _process_cwd:
     _process_cwd,
+  _pwd:
+    _pwd,
   _sleep:
     _sleep,
   _split:
