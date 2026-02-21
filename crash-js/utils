@@ -169,6 +169,8 @@ module.exports = {
     _argv_url_get,
   _process_exit_get:
     _process_exit_get,
+  _process_cwd_get:
+    _process_cwd_get,
   _yargv_get:
     _yargv_get
 };
