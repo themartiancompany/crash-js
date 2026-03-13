@@ -93,7 +93,7 @@ function
        ( typeof global !== 'undefined' && global.global === global ) &&
        typeof __webpack_require__ !== 'function' ) {
     _argv =
-      _yargv_get;
+      _yargv_get();
   }
   else {
     _argv =
