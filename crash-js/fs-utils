@@ -178,15 +178,17 @@ function
     _return =
       _read_dir.apply(
         null,
-        _args).unwrap()
+        [_args]).unwrap()
   }
   else {
     _read_dir =
-      _fs.readdirSync
+      _fs.readdirSync;
+    console.log(
+      _read_dir);
     _return =
       _read_dir.apply(
         null,
-        _args);
+        [_args]);
   }
   return _return;
 } 
