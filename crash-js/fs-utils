@@ -205,15 +205,6 @@ function
   return _path;
 }
 
-function
-  _split(
-    _in,
-    _parts,
-    _out) {
-  console.log(
-    "hi");
-}
-
 module.exports = {
   _basename:
     _basename,
@@ -241,8 +232,6 @@ module.exports = {
     _fs.mkdirSync,
   _path_join:
     _path_join,
-  _split:
-    _split,
   _stat:
     _stat
 };

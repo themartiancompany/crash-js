@@ -312,8 +312,6 @@ module.exports = {
     _pwd,
   _sleep:
     _sleep,
-  _split:
-    _fs_utils._split,
   _stat:
     _stat,
   _yargv_get:
