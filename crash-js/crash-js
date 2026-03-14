@@ -126,7 +126,6 @@ function
   console.error(
     _out);
   if ( _exit === "1" ) {
-    console.log(_process_exit);
     _process_exit(
       1);
   }
