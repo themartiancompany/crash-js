@@ -112,6 +112,9 @@ function
   let
     _template,
     _out;
+  _exit =
+    String(
+      _exit);
   _template =
     _msg_template(
       app_name,
@@ -122,7 +125,8 @@ function
       _msg);
   console.error(
     _out);
-  if ( _exit == "1" ) {
+  if ( _exit === "1" ) {
+    console.log(_process_exit);
     _process_exit(
       1);
   }
@@ -194,6 +198,12 @@ function
     _program =
       _argv[
         1];
+    if ( typeof(
+           _program) === 'undefined' ) {
+      _program =
+        _argv[
+          "$0"];
+    }
     _program_name =
       _basename(
         _program);

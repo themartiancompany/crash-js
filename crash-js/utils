@@ -133,7 +133,7 @@ function
     _process_exit;
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ === 'function' ) {
+       typeof __webpack_require__ !== 'function' ) {
     _process_exit =
       process.exit;
   }
