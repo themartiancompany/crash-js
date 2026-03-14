@@ -234,7 +234,7 @@ module.exports = {
   _json_read:
     _json_read,
   _ls:
-    _ls(),
+    _ls,
   _mkdir:
     _fs.mkdirSync,
   _path_join:
