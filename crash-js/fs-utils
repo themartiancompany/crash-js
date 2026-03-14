@@ -167,8 +167,8 @@ function
 
 function
   _ls_get() {
-  if typeof(
-       _fs.readdirSync) === 'undefined') {
+  if ( typeof(
+       _fs.readdirSync) === 'undefined' ) {
     return _fs.readDirSync;
   }
   else {
