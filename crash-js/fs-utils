@@ -166,6 +166,17 @@ function
 }
 
 function
+  _ls_get() {
+  if typeof(
+       _fs.readdirSync) === 'undefined') {
+    return _fs.readDirSync;
+  }
+  else {
+    return _fs.readdirSync;
+  }
+} 
+
+function
   _path_join(
     _paths) {
   let
@@ -208,7 +219,7 @@ module.exports = {
   _json_read:
     _json_read,
   _ls:
-    _fs.readDirSync,
+    _ls_get(),
   _mkdir:
     _fs.mkdirSync,
   _path_join:
