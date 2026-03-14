@@ -300,6 +300,8 @@ module.exports = {
     _msg_error,
   _msg_info_obj:
     _msg_info_obj,
+  _mv:
+    _fs_utils._mv,
   _path_join:
     _fs_utils._path_join,
   _printf:
