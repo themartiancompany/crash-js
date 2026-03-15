@@ -266,6 +266,8 @@ module.exports = {
     _app_name_get,
   _basename:
     _fs_utils._basename,
+  _cat:
+    _fs_utils._cat,
   _cmdline_check:
     _cmdline_check,
   _dirname:

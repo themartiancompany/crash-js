@@ -258,6 +258,8 @@ function
 module.exports = {
   _basename:
     _basename,
+  _cat:
+    _file_read,
   _dirname:
     _dirname,
   _ext_rm:
