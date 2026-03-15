@@ -204,7 +204,7 @@ function
     _return =
       _rename.apply(
         null,
-        [_args]).unwrap()
+        _args).unwrap()
   }
   else {
     _rename =
@@ -212,7 +212,7 @@ function
     _return =
       _rename.apply(
         null,
-        [_args]);
+        _args);
   }
   return _return;
 } 
