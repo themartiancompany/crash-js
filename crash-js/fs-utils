@@ -229,6 +229,32 @@ function
   return _path;
 }
 
+function
+  _rm(
+    _args) {
+  let
+    _rm,
+    _return;
+  if ( typeof(
+       _fs.rmSync) === 'undefined' ) {
+    _rm =
+      _fs.removeSync;
+    _return =
+      _rm.apply(
+        null,
+        _args).unwrap()
+  }
+  else {
+    _rm =
+      _fs.rmSync;
+    _return =
+      _rm.apply(
+        null,
+        _args);
+  }
+  return _return;
+} 
+
 module.exports = {
   _basename:
     _basename,
@@ -258,6 +284,8 @@ module.exports = {
     _mv,
   _path_join:
     _path_join,
+  _rm:
+    _rm,
   _stat:
     _stat
 };

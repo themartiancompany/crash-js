@@ -312,6 +312,8 @@ module.exports = {
     _process_cwd,
   _pwd:
     _pwd,
+  _rm:
+    _fs_utils.rm,
   _sleep:
     _sleep,
   _stat:
