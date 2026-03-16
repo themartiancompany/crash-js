@@ -206,6 +206,15 @@ function
   let
     _item,
     _list;
+  if ( _start < _end ) {
+    _msg =
+      `Second argument 'end' ` +
+      `must be greater than first ` +
+      `argument 'start'.`;
+    _msg_error(
+      _msg,
+      1);
+  }
   _list =
     [];
   if ( typeof(
@@ -215,16 +224,9 @@ function
     _start =
       1;
   }
-  console.log(
-    "hi");
-  console.log(
-    _range(
-      _start,
-      _end));
   for ( _item of _range(
                    _start,
                    _end + 1) ) {
-    console.log(_item);
     _list.push(
       _item);
   }
