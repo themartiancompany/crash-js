@@ -286,7 +286,7 @@ function
   let
     _item,
     _list;
-  if ( _start < _end ) {
+  if ( _end < start ) {
     _msg =
       `Second argument 'end' ` +
       `must be greater than first ` +
