@@ -168,6 +168,69 @@ function
   return _process_cwd
 }
 
+function
+  _range(
+    _start,
+    _end) {
+  let
+    _length;
+  if ( typeof(
+         _end) === 'undefined' ) {
+    _end =
+      _start;
+    _start =
+      0;
+  }
+  _length =
+    _end -
+    _start;
+  if ( _length < 0 ) {
+    _msg =
+      `Second argument 'end' ` +
+      `must be greater than first ` +
+      `argument 'start'.`;
+    _msg_error(
+      _msg,
+      1);
+  }
+  return Array(
+           _length).keys().map(
+             _index =>
+               _index + _start);
+}
+
+function
+  _seq(
+    _start,
+    _end) {
+  let
+    _item,
+    _list;
+  _list =
+    [];
+  if ( typeof(
+         _end) === 'undefined' ) {
+    _end =
+      _start;
+    _start =
+      1;
+  }
+  console.log(
+    "hi");
+  console.log(
+    _range(
+      _start,
+      _end));
+  for ( _item of _range(
+                   _start,
+                   _end + 1) ) {
+    console.log(_item);
+    _list.push(
+      _item);
+  }
+  return _list;
+}
+
 module.exports = {
   _argv_get:
     _argv_get,
@@ -177,6 +240,10 @@ module.exports = {
     _process_exit_get,
   _process_cwd_get:
     _process_cwd_get,
+  _range:
+    _range,
+  _seq:
+    _seq,
   _yargv_get:
     _yargv_get
 };

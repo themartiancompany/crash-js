@@ -314,8 +314,12 @@ module.exports = {
     _process_cwd,
   _pwd:
     _pwd,
+  _range:
+    _utils._range,
   _rm:
-    _fs_utils.rm,
+    _fs_utils._rm,
+  _seq:
+    _utils._seq,
   _sleep:
     _sleep,
   _stat:
