@@ -177,10 +177,6 @@ module.exports = {
     _process_exit_get,
   _process_cwd_get:
     _process_cwd_get,
-  _range:
-    _range,
-  _seq:
-    _seq,
   _yargv_get:
     _yargv_get
 };
