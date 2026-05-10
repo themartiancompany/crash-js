@@ -94,7 +94,7 @@ function
   if ( quiet == "n" ) {
     _template =
       _msg_template(
-	app_name,
+        app_name,
         'INFO');
     _out =
       _template.replaceAll(
@@ -216,6 +216,31 @@ function
   else {
     return false;
   }
+}
+
+function
+  _get_date_human() {
+  let
+    _date,
+    _return,
+    _year,
+    _month,
+    _day,
+    _time,
+    _zone;
+  _date =
+    new Date();
+  _year =
+    _date.getFullYear();
+  _month =
+    _date.getMonth();
+  _day =
+    _date.getDay();
+  _time =
+    `${_date.getHours()}:${_date.getMinutes()}`;
+  // Assume UTC
+  _return =
+    `${_year}-${_month}-${_day}T${_time}+0000`;
 }
 
 // This function is actually not a format
@@ -353,6 +378,8 @@ module.exports = {
     _fs_utils._fs_worker_new,
   _fs_worker_start:
     _fs_utils._fs_worker_start,
+  _get_time_human:
+    _get_time_human,
   _json_display:
     _fs_utils._json_display,
   _json_read:
