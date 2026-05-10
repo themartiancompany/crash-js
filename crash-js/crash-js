@@ -267,6 +267,23 @@ function
 }
 
 function
+  _homedir_get() {
+  let
+    _home;
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ === 'function' ) {
+    _home =
+      process.env.HOME;
+  }
+  else {
+    _home =
+      "/";
+  }
+  return _home
+}
+
+function
   _echo(
     _text) {
   console.log(
