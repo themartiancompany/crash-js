@@ -35,7 +35,7 @@ Synopsis
 ========
 
 
-..  code-block:: bash
+..  code-block:: javascript
 
   try {
     const
