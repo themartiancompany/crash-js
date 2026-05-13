@@ -395,8 +395,8 @@ module.exports = {
     _fs_utils._fs_worker_new,
   _fs_worker_start:
     _fs_utils._fs_worker_start,
-  _get_time_human:
-    _get_time_human,
+  _get_date_human:
+    _get_date_human,
   _homedir_get:
     _homedir_get,
   _json_display:
