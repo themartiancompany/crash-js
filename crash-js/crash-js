@@ -274,15 +274,16 @@ function
     _home;
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ === 'function' ) {
+       typeof __webpack_require__ !== 'function' ) {
     _home =
       process.env.HOME;
   }
-  else {
+  if ( typeof(
+         window) != "undefined" ) {
     _home =
       "/";
   }
-  return _home
+  return _home;
 }
 
 function
@@ -291,7 +292,7 @@ function
     _lib;
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ === 'function' ) {
+       typeof __webpack_require__ !== 'function' ) {
     if ( typeof(
            process.env.NODE_PATH) == "undefined" ) {
       const
