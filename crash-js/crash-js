@@ -220,27 +220,29 @@ function
 
 function
   _get_date_human() {
-  let
-    _date,
-    _return,
-    _year,
-    _month,
-    _day,
-    _time,
-    _zone;
-  _date =
-    new Date();
-  _year =
-    _date.getFullYear();
-  _month =
-    _date.getMonth();
-  _day =
-    _date.getDay();
-  _time =
-    `${_date.getHours()}:${_date.getMinutes()}`;
+  const
+    _date =
+      new Date();
+  const
+    _year =
+      _date.getFullYear();
+  const
+    _month =
+      _date.getMonth();
+  const
+    _day =
+      _date.getDay();
+  const
+    _time =
+      `${_date.getHours()}:${_date.getMinutes()}`;
   // Assume UTC
-  _return =
-    `${_year}-${_month}-${_day}T${_time}+0000`;
+  const
+    _zone =
+      "0000"
+  const
+    _date_human =
+      `${_year}-${_month}-${_day}T${_time}+${_zone}`;
+  return _date_human;
 }
 
 // This function is actually not a format
@@ -281,6 +283,35 @@ function
       "/";
   }
   return _home
+}
+
+function
+  _lib_get() {
+  let
+    _lib;
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ === 'function' ) {
+    if ( typeof(
+           process.env.NODE_PATH) == "undefined" ) {
+      const
+        _msg =
+          "Environment variable NODE_PATH undefined.";
+      _msg_info(
+        _msg);
+    }
+    else {
+      _lib =
+        _path_join(
+          [ process.env.NODE_PATH,
+            ".." ]);
+    }
+  }
+  else {
+    _lib =
+      "/usr/lib";
+  }
+  return _lib
 }
 
 function
@@ -403,6 +434,8 @@ module.exports = {
     _fs_utils._json_display,
   _json_read:
     _fs_utils._json_read,
+  _lib_get:
+    _lib_get,
   _ls:
     _fs_utils._ls,
   _mkdir:
