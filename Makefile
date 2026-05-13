@@ -115,6 +115,9 @@ build-npm:
 	npm \
 	  install \
 	    --save-dev; \
+	rm \
+	  -rf \
+	  "$(_PROJECT).js"; \
 	npm \
 	  run \
 	    build; \
