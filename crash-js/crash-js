@@ -60,6 +60,9 @@ const
     require(
       "./fs-utils");
 const
+  _path_join =
+    _fs_utils._path_join;
+const
   _basename =
     _fs_utils._basename;
 const
@@ -450,7 +453,7 @@ module.exports = {
   _mv:
     _fs_utils._mv,
   _path_join:
-    _fs_utils._path_join,
+    _path_join,
   _printf:
     _printf,
   _process_exit:
