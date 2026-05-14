@@ -41,6 +41,9 @@ const
   _child_process_spawn_get =
     _utils._child_process_spawn_get;
 const
+  _spawn =
+    _child_process_spawn_get();
+const
   _process_exit_get =
     _utils._process_exit_get;
 const
