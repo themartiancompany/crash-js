@@ -422,8 +422,7 @@ async function
     _cmd) {
   let
     _index,
-    _msg,
-    _out;
+    _msg;
   if ( typeof(
          _cmd) == "undefined" ||
        _cmd == "" ||
@@ -442,6 +441,9 @@ async function
   }
   const
     _args =
+      [];
+  const
+    _out =
       [];
   const
     _program =
@@ -482,7 +484,7 @@ async function
 	  _msg =
             `Process exited with code '${_code}'`;
           _msg_error(
-	    _msg,
+            _msg,
             1);
 	}
         _out.push(
