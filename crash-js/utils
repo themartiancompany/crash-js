@@ -86,14 +86,16 @@ function
 }
 
 function
-  _argv_get() {
+  _argv_get(
+    _args) {
   let
     _argv;
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
        typeof __webpack_require__ !== 'function' ) {
     _argv =
-      _yargv_get();
+      _yargv_get(
+        _args);
   }
   else {
     _argv =
@@ -103,7 +105,23 @@ function
 }
 
 function
-  _yargv_get() {
+  _yargv_get(
+    _args) {
+  let
+    _boolean,
+    _yargs_object;
+  if ( typeof(
+          _args) == "undefined" ||
+       _args == {} ||
+       _args == "" ) {
+    _args = {
+      "booleans": []
+    };
+  }
+  const
+    _booleans =
+      _args[
+        "booleans"];
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) ) {
     const
@@ -116,11 +134,34 @@ function
     const
       _hide_bin =
         _yargs_helpers_module.hideBin;
-    const
+
+    if ( _booleans.length > 0 ) {
+      const
+        _yargs_opts =
+          {};
+      for ( _boolean of _booleans) {
+        _yargs_opts[
+          _boolean] = {
+            "demand":
+              false,
+            "default":
+              false,
+            "type":
+              "boolean",
+         };
+      }
+      _yargs_object =
+        _yargs(
+          _hide_bin(
+            process.argv)).options(
+              _yargs_opts);
+    }
+    else if ( _booleans.length == 0 ) {
       _yargs_object =
         _yargs(
           _hide_bin(
             process.argv));
+    }
     return _yargs_object.parse();
   }
 }

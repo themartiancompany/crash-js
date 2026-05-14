@@ -175,8 +175,6 @@ function
   _exit =
     String(
       _exit);
-  console.log(
-    app_name);
   _template =
     _msg_template(
       "ERROR",
@@ -352,7 +350,7 @@ function
   return _home;
 }
 
-async function
+function
   _lib_get() {
   let
     _lib,
@@ -361,23 +359,45 @@ async function
     _out,
     _path,
     _words;
+  const
+    _paths =
+      new Set();
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
        typeof __webpack_require__ !== 'function' ) {
+    const
+      _out =
+        _run(
+         "sync",
+          [ "ldconfig",
+            "-p" ]);
+    const
+      _tail =
+        _out.slice(
+          1,
+          _out.length - 2);
+    for ( _line of _tail ) {
+      _words =
+        _line.split(" ");
+      _lib_path =
+        _words[
+          3];
+      _lib =
+        _dirname(
+          _lib_path);
+      _paths.add(
+        _lib);
+    }
     if ( typeof(
-           process.env.NODE_PATH) == "undefined" ) {
+           process.env.NODE_PATH) == "undefined" ||
+         process.env.NODE_PATH == "" ) {
       const
         _msg =
           "Environment variable NODE_PATH undefined.";
       _msg_info(
         _msg);
-      _lib =
-        ""
     }
     else {
-      const
-        _paths =
-          new Set();
       _lib =
         _path_join(
           [ process.env.NODE_PATH,
@@ -385,38 +405,11 @@ async function
       if ( _file_exists(
              _lib) ) {
         _paths.add(
-	  _lib);
-        return _lib;
+          _lib);
       }
-      else if ( ! _file_exists(
-                    _lib) ) {
-        const
-          _out =
-            _run(
-             "sync",
-              [ "ldconfig",
-                "-p" ]);
-        const
-          _tail =
-            _out.slice(
-              1,
-              _out.length - 2);
-        for ( _line of _tail ) {
-          _words =
-            _line.split(" ");
-          _lib_path =
-            _words[
-              3];
-          _lib =
-            _dirname(
-              _lib_path);
-          _paths.add(
-	    _lib);
-        }
-        for ( _path of _paths) {
-          return _path
-	}
-      }
+    }
+    for ( _path of _paths ) {
+      return _path;
     }
   }
   else {
