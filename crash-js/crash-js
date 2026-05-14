@@ -485,7 +485,6 @@ async function
 	    _msg,
             1);
 	}
-      };
         _out.push(
           _data);
       };
