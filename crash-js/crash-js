@@ -87,12 +87,42 @@ function
 
 function 
   _msg_template(
-    _app_name,
-    _type) {
-  const
+    _type,
+    _app_name) {
+  let
+    _template;
+  if ( typeof(
+         _app_name) == "undefined" ||
+       _app_name == "" ) {
     _template =
-      `[${_app_name}] ${_type}: {_msg}`
+      `${_type}: {_msg}`;
+  }
+  else if ( typeof(
+              _app_name) == "string" ||
+            _app_name != "" ) {
+      _template =
+        `[${_app_name}] ${_type}: {_msg}`;
+  }
   return _template;
+}
+
+function
+  _msg_warning(
+    _msg) {
+  let
+    _out;
+  if ( quiet == "n" ) {
+    _template =
+      _msg_template(
+        "WARNING",
+        app_name);
+    _out =
+      _template.replaceAll(
+        "{_msg}",
+        _msg);
+    console.warn(
+      _out);
+  }
 }
 
 function
@@ -103,8 +133,8 @@ function
   if ( quiet == "n" ) {
     _template =
       _msg_template(
-        app_name,
-        'INFO');
+        "INFO",
+        app_name);
     _out =
       _template.replaceAll(
         "{_msg}",
@@ -121,13 +151,17 @@ function
   let
     _template,
     _out;
+  if ( typeof(
+         app_name) == "undefined" ) {
+    true;
+  }
   _exit =
     String(
       _exit);
   _template =
     _msg_template(
-      app_name,
-      'ERROR');
+      "ERROR",
+      app_name);
   _out =
     _template.replaceAll(
       "{_msg}",
@@ -376,10 +410,9 @@ function
        _cmd == [] ) {
     _msg =
       "No command given in input.";
-    }
     _msg_error(
-      _msg,
-      1);
+        _msg,
+        1);
   }
   if ( typeof(
          _run_mode) == "undefined" ||
@@ -416,7 +449,7 @@ function
   let
     _item,
     _list;
-  if ( _end < start ) {
+  if ( _end < _start ) {
     _msg =
       `Second argument 'end' ` +
       `must be greater than first ` +
@@ -501,6 +534,8 @@ module.exports = {
     _msg_info,
   _msg_error:
     _msg_error,
+  _msg_warning:
+    _msg_warning,
   _msg_info_obj:
     _msg_info_obj,
   _mv:
@@ -519,6 +554,8 @@ module.exports = {
     _range,
   _rm:
     _fs_utils._rm,
+  _run:
+    _run,
   _seq:
     _seq,
   _sleep:

@@ -175,7 +175,8 @@ function
        typeof __webpack_require__ !== 'function' ) {
     const
       _child_process_module =
-        "node:child_process");
+        require(
+          "node:child_process");
     _child_process_spawn =
       _child_process_module.spawn;
   }
