@@ -76,6 +76,14 @@ const
     _fs_utils._stat;
 
 function
+  _globals() {
+  app_name =
+    "";
+  quiet =
+    "y";
+  }
+
+function
   _app_name_get() {
   let
     _filename;
@@ -152,12 +160,17 @@ function
     _template,
     _out;
   if ( typeof(
-         app_name) == "undefined" ) {
-    true;
+         app_name) == "undefined" ||
+         app_name == "" ) {
+    const
+      app_name =
+        "";
   }
   _exit =
     String(
       _exit);
+  console.log(
+    app_name);
   _template =
     _msg_template(
       "ERROR",
@@ -166,11 +179,15 @@ function
     _template.replaceAll(
       "{_msg}",
       _msg);
-  console.error(
-    _out);
   if ( _exit === "1" ) {
+    console.error(
+      _out);
     _process_exit(
       1);
+  }
+  else if ( _exit === "0" ) {
+    console.warn(
+      _out);
   }
 }
 
@@ -386,11 +403,12 @@ function
   if ( _length < 0 ) {
     _msg =
       `Second argument 'end' ` +
-      `must be greater than first ` +
-      `argument 'start'.`;
-    _msg_error(
-      _msg,
-      1);
+      `is greater than first ` +
+      `argument 'start', returning ` +
+      `empty list.`;
+    _msg_warning(
+      _msg);
+    return [];
   }
   return Array(
            _length).keys().map(
@@ -398,12 +416,14 @@ function
                _index + _start);
 }
 
-function
+async function
   _run(
     _run_mode,
     _cmd) {
   let
-    _index;
+    _index,
+    _msg,
+    _out;
   if ( typeof(
          _cmd) == "undefined" ||
        _cmd == "" ||
@@ -437,9 +457,44 @@ function
       _cmd[
         _index]);
   }
-  _spawn(
-    _cmd,
-    _args);
+  _msg =
+    `Running '${_program}' ` +
+    `with arguments '${_args}'.`;
+  _msg_info(
+    _msg);
+  const
+    _process =
+      _spawn(
+        _program,
+        _args);
+  const
+    _print =
+      function
+        (_data) {
+        _out.push(
+          _data);
+      };
+  const
+    _close =
+      function
+        (_code) {
+        if ( _code < 1 ) {
+	  _msg =
+            `Process exited with code '${_code}'`;
+          _msg_error(
+	    _msg,
+            1);
+	}
+      };
+        _out.push(
+          _data);
+      };
+  _process.stdout.on(
+    'data',
+    _print);
+  _process.close(
+    'close',
+    _close);
 }
 
 function
@@ -449,17 +504,18 @@ function
   let
     _item,
     _list;
+  _list =
+    [];
   if ( _end < _start ) {
     _msg =
       `Second argument 'end' ` +
-      `must be greater than first ` +
-      `argument 'start'.`;
-    _msg_error(
-      _msg,
-      1);
+      `is greater than first ` +
+      `argument 'start', returning ` +
+      `empty list.`;
+    _msg_warning(
+      _msg);
+    return _list;
   }
-  _list =
-    [];
   if ( typeof(
          _end) === 'undefined' ) {
     _end =
@@ -518,6 +574,8 @@ module.exports = {
     _fs_utils._fs_worker_start,
   _get_date_human:
     _get_date_human,
+  _globals:
+    _globals,
   _homedir_get:
     _homedir_get,
   _json_display:
