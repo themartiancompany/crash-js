@@ -28,43 +28,49 @@
  */
 
 const
-  _utils =
-    require(
-      "./utils");
+_utils =
+	require(
+		"./utils");
 const
-  _argv_get =
-    _utils._argv_get;
+_argv_get =
+	_utils._argv_get;
 const
-  _argv_url_get =
-    _utils._argv_url_get;
+_argv_url_get =
+	_utils._argv_url_get;
 const
-  _child_process_spawn_get =
-    _utils._child_process_spawn_get;
+_child_process_spawn_get =
+	_utils._child_process_spawn_get;
 const
-  _spawn =
-    _child_process_spawn_get();
+_spawn =
+	_child_process_spawn_get();
 const
-  _process_exit_get =
-    _utils._process_exit_get;
+_process_exit_get =
+	_utils._process_exit_get;
 const
-  _process_exit =
-    _process_exit_get();
+_process_exit =
+	_process_exit_get();
 const
-  _process_cwd_get =
-    _utils._process_cwd_get;
+_process_cwd_get =
+	_utils._process_cwd_get;
 const
-  _process_cwd =
-    _process_cwd_get();
+_process_cwd =
+	_process_cwd_get();
 const
-  _pwd =
-    _process_cwd;
+_pwd =
+	_process_cwd;
 const
-  _yargv_get =
-    _utils._yargv_get;
+_yargv_get =
+	_utils._yargv_get;
 const
-  _fs_utils =
-    require(
-      "./fs-utils");
+_fs_utils =
+	require(
+		"./fs-utils");
+const
+_dirname =
+    _fs_utils._dirname;
+const
+  _file_exists =
+    _fs_utils._file_exists;
 const
   _path_join =
     _fs_utils._path_join;
@@ -346,10 +352,15 @@ function
   return _home;
 }
 
-function
+async function
   _lib_get() {
   let
-    _lib;
+    _lib,
+    _lib_path,
+    _line,
+    _out,
+    _path,
+    _words;
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
        typeof __webpack_require__ !== 'function' ) {
@@ -364,10 +375,48 @@ function
         ""
     }
     else {
+      const
+        _paths =
+          new Set();
       _lib =
         _path_join(
           [ process.env.NODE_PATH,
-            ".." ]);
+            "../lib" ]);
+      if ( _file_exists(
+             _lib) ) {
+        _paths.add(
+	  _lib);
+        return _lib;
+      }
+      else if ( ! _file_exists(
+                    _lib) ) {
+        const
+          _out =
+            _run(
+             "sync",
+              [ "ldconfig",
+                "-p" ]);
+        const
+          _tail =
+            _out.slice(
+              1,
+              _out.length - 2);
+        for ( _line of _tail ) {
+          _words =
+            _line.split(" ");
+          _lib_path =
+            _words[
+              3];
+          _lib =
+            _dirname(
+              _lib_path);
+          _paths.add(
+	    _lib);
+        }
+        for ( _path of _paths) {
+          return _path
+	}
+      }
     }
   }
   else {
@@ -462,47 +511,70 @@ function
   _msg_info(
     _msg);
   _out =
-    [];
-  const
-    _print =
-      function
-        (_data) {
-        _out.push(
-          `${_data}`);
-      };
-  const
-    _close =
-      function(
-        _code) {
-        let
-          _msg;
-        if ( _code != 0 ) {
-          _msg =
-            `Process exited with code '${_code}'`;
-          _msg_error(
-            _msg,
-            1);
-        }
-        else {
-          _msg =
-            `Process exited normally.`;
-          _msg_info(
-            _msg);
-        }
-        return _out;
-      };
-  const
-    _process =
-      _spawn(
-        _program,
-        _args);
-  _process.stdout.on(
-    'data',
-    _print);
-  _process.on(
-    'close',
-    _close);
-  return _out;
+    "";
+  if ( _run_mode == "async" ) {
+    const
+      _print =
+        function
+          (_data) {
+          _out = 
+            _out +
+            _data.toString();
+        };
+    const
+      _close =
+        function(
+          _code) {
+          let
+            _array,
+            _msg;
+          if ( _code != 0 ) {
+            _msg =
+              `Process exited with code '${_code}'`;
+            _msg_error(
+              _msg,
+              1);
+          }
+          else {
+            _msg =
+              `Process exited normally.`;
+            _msg_info(
+              _msg);
+          }
+          _array =
+            _out.split("\n");
+          return _array;
+        };
+    const
+      _process =
+        _spawn(
+          _program,
+          _args);
+    _process.stdout.on(
+      'data',
+      _print);
+    _process.on(
+      'close',
+      _close);
+    _array =
+      _out.split("\n");
+    _msg_info(
+      _array.length);
+    return _array;
+  }
+  else if ( _run_mode == "sync" ) {
+    const
+      _process =
+        _spawn(
+          _program,
+          _args,
+          { "encoding":
+              "utf-8" });
+    _array =
+      _process.stdout.split(
+        "\n");
+    return _array;
+  }
 }
 
 function
@@ -563,7 +635,7 @@ module.exports = {
   _cmdline_check:
     _cmdline_check,
   _dirname:
-    _fs_utils._dirname,
+    _dirname,
   _echo:
     _echo,
   _error_display:

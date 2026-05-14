@@ -178,7 +178,7 @@ function
         require(
           "node:child_process");
     _child_process_spawn =
-      _child_process_module.spawn;
+      _child_process_module.spawnSync;
   }
   else {
     _child_process_spawn =
