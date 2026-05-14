@@ -38,6 +38,9 @@ const
   _argv_url_get =
     _utils._argv_url_get;
 const
+  _child_process_spawn_get =
+    _utils._child_process_spawn_get;
+const
   _process_exit_get =
     _utils._process_exit_get;
 const
@@ -303,6 +306,8 @@ function
           "Environment variable NODE_PATH undefined.";
       _msg_info(
         _msg);
+      _lib =
+        ""
     }
     else {
       _lib =
@@ -354,6 +359,51 @@ function
            _length).keys().map(
              _index =>
                _index + _start);
+}
+
+function
+  _run(
+    _run_mode,
+    _cmd) {
+  let
+    _index;
+  if ( typeof(
+         _cmd) == "undefined" ||
+       _cmd == "" ||
+       _cmd == [] ) {
+    _msg =
+      "No command given in input.";
+    }
+    _msg_error(
+      _msg,
+      1);
+  }
+  if ( typeof(
+         _run_mode) == "undefined" ||
+       _run_mode == "" ) {
+    _run_mode =
+      "sync";
+  }
+  const
+    _args =
+      [];
+  const
+    _program =
+      _cmd[
+        0];
+  const
+    _indexes =
+      _seq(
+        1,
+        _cmd.length - 1);
+  for ( _index of _indexes ) {
+    _args.push(
+      _cmd[
+        _index]);
+  }
+  _spawn(
+    _cmd,
+    _args);
 }
 
 function

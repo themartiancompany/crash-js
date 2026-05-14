@@ -104,25 +104,23 @@ function
 
 function
   _yargv_get() {
-  let
-    _argv,
-    _hide_bin,
-    _yargs,
-    _yargs_object;
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) ) {
-    _yargs =
-      require(
-        "yargs");
+    const
+      _yargs =
+        require(
+          "yargs");
     _yargs_helpers_module =
       require(
         "yargs/helpers");
-    _hide_bin =
-      _yargs_helpers_module.hideBin;
-    _yargs_object =
-      _yargs(
-        _hide_bin(
-          process.argv));
+    const
+      _hide_bin =
+        _yargs_helpers_module.hideBin;
+    const
+      _yargs_object =
+        _yargs(
+          _hide_bin(
+            process.argv));
     return _yargs_object.parse();
   }
 }
@@ -165,7 +163,30 @@ function
         return ".";
      };
   }
-  return _process_cwd
+  return _process_cwd;
+}
+
+function
+  _child_process_spawn_get() {
+  let
+    _child_process_spawn;
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
+    const
+      _child_process_module =
+        "node:child_process");
+    _child_process_spawn =
+      _child_process_module.spawn;
+  }
+  else {
+    _child_process_spawn =
+      function
+        (_cmd, _args, _exit) {
+        return _exit;
+     };
+  }
+  return _child_process_spawn;
 }
 
 module.exports = {
@@ -173,6 +194,8 @@ module.exports = {
     _argv_get,
   _argv_url_get:
     _argv_url_get,
+  _child_process_spawn_get:
+    _child_process_spawn_get,
   _process_exit_get:
     _process_exit_get,
   _process_cwd_get:
