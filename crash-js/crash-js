@@ -416,7 +416,7 @@ function
                _index + _start);
 }
 
-async function
+function
   _run(
     _run_mode,
     _cmd) {
@@ -443,9 +443,6 @@ async function
     _args =
       [];
   const
-    _out =
-      [];
-  const
     _program =
       _cmd[
         0];
@@ -464,38 +461,48 @@ async function
     `with arguments '${_args}'.`;
   _msg_info(
     _msg);
-  const
-    _process =
-      _spawn(
-        _program,
-        _args);
+  _out =
+    [];
   const
     _print =
       function
         (_data) {
         _out.push(
-          _data);
+          `${_data}`);
       };
   const
     _close =
-      function
-        (_code) {
-        if ( _code < 1 ) {
-	  _msg =
+      function(
+        _code) {
+        let
+          _msg;
+        if ( _code != 0 ) {
+          _msg =
             `Process exited with code '${_code}'`;
           _msg_error(
             _msg,
             1);
-	}
-        _out.push(
-          _data);
+        }
+        else {
+          _msg =
+            `Process exited normally.`;
+          _msg_info(
+            _msg);
+        }
+        return _out;
       };
+  const
+    _process =
+      _spawn(
+        _program,
+        _args);
   _process.stdout.on(
     'data',
     _print);
   _process.on(
     'close',
     _close);
+  return _out;
 }
 
 function
