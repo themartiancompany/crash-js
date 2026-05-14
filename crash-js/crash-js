@@ -491,7 +491,7 @@ async function
   _process.stdout.on(
     'data',
     _print);
-  _process.close(
+  _process.on(
     'close',
     _close);
 }
