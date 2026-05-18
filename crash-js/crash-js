@@ -144,11 +144,15 @@ function
     _msg) {
   let
     _out;
+  if ( typeof(
+         quiet) == "undefined" ||
+       quiet == "" )
   if ( quiet == "n" ) {
-    _template =
-      _msg_template(
-        "INFO",
-        app_name);
+    const
+      _template =
+        _msg_template(
+          "INFO",
+          app_name);
     _out =
       _template.replaceAll(
         "{_msg}",
