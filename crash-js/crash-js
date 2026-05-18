@@ -147,7 +147,7 @@ function
   if ( typeof(
          quiet) == "undefined" ||
        quiet == "" )
-  if ( quiet == "n" ) {
+  if ( quiet == "y" ) {
     const
       _template =
         _msg_template(
