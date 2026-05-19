@@ -68,7 +68,7 @@ npm \
 ```
 
 Upon installation a pre-built browser-compatible
-single file webpack you can simply open
+single file webpack one can simply open
 from a browser can be found in
 `dist/crash-js.js` in the
 Node.js module directory.
