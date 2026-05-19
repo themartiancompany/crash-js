@@ -23,6 +23,26 @@
 
 A collection of JavaScript utility functions.
 
+The Crash Javascript library allows to write Javascript
+applications written the same as Bash programs
+written using the
+[Crash Bash](
+  https://github.com/themartiancompany/crash-bash)
+library which work both in a Node.js as well as a browser
+environment without any code changes.
+
+To implement file system functions
+the library depends on the `node:fs`
+module
+[`tmcfs`](
+  https://github.com/themartiancompany/tmcfs)
+override.
+
+Some GNU coreutils utilities like the `split` function
+are provided by
+[`tmcsplit`](
+  https://github.com/themartiancompany/tmcsplit).
+
 This library is being used by most of
 Human Instrumentality Project (HIP)
 JavaScript programs.

@@ -146,8 +146,11 @@ function
     _out;
   if ( typeof(
          quiet) == "undefined" ||
-       quiet == "" )
-  if ( quiet == "y" ) {
+       quiet == "" ) {
+    quiet =
+      "y";
+  }
+  if ( quiet == "n" ) {
     const
       _template =
         _msg_template(
@@ -349,7 +352,7 @@ function
   if ( typeof(
          window) != "undefined" ) {
     _home =
-      "/";
+      "/home/user";
   }
   return _home;
 }
