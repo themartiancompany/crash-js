@@ -81,7 +81,7 @@
     { "build":
         "npm run lint && npm run build-lib",
       "build-lib":
-        "npx webpack --mode 'production' --config 'webpack.config.cjs' --stats-error-details && mkdir 'dist' && mv crash-js.js dist",
+        "npx webpack --mode 'production' --config 'webpack.config.cjs' --stats-error-details && mkdir 'dist' && mv 'crash-js.js'* 'dist'",
       "lint":
         "npx eslint .",
       "test":
