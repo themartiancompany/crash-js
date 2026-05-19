@@ -115,6 +115,31 @@ library,
 is been made available as a submodule in the
 `examples` directory.
 
+## Contributing
+
+Bugs can be reported on the
+[issues tracker](
+  https://github.com/themartiancompany/crash-js/issues)
+of
+[Gur](
+  https://github.com/themartiancompany/gur)
+source repository
+[mirror](
+  https://github.com/themartiancompany/crash-js)
+for the software now.
+
+The library uses ESLint to build so all
+merge requests are of course required
+to pass the test.
+
+Contributing to the software may be eligible
+to a free purchase of the corresponding
+[Ur](
+  https://github.com/themartiancompany/ur)
+for the package by
+[The Martian Company](
+  https://github.com/themartiancompany).
+
 ## License
 
 Crash JavaScript is released by Pellegrino Prevete

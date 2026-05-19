@@ -35,6 +35,7 @@ const
 export default defineConfig([
  { ignores: [
      "build/**",
+     "dist/**",
      "eslint.config.js"
    ],
    rules:
