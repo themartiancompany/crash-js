@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "0.1.105",
+    "0.1.107",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -27,9 +27,13 @@
     "./man/libcrash-js.1",
   "keywords": [
     "crash-bash",
+    "crash-javascript",
     "dogeos",
+    "evmfs",
+    "hip",
     "opfs",
     "fs",
+    "tmcfs",
     "themartiancompany",
     "ur"
   ],
