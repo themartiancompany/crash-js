@@ -67,6 +67,12 @@ npm \
     "crash-js"
 ```
 
+Upon installation a pre-built browser-compatible
+single file webpack you can simply open
+from a browser can be found in
+`dist/crash-js.js` in the
+Node.js module directory.
+
 The library is officially published on the
 the uncensorable
 [Ur](
