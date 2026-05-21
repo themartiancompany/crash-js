@@ -108,14 +108,20 @@ function
   _yargv_get(
     _args) {
   let
-    _boolean,
-    _yargs_object;
+    _boolean;
+  const
+    _yargs_opts =
+      {};
+  const
+    _parser_opts =
+      {};
   if ( typeof(
           _args) == "undefined" ||
        _args == {} ||
        _args == "" ) {
     _args = {
-      "booleans": []
+      "booleans": [],
+      "string": true
     };
   }
   const
@@ -134,11 +140,24 @@ function
     const
       _hide_bin =
         _yargs_helpers_module.hideBin;
-
+    if ( "string" in _args &&
+         _args[
+           "string"] ) {
+      _yargs_opts[
+        "_"] = {
+        "type":
+          "string",
+        "string":
+          true
+      };
+      _parser_opts[
+        "parse-numbers"] =
+        false;
+      _parser_opts[
+        "parse-positional-numbers"] =
+        false;
+    }
     if ( _booleans.length > 0 ) {
-      const
-        _yargs_opts =
-          {};
       for ( _boolean of _booleans) {
         _yargs_opts[
           _boolean] = {
@@ -150,19 +169,22 @@ function
               "boolean",
          };
       }
-      _yargs_object =
-        _yargs(
-          _hide_bin(
-            process.argv)).options(
-              _yargs_opts);
     }
-    else if ( _booleans.length == 0 ) {
-      _yargs_object =
-        _yargs(
-          _hide_bin(
-            process.argv));
+    if ( 0 < _booleans.length ||
+         _args[
+           "string"] ) {
+      return _yargs(
+               _hide_bin(
+                 process.argv)).parserConfiguration(
+                   _parser_opts).options(
+                _yargs_opts).string(
+                  "_").parse();
     }
-    return _yargs_object.parse();
+    else {
+      return _yargs(
+        _hide_bin(
+          process.argv));
+    }
   }
 }
 
