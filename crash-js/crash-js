@@ -605,35 +605,41 @@ async function
       return _array;
     }
     else if ( _run_type == "native" ) {
+      _msg_timeout =
+        `Timeout of length ` +
+	`'${_timeout}' ms reached for task '${_name}'.`;
       _time_over =
         false;
-      if ( _method != "" ) {
-        _out =
-          _program[
-            _method].apply(
-            null,
-            _args);
-      }
-      else {
-        _out =
-          _program.apply(
-            null,
-            _args);
-      }
       const
         _exit_timeout =
           () => {
-          _time_over =
-            true;
+          throw _msg_timeout;
         };
-      setTimeout(
-        _exit_timeout,
-        _timeout);
-      await _out;
+      try {
+        setTimeout(
+          _exit_timeout,
+          _timeout);
+        if ( _method != "" ) {
+          _out =
+            await _program[
+              _method].apply(
+              _program,
+              _args);
+        }
+        else {
+          _out =
+            await _program.apply(
+              null,
+              _args);
+        }
+      }
+      catch(
+        _error) {
+        _time_over =
+          true;
+      }
       if ( _time_over ) {
-        _msg =
-          `Timeout reached for task '${_name}'.`;
-        throw _msg;
+        throw _msg_timeout;
       }
       else {
         return _out;
