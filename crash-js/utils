@@ -254,6 +254,7 @@ function
     else if ( _spawn_type == "async" ) {
       _child_process_spawn =
         _child_process_module.spawn;
+    }
   }
   else {
     _child_process_spawn =
