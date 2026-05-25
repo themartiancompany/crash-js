@@ -465,7 +465,7 @@ function
                _index + _start);
 }
 
-function
+async function
   _run(
     _run_mode,
     _cmd,
