@@ -475,7 +475,8 @@ async function
     _cmd,
     _name,
     _timeout,
-    _run_type) {
+    _run_type,
+    _method) {
   let
     _array,
     _index,
@@ -523,6 +524,12 @@ async function
        _run_type == "" ) {
     _run_type =
       "spawn";
+  }
+  if ( typeof(
+         _method) == "undefined" ||
+       _method == "" ) {
+    _method =
+      "";
   }
   _msg =
     `Running '${_program}' ` +
@@ -600,10 +607,19 @@ async function
     else if ( _run_type == "native" ) {
       _time_over =
         false;
-      _out =
-        _program.apply(
-          null,
-          _args);
+      if ( _method != "" ) {
+        _out =
+          _program[
+            _method].apply(
+            null,
+            _args);
+      }
+      else {
+        _out =
+          _program.apply(
+            null,
+            _args);
+      }
       const
         _exit_timeout =
           () => {
