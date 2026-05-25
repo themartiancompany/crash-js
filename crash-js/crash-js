@@ -619,14 +619,15 @@ async function
       setTimeout(
         _exit_timeout,
         _timeout);
-      await out;
+      await _out;
       if ( _time_over ) {
         _msg =
           `Timeout reached for task '${_name}'.`;
         throw _msg;
       }
-      else 
-      return _out;
+      else {
+        return _out;
+      }
     }
   }
 }
