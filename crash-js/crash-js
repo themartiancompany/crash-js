@@ -41,8 +41,12 @@ const
 _child_process_spawn_get =
   _utils._child_process_spawn_get;
 const
-_spawn =
-  _child_process_spawn_get();
+  _spawn =
+    _child_process_spawn_get();
+const
+  _spawn_async =
+    _child_process_spawn_get(
+      "async");
 const
 _process_exit_get =
   _utils._process_exit_get;
@@ -594,18 +598,34 @@ async function
       return _array;
     }
     else if ( _run_type == "native" ) {
+      _time_over =
+        false;
       const
         _exit_timeout =
           () => {
-          return false;
+          return true;
+        };
+      _out =
+        _program.apply(
+          null,
+          _args);
+      const
+        _exit_timeout =
+          () => {
+          _time_over =
+            true;
+          return true;
         };
       setTimeout(
         _exit_timeout,
         _timeout);
-      _out =
-        await _program.apply(
-          null,
-          _args);
+      await out;
+      if ( _time_over ) {
+        _msg =
+          `Timeout reached for task '${_name}'.`;
+        throw _msg;
+      }
+      else 
       return _out;
     }
   }
