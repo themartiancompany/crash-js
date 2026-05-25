@@ -594,7 +594,7 @@ function
       return _array;
     }
     else if ( _run_type == "native" ) {
-      const =
+      const
         _exit_timeout =
           () => {
           return false;
