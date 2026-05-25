@@ -230,9 +230,16 @@ function
 }
 
 function
-  _child_process_spawn_get() {
+  _child_process_spawn_get(
+    _spawn_type) {
   let
     _child_process_spawn;
+  if ( typeof(
+         _spawn_type) == "undefined" ||
+       _spawn_type == "" ) {
+    _spawn_type =
+      "sync";
+  }
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
        typeof __webpack_require__ !== 'function' ) {
@@ -240,8 +247,13 @@ function
       _child_process_module =
         require(
           "node:child_process");
-    _child_process_spawn =
-      _child_process_module.spawnSync;
+    if ( _spawn_type == "sync" ) {
+      _child_process_spawn =
+        _child_process_module.spawnSync;
+    }
+    else if ( _spawn_type == "async" ) {
+      _child_process_spawn =
+        _child_process_module.spawn;
   }
   else {
     _child_process_spawn =

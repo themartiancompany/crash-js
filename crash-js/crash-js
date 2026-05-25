@@ -29,45 +29,45 @@
 
 const
 _utils =
-	require(
-		"./utils");
+  require(
+    "./utils");
 const
 _argv_get =
-	_utils._argv_get;
+  _utils._argv_get;
 const
 _argv_url_get =
-	_utils._argv_url_get;
+  _utils._argv_url_get;
 const
 _child_process_spawn_get =
-	_utils._child_process_spawn_get;
+  _utils._child_process_spawn_get;
 const
 _spawn =
-	_child_process_spawn_get();
+  _child_process_spawn_get();
 const
 _process_exit_get =
-	_utils._process_exit_get;
+  _utils._process_exit_get;
 const
 _process_exit =
-	_process_exit_get();
+  _process_exit_get();
 const
 _process_cwd_get =
-	_utils._process_cwd_get;
+  _utils._process_cwd_get;
 const
 _process_cwd =
-	_process_cwd_get();
+  _process_cwd_get();
 const
 _pwd =
-	_process_cwd;
+  _process_cwd;
 const
 _yargv_get =
-	_utils._yargv_get;
+  _utils._yargv_get;
 const
 _fs_utils =
-	require(
-		"./fs-utils");
+  require(
+    "./fs-utils");
 const
 _dirname =
-    _fs_utils._dirname;
+  _fs_utils._dirname;
 const
   _file_exists =
     _fs_utils._file_exists;
@@ -468,10 +468,15 @@ function
 function
   _run(
     _run_mode,
-    _cmd) {
+    _cmd,
+    _name,
+    _timeout,
+    _run_type) {
   let
+    _array,
     _index,
-    _msg;
+    _msg,
+    _out;
   if ( typeof(
          _cmd) == "undefined" ||
        _cmd == "" ||
@@ -482,28 +487,38 @@ function
         _msg,
         1);
   }
+  const
+    _program =
+      _cmd[
+        0];
+  const
+    _args =
+      _cmd.slice(
+        1,
+        _cmd.length);
   if ( typeof(
          _run_mode) == "undefined" ||
        _run_mode == "" ) {
     _run_mode =
       "sync";
   }
-  const
-    _args =
-      [];
-  const
-    _program =
-      _cmd[
-        0];
-  const
-    _indexes =
-      _seq(
-        1,
-        _cmd.length - 1);
-  for ( _index of _indexes ) {
-    _args.push(
-      _cmd[
-        _index]);
+  if ( typeof(
+         _name) == "undefined" ||
+       _name == "" ) {
+    _name =
+      "";
+  }
+  if ( typeof(
+         _timeout) == "undefined" ||
+       _timeout == "" ) {
+    _timeout =
+      "0";
+  }
+  if ( typeof(
+         _run_type) == "undefined" ||
+       _run_type == "" ) {
+    _run_type =
+      "spawn";
   }
   _msg =
     `Running '${_program}' ` +
@@ -513,6 +528,7 @@ function
   _out =
     "";
   if ( _run_mode == "async" ) {
+    // currently not working well id say
     const
       _print =
         function
@@ -547,7 +563,7 @@ function
         };
     const
       _process =
-        _spawn(
+        _spawn_async(
           _program,
           _args);
     _process.stdout.on(
@@ -557,23 +573,41 @@ function
       'close',
       _close);
     _array =
-      _out.split("\n");
+      _out.split(
+        "\n");
     _msg_info(
       _array.length);
     return _array;
   }
   else if ( _run_mode == "sync" ) {
-    const
-      _process =
-        _spawn(
-          _program,
-          _args,
-          { "encoding":
-              "utf-8" });
-    _array =
-      _process.stdout.split(
-        "\n");
-    return _array;
+    if ( _run_type == "spawn" ) {
+      const
+        _process =
+          _spawn(
+            _program,
+            _args,
+            { "encoding":
+                "utf-8" });
+      _array =
+        _process.stdout.split(
+          "\n");
+      return _array;
+    }
+    else if ( _run_type == "native" ) {
+      const =
+        _exit_timeout =
+          () => {
+          return false;
+        };
+      setTimeout(
+        _exit_timeout,
+        _timeout);
+      _out =
+        await _program.apply(
+          null,
+          _args);
+      return _out;
+    }
   }
 }
 
