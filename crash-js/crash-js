@@ -361,7 +361,7 @@ function
   return _home;
 }
 
-function
+async function
   _lib_get() {
   let
     _lib,
@@ -378,7 +378,7 @@ function
        typeof __webpack_require__ !== 'function' ) {
     const
       _out =
-        _run(
+        await _run(
          "sync",
           [ "ldconfig",
             "-p" ]);
@@ -611,21 +611,33 @@ async function
           `'${_timeout}' ms reached for task '${_name}'.`;
         _time_over =
           false;
-        const
-          _exit_timeout =
-            () => {
-            throw _msg_timeout;
-          };
         try {
-          setTimeout(
-            _exit_timeout,
-            _timeout);
+          const
+            _timeout_promise =
+              new Promise(
+	        (resolve,
+                 reject) => {
+                  setTimeout(
+                    () => {
+                      return;
+                    },
+                    _timeout,
+                    "hurr")
+                });
           if ( _method != "" ) {
             _out =
-              await _program[
-                _method].apply(
-                _program,
-                _args);
+              await Promise.race( [
+                _sleep(
+                  _timeout),
+                  _program[
+                    _method].apply(
+                    _program,
+                    _args)
+	      ]);
+            if ( typeof(
+                   _out) == "undefined" ) {
+              throw _msg_timeout;
+	    }
           }
           else {
             _out =
@@ -640,7 +652,9 @@ async function
             true;
         }
         if ( _time_over ) {
-          throw _msg_timeout;
+          _msg_warning(
+            _msg_timeout);
+          return;
         }
         else {
           return _out;

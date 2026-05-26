@@ -208,7 +208,6 @@ function
   return _process_exit
 }
 
-
 function
   _process_cwd_get() {
   let
