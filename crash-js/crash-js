@@ -73,6 +73,9 @@ const
 _dirname =
   _fs_utils._dirname;
 const
+  _file_append =
+    _fs_utils._file_append;
+const
   _file_exists =
     _fs_utils._file_exists;
 const
@@ -736,6 +739,8 @@ module.exports = {
     _error_display,
   _ext_rm:
     _fs_utils._ext_rm,
+  _file_append:
+    _fs_utils._file_append,
   _file_exists:
     _fs_utils._file_exists,
   _file_read:

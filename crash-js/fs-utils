@@ -22,8 +22,8 @@
  *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *     GNU General Public License for more details.
  * 
- *     You should have received a copy of the GNU General Public License
- *     along with this program.
+ *     You should have received a copy of the GNU General Public
+ *     License along with this program.
  *     If not, see <https://www.gnu.org/licenses/>.
  */
 
@@ -142,9 +142,20 @@ function
 }
 
 function
+  _file_append(
+    _path,
+    _content,
+    _append) {
+  _fs.appendFileSync(
+    _path,
+    _content);
+}
+
+function
   _file_write(
     _path,
-    _content) {
+    _content,
+    _append) {
   _fs.writeFileSync(
     _path,
     _content);
@@ -264,6 +275,8 @@ module.exports = {
     _dirname,
   _ext_rm:
     _ext_rm,
+  _file_append:
+    _file_append,
   _file_exists:
     _file_exists,
   _file_read:
