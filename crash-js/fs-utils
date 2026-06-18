@@ -43,16 +43,16 @@ const
       _fs_module.readdirSync;
 const
   _fs_exists_sync =
-    _fs.existsSync;
+    _fs_module.existsSync;
 const
   _fs_append_file_sync =
-    _fs.appendFileSync;
+    _fs_module.appendFileSync;
 const
   _fs_read_file_sync =
-    _fs.readFileSync;
+    _fs_module.readFileSync;
 const
   _fs_write_file_sync =
-    _fs.writeFileSync;
+    _fs_module.writeFileSync;
 const
   _fs_worker_new =
     _fs_module.fsWorkerNew;
@@ -358,7 +358,7 @@ module.exports = {
   _ls:
     _ls,
   _mkdir:
-    _fs.mkdirSync,
+    _fs_module.mkdirSync,
   _mktemp:
     _mktemp,
   _mv:
