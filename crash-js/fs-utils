@@ -44,6 +44,9 @@ const
   _fs_module =
     require(
       "fs");
+console.log(
+  "ciao");
+console.log(_fs_module);
 const
   _fs_read_dir_sync =
       _fs_module.readdirSync;
