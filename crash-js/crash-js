@@ -66,27 +66,27 @@ const
 _yargv_get =
   _utils._yargv_get;
 const
-_fs_utils =
+_fs_utils_module =
   require(
     "./fs-utils");
 const
 _dirname =
-  _fs_utils._dirname;
+  _fs_utils_module._dirname;
 const
   _file_append =
-    _fs_utils._file_append;
+    _fs_utils_module._file_append;
 const
   _file_exists =
-    _fs_utils._file_exists;
+    _fs_utils_module._file_exists;
 const
   _path_join =
-    _fs_utils._path_join;
+    _fs_utils_module._path_join;
 const
   _basename =
-    _fs_utils._basename;
+    _fs_utils_module._basename;
 const
   _stat =
-    _fs_utils._stat;
+    _fs_utils_module._stat;
 
 function
   _globals() {
@@ -726,9 +726,9 @@ module.exports = {
   _app_name_get:
     _app_name_get,
   _basename:
-    _fs_utils._basename,
+    _fs_utils_module._basename,
   _cat:
-    _fs_utils._cat,
+    _fs_utils_module._cat,
   _cmdline_check:
     _cmdline_check,
   _dirname:
@@ -738,19 +738,19 @@ module.exports = {
   _error_display:
     _error_display,
   _ext_rm:
-    _fs_utils._ext_rm,
+    _fs_utils_module._ext_rm,
   _file_append:
-    _fs_utils._file_append,
+    _fs_utils_module._file_append,
   _file_exists:
-    _fs_utils._file_exists,
+    _fs_utils_module._file_exists,
   _file_read:
-    _fs_utils._file_read,
+    _fs_utils_module._file_read,
   _file_write:
-    _fs_utils._file_write,
+    _fs_utils_module._file_write,
   _fs_worker_new:
-    _fs_utils._fs_worker_new,
+    _fs_utils_module._fs_worker_new,
   _fs_worker_start:
-    _fs_utils._fs_worker_start,
+    _fs_utils_module._fs_worker_start,
   _get_date_human:
     _get_date_human,
   _globals:
@@ -758,15 +758,17 @@ module.exports = {
   _homedir_get:
     _homedir_get,
   _json_display:
-    _fs_utils._json_display,
+    _fs_utils_module._json_display,
   _json_read:
-    _fs_utils._json_read,
+    _fs_utils_module._json_read,
   _lib_get:
     _lib_get,
   _ls:
-    _fs_utils._ls,
+    _fs_utils_module._ls,
   _mkdir:
-    _fs_utils._mkdir,
+    _fs_utils_module._mkdir,
+  _mktemp:
+    _fs_utils_module._mktemp,
   _msg_info:
     _msg_info,
   _msg_error:
@@ -776,7 +778,7 @@ module.exports = {
   _msg_info_obj:
     _msg_info_obj,
   _mv:
-    _fs_utils._mv,
+    _fs_utils_module._mv,
   _path_join:
     _path_join,
   _printf:
@@ -790,7 +792,7 @@ module.exports = {
   _range:
     _range,
   _rm:
-    _fs_utils._rm,
+    _fs_utils_module._rm,
   _run:
     _run,
   _seq:

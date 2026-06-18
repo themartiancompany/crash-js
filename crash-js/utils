@@ -189,6 +189,26 @@ function
 }
 
 function
+  _os_tmpdir_get() {
+  let
+    _os_tmpdir;
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
+    _os_tmpdir =
+      os.tmpdir;
+  }
+  else {
+    _os_tmpdir =
+      function
+        () {
+        return "/tmp";
+     };
+  }
+  return _os_tmpdir;
+}
+
+function
   _process_exit_get() {
   let
     _process_exit;
@@ -272,6 +292,8 @@ module.exports = {
     _argv_url_get,
   _child_process_spawn_get:
     _child_process_spawn_get,
+  _os_tmpdir_get:
+    _os_tmpdir_get,
   _process_exit_get:
     _process_exit_get,
   _process_cwd_get:

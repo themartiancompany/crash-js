@@ -28,18 +28,28 @@
  */
 
 const
-  _fs =
+  _utils_module =
+    require(
+      "utils");
+const
+  _os_tmpdir_get =
+    _utils._os_tmpdir_get;
+const
+  _fs_module =
     require(
       "fs");
 const
   _fs_worker_new =
-    _fs.fsWorkerNew;
+    _fs_module.fsWorkerNew;
 const
   _fs_worker_start =
-    _fs.fsWorkerStart;
+    _fs_module.fsWorkerStart;
+const
+  _mkdtemp =
+    _fs_module.mkdtemp;
 const
   _stat =
-    _fs.statSync;
+    _fs_module.statSync;
 const
   _json_parse =
     JSON.parse;
@@ -266,6 +276,60 @@ function
   return _return;
 } 
 
+async function
+_mktemp(
+  _prefix,
+  _directory) {
+  const
+    _directory_type =
+      typeof(
+        _directory);
+  if ( typeof(
+         _prefix) == "undefined" ||
+       _prefix == "" ) {
+    const
+      _os_tmpdir =
+        _os_tmpdir_get();
+    _prefix =
+      `${_os_tmpdir}/`;
+  }
+  if ( _directory_type == "undefined" ||
+       _directory == "" ||
+       _directory == "true" ) {
+    _directory =
+      true;
+  }
+  if ( _directory == "false" ) {
+    _directory =
+      false;
+  }
+  if ( _directory ) {
+    try {
+      const
+        _dir =
+          await _mkdtemp(
+            _prefix);
+      _msg =
+        `Created directory '${_dir}'.`;
+      _msg_info(
+        _msg);
+      return _dir;
+    }
+    catch(
+      _error) {
+      throw _error;
+    }
+  }
+  else {
+    _msg =
+      "It only supports creating " +
+      "temporary directories.";
+    _msg_error(
+      _msg,
+      1);
+  }
+}
+
 module.exports = {
   _basename:
     _basename,
@@ -295,6 +359,8 @@ module.exports = {
     _ls,
   _mkdir:
     _fs.mkdirSync,
+  _mktemp:
+    _mktemp,
   _mv:
     _mv,
   _path_join:
