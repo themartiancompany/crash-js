@@ -39,17 +39,8 @@ const
     require(
       "fs");
 const
-  _fs_read_dir_sync_type =
-    typeof(
-      _fs.readdirSync);
-if ( _fs_read_dir_sync_type === 'undefined' ) {
   _fs_read_dir_sync =
-    _fs.readDirSync;
-}
-else {
-  _fs_read_dir_sync =
-    _fs.readdirSync;
-}
+      _fs_module.readdirSync;
 const
   _fs_exists_sync =
     _fs.existsSync;

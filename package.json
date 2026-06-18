@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "0.1.120",
+    "0.1.121",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -33,6 +33,7 @@
     "hip",
     "opfs",
     "fs",
+    "node:fs",
     "tmcfs",
     "themartiancompany",
     "ur"
@@ -61,9 +62,9 @@
   },
   "devDependencies": {
     "crash-js-webpack":
-      "^0.0.11",
+      "^0.0.17",
     "eslint":
-      "^10.0.3",
+      "^10.3.0",
     "globals":
       "^17.3.0",
     "@eslint/js":
