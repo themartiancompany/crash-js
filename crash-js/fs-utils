@@ -43,7 +43,7 @@ const
 const
   _fs_module =
     require(
-      "fs");
+      "tmcfs");
 console.log(
   "ciao");
 console.log(_fs_module);

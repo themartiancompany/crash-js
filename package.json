@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "0.1.131",
+    "0.1.132",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -79,10 +79,6 @@
       "npm:@themartiancompany/fs@^0.0.11",
     "yargs":
       "18.0.0"
-  },
-  "overrides": {
-    "fs":
-      "npm:@themartiancompany/fs@^0.0.11"
   },
   "yargs": {
     "parse-numbers":
