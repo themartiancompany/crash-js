@@ -48,30 +48,30 @@ const
     _child_process_spawn_get(
       "async");
 const
-_process_exit_get =
-  _utils._process_exit_get;
+  _process_exit_get =
+    _utils._process_exit_get;
 const
-_process_exit =
-  _process_exit_get();
+  _process_exit =
+    _process_exit_get();
 const
-_process_cwd_get =
-  _utils._process_cwd_get;
+  _process_cwd_get =
+    _utils._process_cwd_get;
 const
-_process_cwd =
-  _process_cwd_get();
+  _process_cwd =
+    _process_cwd_get();
 const
-_pwd =
-  _process_cwd;
+  _pwd =
+    _process_cwd;
 const
-_yargv_get =
-  _utils._yargv_get;
+  _yargv_get =
+    _utils._yargv_get;
 const
-_fs_utils_module =
-  require(
-    "./fs-utils");
+  _fs_utils_module =
+    require(
+      "./fs-utils");
 const
-_dirname =
-  _fs_utils_module._dirname;
+  _dirname =
+    _fs_utils_module._dirname;
 const
   _file_append =
     _fs_utils_module._file_append;

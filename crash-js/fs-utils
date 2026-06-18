@@ -35,6 +35,12 @@ const
   _os_tmpdir_get =
     _utils_module._os_tmpdir_get;
 const
+  _process_exit_get =
+    _utils_module._process_exit_get;
+const
+  _process_exit =
+    _process_exit_get();
+const
   _fs_module =
     require(
       "fs");
@@ -152,11 +158,10 @@ function
   _file_read(
     _path,
     _read_opts) {
-    _return;
   const
     _read_opts_type =
       typeof(
-        _read_opts_type);
+        _read_opts);
   if ( _read_opts_type === "undefined" ||
        _read_opts == {} ||
        _read_opts == "" ) {
@@ -236,6 +241,8 @@ async function
 _mktemp(
   _prefix,
   _directory) {
+  let
+    _return;
   const
     _directory_type =
       typeof(
@@ -247,7 +254,7 @@ _mktemp(
       _os_tmpdir =
         _os_tmpdir_get();
     _prefix =
-      `${_os_tmpdir}/`;
+      `${_os_tmpdir}/mammt.`;
   }
   if ( _directory_type == "undefined" ||
        _directory == "" ||
@@ -260,16 +267,55 @@ _mktemp(
       false;
   }
   if ( _directory ) {
+    const
+      _mkdtemp_callback =
+        ( _error,
+          _folder) => {
+        if ( _error ) {
+          console.error(_error);
+        }
+        console.log(
+          _folder);
+        _return =
+          _folder;
+        console.log("Hello", _return);
+      };
     try {
+      console.log(_mkdtemp);
+      console.log(_prefix);
+      await _mkdtemp(
+        _prefix,
+        { "encoding":
+           "utf-8" },
+        ( _error,
+          _folder) => {
+          console.error(
+            "Hello", _error);
+          console.error(
+            "Hello", _folder);});
       const
         _dir =
           await _mkdtemp(
-            _prefix);
-      _msg =
-        `Created directory '${_dir}'.`;
-      _msg_info(
-        _msg);
-      return _dir;
+            _prefix,
+            { "encoding":
+               "utf-8" },
+            ( _error,
+              _folder) => {
+              console.error(
+                "Hello", _error);
+              console.error(
+                "Hello", _folder);});
+      console.log(
+        _dir);
+      console.log(_return);
+      const
+        _dir_type =
+          typeof(
+            _dir);
+      if ( _dir_type != "undefined" ) {
+        _return =
+          _dir;
+      }
     }
     catch(
       _error) {
@@ -280,10 +326,12 @@ _mktemp(
     _msg =
       "It only supports creating " +
       "temporary directories.";
-    _msg_error(
-      _msg,
+    console.error(
+      _msg);
+    _process_exit(
       1);
   }
+  return _return;
 }
 
 module.exports = {

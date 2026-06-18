@@ -195,8 +195,12 @@ function
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
        typeof __webpack_require__ !== 'function' ) {
+    const
+      _os =
+        require(
+          "os");
     _os_tmpdir =
-      os.tmpdir;
+      _os.tmpdir;
   }
   else {
     _os_tmpdir =
