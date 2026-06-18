@@ -30,14 +30,38 @@
 const
   _utils_module =
     require(
-      "utils");
+      "./utils");
 const
   _os_tmpdir_get =
-    _utils._os_tmpdir_get;
+    _utils_module._os_tmpdir_get;
 const
   _fs_module =
     require(
       "fs");
+const
+  _fs_read_dir_sync_type =
+    typeof(
+      _fs.readdirSync);
+if ( _fs_read_dir_sync_type === 'undefined' ) {
+  _fs_read_dir_sync =
+    _fs.readDirSync;
+}
+else {
+  _fs_read_dir_sync =
+    _fs.readdirSync;
+}
+const
+  _fs_exists_sync =
+    _fs.existsSync;
+const
+  _fs_append_file_sync =
+    _fs.appendFileSync;
+const
+  _fs_read_file_sync =
+    _fs.readFileSync;
+const
+  _fs_write_file_sync =
+    _fs.writeFileSync;
 const
   _fs_worker_new =
     _fs_module.fsWorkerNew;
@@ -124,7 +148,7 @@ function
   _return =
     false;
   _exists =
-    _fs.existsSync(
+    _fs_exists_sync(
       _path);
   if (_exists) {
     _return =
@@ -145,7 +169,7 @@ function
     "flag":
       'r'};
   _return =
-    _fs.readFileSync(
+    _fs_read_file_sync(
       _path,
       _read_opts);
   return _return;
@@ -156,7 +180,7 @@ function
     _path,
     _content,
     _append) {
-  _fs.appendFileSync(
+  _fs_append_file_sync(
     _path,
     _content);
 }
@@ -166,7 +190,7 @@ function
     _path,
     _content,
     _append) {
-  _fs.writeFileSync(
+  _fs_write_file_sync(
     _path,
     _content);
 }
@@ -189,26 +213,11 @@ function
 function
   _ls(
     _args) {
-  let
-    _read_dir,
-    _return;
-  if ( typeof(
-       _fs.readdirSync) === 'undefined' ) {
-    _read_dir =
-      _fs.readDirSync;
+  const
     _return =
-      _read_dir.apply(
-        null,
-        [_args]).unwrap()
-  }
-  else {
-    _read_dir =
-      _fs.readdirSync;
-    _return =
-      _read_dir.apply(
+      _fs_read_dir_sync.apply(
         null,
         [_args]);
-  }
   return _return;
 } 
 
