@@ -67,7 +67,7 @@ const
     _fs_module.fsWorkerStart;
 const
   _mkdtemp =
-    _fs_module.mkdtemp;
+    _fs_module.mkdtempSync;
 const
   _stat =
     _fs_module.statSync;
@@ -281,30 +281,10 @@ _mktemp(
         console.log("Hello", _return);
       };
     try {
-      console.log(_mkdtemp);
-      console.log(_prefix);
-      await _mkdtemp(
-        _prefix,
-        { "encoding":
-           "utf-8" },
-        ( _error,
-          _folder) => {
-          console.error(
-            "Hello", _error);
-          console.error(
-            "Hello", _folder);});
       const
         _dir =
-          await _mkdtemp(
-            _prefix,
-            { "encoding":
-               "utf-8" },
-            ( _error,
-              _folder) => {
-              console.error(
-                "Hello", _error);
-              console.error(
-                "Hello", _folder);});
+          _mkdtemp(
+            _prefix);
       console.log(
         _dir);
       console.log(_return);
