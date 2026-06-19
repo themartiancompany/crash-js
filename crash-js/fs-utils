@@ -44,9 +44,6 @@ const
   _fs_module =
     require(
       "tmcfs");
-console.log(
-  "ciao");
-console.log(_fs_module);
 const
   _fs_read_dir_sync =
       _fs_module.readdirSync;
@@ -244,8 +241,6 @@ async function
 _mktemp(
   _prefix,
   _directory) {
-  let
-    _return;
   const
     _directory_type =
       typeof(
@@ -257,7 +252,7 @@ _mktemp(
       _os_tmpdir =
         _os_tmpdir_get();
     _prefix =
-      `${_os_tmpdir}/mammt.`;
+      `${_os_tmpdir}/tmp.`;
   }
   if ( _directory_type == "undefined" ||
        _directory == "" ||
@@ -270,35 +265,12 @@ _mktemp(
       false;
   }
   if ( _directory ) {
-    const
-      _mkdtemp_callback =
-        ( _error,
-          _folder) => {
-        if ( _error ) {
-          console.error(_error);
-        }
-        console.log(
-          _folder);
-        _return =
-          _folder;
-        console.log("Hello", _return);
-      };
     try {
       const
         _dir =
           _mkdtemp(
             _prefix);
-      console.log(
-        _dir);
-      console.log(_return);
-      const
-        _dir_type =
-          typeof(
-            _dir);
-      if ( _dir_type != "undefined" ) {
-        _return =
-          _dir;
-      }
+      return _dir;
     }
     catch(
       _error) {
@@ -314,7 +286,6 @@ _mktemp(
     _process_exit(
       1);
   }
-  return _return;
 }
 
 module.exports = {
