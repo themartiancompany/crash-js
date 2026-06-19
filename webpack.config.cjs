@@ -16,9 +16,9 @@ const
   _input_file_path =
     `./${_input_file_name}/${_input_file_name}`;
 const
-  _web_worker_ignore =
+  _node_fs_ignore =
   { resourceRegExp:
-      /^web-worker$/ };
+      /^node:fs$/ };
 const
   _yargs_ignore =
   { resourceRegExp:
@@ -35,6 +35,10 @@ const
 const
   _ignore_plugin =
     _webpack.IgnorePlugin; 
+const
+  _node_fs_ignore_plugin =
+    new _ignore_plugin(
+          _node_fs_ignore);
 const
   _yargs_ignore_plugin =
     new _ignore_plugin(
@@ -59,10 +63,6 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "fs":
-        _path.resolve(
-          __dirname,
-          'node_modules/fs/fs'),
       "path":
         _path.resolve(
           __dirname,
@@ -73,6 +73,8 @@ module.exports = {
           'node_modules/web-worker/dist/browser/index.cjs'),
     },
     fallback: {
+      "node:fs":
+        false,
       "utils":
         false
     },
@@ -81,6 +83,7 @@ module.exports = {
     { yargs:
         'yargs' },
   plugins: [
+    _node_fs_ignore_plugin,
     _yargs_ignore_plugin,
     _yargs_helpers_ignore_plugin
   ]

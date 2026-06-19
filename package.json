@@ -76,7 +76,7 @@
   },
   "dependencies": {
     "tmcfs":
-      "npm:@themartiancompany/fs@^0.0.11",
+      "npm:@themartiancompany/fs@^0.0.12",
     "yargs":
       "18.0.0"
   },
