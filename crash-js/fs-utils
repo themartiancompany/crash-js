@@ -183,10 +183,22 @@ function
   _file_append(
     _path,
     _content,
-    _append) {
-  _fs_append_file_sync(
-    _path,
-    _content);
+    _options) {
+  const
+    _fs_append_file_sync_args = [
+      _path,
+      _content
+    ];
+  if ( typeof(
+         _options) != "undefined" &&
+       _options != {} &&
+       _options != "" ) {
+    _fs_append_file_sync_args.push(
+      _options);
+  }
+  _fs_append_file_sync.apply(
+    null,
+    _fs_append_file_sync_args);
 }
 
 function
