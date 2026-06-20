@@ -385,6 +385,7 @@ async function
          "sync",
           [ "ldconfig",
             "-p" ]);
+    // console.log(_out);
     const
       _tail =
         _out.slice(
