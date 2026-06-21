@@ -31,15 +31,17 @@ import { defineConfig } from "eslint/config";
 const
   _project =
     "crash-js";
-
-export default defineConfig([
- { ignores: [
+const
+ _ignores: [
      "build/**",
      "dist/**",
      "fs-worker.js",
      `${_project}.js`,
      "eslint.config.js"
-   ],
+   ];
+export default defineConfig([
+ { ignores:
+     _ignores,
    rules:
      { semi:
          "error",
