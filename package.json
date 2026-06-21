@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "0.1.135",
+    "0.1.136",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -76,7 +76,7 @@
   },
   "dependencies": {
     "tmcfs":
-      "npm:@themartiancompany/fs@^0.0.12",
+      "npm:@themartiancompany/fs@^0.0.13",
     "yargs":
       "18.0.0"
   },

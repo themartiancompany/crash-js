@@ -312,6 +312,8 @@ module.exports = {
     _dirname,
   _ext_rm:
     _ext_rm,
+  _dir_exists:
+    _dir_exists,
   _file_append:
     _file_append,
   _file_exists:
