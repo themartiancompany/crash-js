@@ -70,6 +70,9 @@ const
     require(
       "./fs-utils");
 const
+  _basename =
+    _fs_utils_module._basename;
+const
   _dirname =
     _fs_utils_module._dirname;
 const
@@ -81,9 +84,6 @@ const
 const
   _path_join =
     _fs_utils_module._path_join;
-const
-  _basename =
-    _fs_utils_module._basename;
 const
   _stat =
     _fs_utils_module._stat;
@@ -740,6 +740,8 @@ module.exports = {
     _error_display,
   _ext_rm:
     _fs_utils_module._ext_rm,
+  _dir_exists:
+    _fs_utils_module._dir_exists,
   _file_append:
     _fs_utils_module._file_append,
   _file_exists:

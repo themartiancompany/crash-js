@@ -35,8 +35,7 @@ const
  _ignores = [
      "build/**",
      "dist/**",
-     "fs-worker.js",
-     `${_project}.js`,
+     `**/${_project}.js`,
      "eslint.config.js"
    ];
 export default defineConfig([
