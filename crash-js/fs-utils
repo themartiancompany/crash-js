@@ -313,7 +313,7 @@ module.exports = {
   _ext_rm:
     _ext_rm,
   _dir_exists:
-    _dir_exists,
+    _fs_module.isDir,
   _file_append:
     _file_append,
   _file_exists:
