@@ -58,7 +58,9 @@ export default defineConfig([
      { globals:
          {  ...globals.browser,
             ...globals.node} } },
- { files:
+ { ignores:
+     _ignores,
+   files:
      [ "**/*.js",
        `${_project}/*` ],
    languageOptions:
