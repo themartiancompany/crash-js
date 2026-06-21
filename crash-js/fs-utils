@@ -60,9 +60,6 @@ const
   _fs_write_file_sync =
     _fs_module.writeFileSync;
 const
-  _is_dir =
-    _fs_module.isDir;
-const
   _fs_worker_new =
     _fs_module.fsWorkerNew;
 const
