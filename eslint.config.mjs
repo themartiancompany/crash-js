@@ -32,7 +32,7 @@ const
   _project =
     "crash-js";
 const
- _ignores: [
+ _ignores = [
      "build/**",
      "dist/**",
      "fs-worker.js",
