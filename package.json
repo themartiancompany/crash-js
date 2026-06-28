@@ -16,6 +16,7 @@
     "COPYING",
     "README.md",
     "eslint.config.mjs",
+    "fs-worker.webpack.config.cjs",
     "crash-js",
     "dist",
     "examples",
