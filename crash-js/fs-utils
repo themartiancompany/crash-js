@@ -305,6 +305,10 @@ module.exports = {
     _basename,
   _cat:
     _file_read,
+  _chmod:
+    _fs_module.chmodSync,
+  _chown:
+    _fs_module.chownSync,
   _dirname:
     _dirname,
   _ext_rm:
