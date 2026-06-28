@@ -730,8 +730,14 @@ module.exports = {
     _fs_utils_module._basename,
   _cat:
     _fs_utils_module._cat,
+  _chmod:
+    _fs_utils_module._chmod,
+  _chown:
+    _fs_utils_module._chown,
   _cmdline_check:
     _cmdline_check,
+  _cp:
+    _fs_utils_module._cp,
   _dirname:
     _dirname,
   _echo:

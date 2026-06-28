@@ -35,7 +35,7 @@ const
  _ignores = [
      "build/**",
      "dist/*",
-     "dist/**",
+     `**/fs-worker.js`,
      `**/${_project}.js`,
      "eslint.config.js"
    ];
@@ -47,7 +47,9 @@ export default defineConfig([
          "error",
        "prefer-const":
          "error" } },
- { files:
+ { ignores:
+     _ignores,
+   files:
      [ "**/*.{js,mjs,cjs}",
        `${_project}/*` ],
    plugins:

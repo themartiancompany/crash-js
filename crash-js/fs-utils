@@ -309,6 +309,8 @@ module.exports = {
     _fs_module.chmodSync,
   _chown:
     _fs_module.chownSync,
+  _cp:
+    _fs_module.cpSync,
   _dirname:
     _dirname,
   _ext_rm:
