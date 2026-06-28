@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "0.11.1",
+    "0.11.11",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -62,13 +62,15 @@
   },
   "devDependencies": {
     "crash-js-webpack":
-      "^0.0.28",
+      "^0.0.32",
     "eslint":
       "^10.3.0",
     "@eslint/js":
       "^10.0.1",
     "globals":
       "^17.3.0",
+    "safely-serve":
+      "^0.0.9",
     "webpack":
       "^5.102.1",
     "webpack-cli":
@@ -76,7 +78,7 @@
   },
   "dependencies": {
     "tmcfs":
-      "npm:@themartiancompany/fs@^0.0.13",
+      "npm:@themartiancompany/fs@^0.0.15",
     "yargs":
       "18.0.0"
   },
@@ -97,6 +99,8 @@
         "npx webpack --mode 'production' --config 'webpack.config.cjs' --stats-error-details && mkdir 'dist' && mv 'crash-js.js'* 'dist'",
       "lint":
         "npx eslint .",
+      "start":
+        "npx safely-serve 'dist/crash-js'",
       "test":
         "echo \"Error: no test specified\" && exit 1" }
 }
