@@ -865,6 +865,90 @@ function
   return _return;
 }
 
+function
+  _to_bash_ass_array(
+    _object) {
+  let
+    _index,
+    _key,
+    _key_declaration,
+    _return;
+  _return = [
+    "#!/usr/bin/env bash"
+  ];
+  const
+    _arrays_assignments =
+      [];
+  const
+    _arrays_names =
+      Object.keys(
+        _object);
+  const
+    _arrays_declaration = [
+      "declare \\",
+      "  -A \\",
+    ];
+  const
+    _arrays_amount =
+      _arrays_names.length;
+  const
+    _index_max =
+      _arrays_amount - 1;
+  const
+    _indexes =
+      _seq(
+        0,
+        _index_max);
+  for ( _index of _indexes ) {
+    _array_name =
+      _arrays_names[
+        _index];
+    _array_declaration =
+      `  ${_array_name}`;
+    if ( _index != _index_max ) {
+      _array_declaration +=
+        ` \\`;
+    }
+    _arrays_declaration.push(
+      _array_declaration);
+    _array_assignment = [
+      `${_array_name}=(`
+    ];
+    _object_keys =
+      Object.keys(
+        _object[
+          _array_name]);
+    for ( _key of _object_keys ) {
+      _value =
+        _object[
+          _array_name][
+            _key];
+      _key_assignment =
+        `  ["${_key}"]="${_value}"`;
+      _array_assignment.push(
+        _key_assignment);
+    }
+    _array_assignment.push(
+      ")");
+    _array_assignment_string =
+      _array_assignment.join(
+        "\n");
+    _arrays_assignments.push(
+      _array_assignment_string);
+  }
+  _return =
+    _return.concat(
+      _arrays_declaration);
+  _return =
+    _return.concat(
+      _arrays_assignments);
+  _return =
+    _return.join(
+      "\n");
+  return _return;
+}
+
+
 module.exports = {
   _argv_get:
     _argv_get,
@@ -958,6 +1042,8 @@ module.exports = {
     _sleep,
   _stat:
     _stat,
+  _to_bash_ass_array:
+    _to_bash_ass_array,
   _yargv_get:
     _yargv_get
 };
