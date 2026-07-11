@@ -22,8 +22,8 @@
  *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *     GNU General Public License for more details.
  * 
- *     You should have received a copy of the GNU General Public License
- *     along with this program.
+ *     You should have received a copy of the GNU General Public
+ *     License along with this program.
  *     If not, see <https://www.gnu.org/licenses/>.
  */
 
@@ -948,6 +948,121 @@ function
   return _return;
 }
 
+function
+  _global_get() {
+  let
+    _global;
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
+    _global =
+      global;
+  }
+  if ( typeof(
+         window) != "undefined" ) {
+    _global =
+      window;
+  }
+  return _global;
+}
+
+function
+  _get(
+    _obj,
+    _var) {
+  _getter_setter_input_check(
+    _obj,
+    _var);
+  const
+    _global =
+      _global_get();
+  return _global[
+    `${_obj}_${_var}`];
+}
+
+function
+  _getter_setter_input_check(
+    _obj,
+    _var,
+    _value) {
+  if ( typeof(
+         _obj) === "undefined" ||
+       _obj == "" ) &&
+     ( typeof(
+         _var) === "undefined" ||
+       _var == "" ) {
+    const
+      _msg =
+        "Either one of the 'object' or the " +
+        "'variable' arguments must be non-empty";
+    _msg_error(
+      _msg,
+      1);
+  }
+  if ( typeof(
+         _value) === "undefined" ) {
+    _value =
+      "";
+  }
+}
+
+function
+  _set(
+    _obj,
+    _var,
+    _value) {
+  _getter_setter_input_check(
+    _obj,
+    _var);
+  const
+    _global =
+      _global_get();
+  _global[
+    `${_obj}_${_var}`] =
+    _value;
+}
+
+function
+  _set_override(
+    _args) {
+  _override_set.apply(
+    null,
+    _args);
+}
+
+function
+  _override_set(
+    _obj,
+    _var,
+    _default) {
+  _getter_setter_input_check(
+    _obj,
+    _var,
+    _default);
+  const
+    _global =
+      _global_get();
+  if ( Object.keys(
+         _global).includes(
+           `override_${_obj}_${_var}`) {
+    _set(
+      _obj,
+      _var,
+      _get(
+        `override_${_obj}`,
+        `${_var}`));
+  }
+  else {
+    _set(
+      _obj,
+      _var,
+      _default)
+  }
+}
+
+const
+  _set_override =
+    _override_set;
 
 module.exports = {
   _argv_get:
@@ -992,10 +1107,14 @@ module.exports = {
     _fs_utils_module._fs_worker_new,
   _fs_worker_start:
     _fs_utils_module._fs_worker_start,
+  _get:
+    _get,
   _get_date_human:
     _get_date_human,
   _globals:
     _globals,
+  _global_get:
+    _global_get,
   _homedir_get:
     _homedir_get,
   _json_display:
@@ -1020,6 +1139,8 @@ module.exports = {
     _msg_info_obj,
   _mv:
     _fs_utils_module._mv,
+  _override_set:
+    _override_set,
   _path_join:
     _path_join,
   _printf:
@@ -1038,6 +1159,10 @@ module.exports = {
     _run,
   _seq:
     _seq,
+  _set:
+    _set,
+  _set_override:
+    _set_override,
   _sleep:
     _sleep,
   _stat:
