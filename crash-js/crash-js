@@ -985,12 +985,12 @@ function
     _obj,
     _var,
     _value) {
-  if ( typeof(
-         _obj) === "undefined" ||
-       _obj == "" ) &&
-     ( typeof(
-         _var) === "undefined" ||
-       _var == "" ) {
+  if ( ( typeof(
+           _obj) === "undefined" ||
+         _obj == "" ) &&
+       ( typeof(
+           _var) === "undefined" ||
+         _var == "" ) ) {
     const
       _msg =
         "Either one of the 'object' or the " +
@@ -1036,7 +1036,7 @@ function
       _global_get();
   if ( Object.keys(
          _global).includes(
-           `override_${_obj}_${_var}`) {
+           `override_${_obj}_${_var}`) ) {
     _set(
       _obj,
       _var,
