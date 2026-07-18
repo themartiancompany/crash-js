@@ -1023,14 +1023,6 @@ function
 }
 
 function
-  _set_override(
-    _args) {
-  _override_set.apply(
-    null,
-    _args);
-}
-
-function
   _override_set(
     _obj,
     _var,
