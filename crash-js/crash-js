@@ -51,27 +51,6 @@ const
     _child_process_spawn_get(
       "async");
 const
-  _process_exit_get =
-    _utils._process_exit_get;
-const
-  _process_exit =
-    _process_exit_get();
-const
-  _process_chdir_get =
-    _utils._process_chdir_get;
-const
-  _process_chdir =
-    _process_chdir_get();
-const
-  _process_cwd_get =
-    _utils._process_cwd_get;
-const
-  _process_cwd =
-    _process_cwd_get();
-const
-  _pwd =
-    _process_cwd;
-const
   _yargv_get =
     _utils._yargv_get;
 const
@@ -441,6 +420,17 @@ async function
       "/usr/lib";
   }
   return _lib
+}
+
+function
+  _usr_get() {
+  const
+    _lib =
+      _lib_get();
+  const
+    _usr =
+      _dirname(
+        _lib);
 }
 
 function
@@ -1064,16 +1054,22 @@ module.exports = {
     _fs_utils_module._chown,
   _cmdline_check:
     _cmdline_check,
+  _chdir:
+    _fs_utils_module.cd,
   _cd:
-    _process_chdir,
+    _fs_utils_module.cd,
   _cp:
     _fs_utils_module._cp,
+  _cwd:
+    _fs_utils_module._cwd,
   _dirname:
     _dirname,
   _echo:
     _echo,
   _error_display:
     _error_display,
+  _exit:
+    _fs_utils_module._exit,
   _ext_rm:
     _fs_utils_module._ext_rm,
   _dir_exists:
@@ -1096,6 +1092,10 @@ module.exports = {
     _get,
   _get_date_human:
     _get_date_human,
+  _get_lib:
+    _lib_get,
+  _get_usr:
+    _usr_get,
   _globals:
     _globals,
   _global_get:
@@ -1130,14 +1130,16 @@ module.exports = {
     _path_join,
   _printf:
     _printf,
-  _process_exit:
-    _process_exit,
   _process_chdir:
-    _process_chdir,
+    _fs_utils_module._cd,
   _process_cwd:
-    _process_cwd,
+    _fs_utils_module._cwd,
+  _process_exit:
+    _fs_utils_module._exit,
+  _process_pwd:
+    _fs_utils_module._pwd,
   _pwd:
-    _pwd,
+    _fs_utils_module._pwd,
   _range:
     _range,
   _rm:
@@ -1156,6 +1158,8 @@ module.exports = {
     _stat,
   _to_bash_ass_array:
     _to_bash_ass_array,
+  _usr_get:
+    _usr_get,
   _yargv_get:
     _yargv_get
 };

@@ -231,124 +231,6 @@ function
 }
 
 function
-  _process_exit_get() {
-  let
-    _process_exit;
-  if ( typeof window === 'undefined' &&
-       ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ !== 'function' ) {
-    _process_exit =
-      process.exit;
-  }
-  else {
-    _process_exit =
-      function
-        (_exit) {
-        return _exit;
-     };
-  }
-  return _process_exit
-}
-
-function
-  _process_cwd_get(
-    _fs_module) {
-  let
-    _process_cwd;
-  }
-  if ( typeof window === 'undefined' &&
-       ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ === 'function' ) {
-    _process_cwd =
-      process.cwd;
-  }
-  else {
-    _process_cwd =
-      function
-        (_fs_module) {
-        if ( typeof(
-               _fs_module) == "undefined" ||
-             _fs_module == "" ) {
-          const
-            _global =
-              _global_get();
-          if ( "_fs_module" in _global ) {
-            _fs_module =
-              _global[
-                "_fs_module"];
-          }
-          else {
-            _fs_module =
-              require(
-                "fs");
-          }
-        }
-        return _fs_module.CURRENT_DIR;
-      };
-  }
-  return _process_cwd;
-}
-
-function
-  _process_chdir_get(
-    _fs_module) {
-  let
-    _process_chdir;
-  if ( typeof window === 'undefined' &&
-       ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ === 'function' ) {
-    _process_chdir =
-      process.chdir;
-  }
-  else {
-    _process_chdir =
-      function
-        (_dir,
-         _fs_module) {
-        let
-          _chdir;
-        if ( typeof(
-               _fs_module) == "undefined" ||
-             _fs_module == "" ) {
-          const
-            _global =
-              _global_get();
-          if ( "_fs_module" in _global ) {
-            _fs_module =
-              _global[
-                "_fs_module"];
-          }
-          else {
-            _fs_module =
-              require(
-                "fs");
-          }
-        }
-        if ( _dir_exists(
-               _dir) ) {
-          _fs_module.CURRENT_DIR =
-            _dir;
-          _chdir =
-            true;
-	}
-        else {
-          _chdir =
-            false;
-          const
-            _msg =
-              `Directory '${_dir}' ` +
-              "does not exist.";
-          _msg_error(
-            _msg,
-            0);
-	}
-        return _chdir;
-     };
-  }
-  return _process_chdir;
-}
-
-function
   _child_process_spawn_get(
     _spawn_type) {
   let
@@ -396,12 +278,6 @@ module.exports = {
     _global_get,
   _os_tmpdir_get:
     _os_tmpdir_get,
-  _process_chdir_get:
-    _process_chdir_get,
-  _process_cwd_get:
-    _process_cwd_get,
-  _process_exit_get:
-    _process_exit_get,
   _yargv_get:
     _yargv_get
 };

@@ -35,12 +35,6 @@ const
   _os_tmpdir_get =
     _utils_module._os_tmpdir_get;
 const
-  _process_exit_get =
-    _utils_module._process_exit_get;
-const
-  _process_exit =
-    _process_exit_get();
-const
   _fs_module =
     require(
       "tmcfs");
@@ -93,6 +87,13 @@ const
 const
   _path_module_parse =
     _path_module.parse;
+const
+  _process_module =
+    require(
+      "process-browserify");
+const
+  _exit =
+    _process_module.exit;
 
 function
   _basename(
@@ -295,7 +296,7 @@ _mktemp(
       "temporary directories.";
     console.error(
       _msg);
-    _process_exit(
+    _exit(
       1);
   }
 }
@@ -309,12 +310,18 @@ module.exports = {
     _fs_module.chmodSync,
   _chown:
     _fs_module.chownSync,
+  _cd:
+    _process_module.chdir,
   _cp:
     _fs_module.cpSync,
+  _cwd:
+    _process_module.cwd,
   _dirname:
     _dirname,
   _ext_rm:
     _ext_rm,
+  _exit:
+    _exit,
   _dir_exists:
     _fs_module.isDir,
   _file_append:
@@ -343,6 +350,8 @@ module.exports = {
     _fs_module.renameSync,
   _path_join:
     _path_join,
+  _pwd:
+    _process_module._cwd,
   _rm:
     _fs_module.rmSync,
   _stat:
