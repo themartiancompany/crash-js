@@ -32,14 +32,17 @@ _utils =
   require(
     "./utils");
 const
-_argv_get =
-  _utils._argv_get;
+  _argv_get =
+    _utils._argv_get;
 const
-_argv_url_get =
-  _utils._argv_url_get;
+  _argv_url_get =
+    _utils._argv_url_get;
 const
-_child_process_spawn_get =
-  _utils._child_process_spawn_get;
+  _child_process_spawn_get =
+    _utils._child_process_spawn_get;
+const
+  _global_get =
+    _utils._global_get;
 const
   _spawn =
     _child_process_spawn_get();
@@ -53,6 +56,12 @@ const
 const
   _process_exit =
     _process_exit_get();
+const
+  _process_chdir_get =
+    _utils._process_chdir_get;
+const
+  _process_chdir =
+    _process_chdir_get();
 const
   _process_cwd_get =
     _utils._process_cwd_get;
@@ -949,24 +958,6 @@ function
 }
 
 function
-  _global_get() {
-  let
-    _global;
-  if ( typeof window === 'undefined' &&
-       ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ !== 'function' ) {
-    _global =
-      global;
-  }
-  if ( typeof(
-         window) != "undefined" ) {
-    _global =
-      window;
-  }
-  return _global;
-}
-
-function
   _get(
     _obj,
     _var) {
@@ -1073,6 +1064,8 @@ module.exports = {
     _fs_utils_module._chown,
   _cmdline_check:
     _cmdline_check,
+  _cd:
+    _process_chdir,
   _cp:
     _fs_utils_module._cp,
   _dirname:
@@ -1139,6 +1132,8 @@ module.exports = {
     _printf,
   _process_exit:
     _process_exit,
+  _process_chdir:
+    _process_chdir,
   _process_cwd:
     _process_cwd,
   _pwd:
