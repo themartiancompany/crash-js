@@ -90,7 +90,7 @@ const
 const
   _process_module =
     require(
-      "process-browserify");
+      "process");
 const
   _exit =
     _process_module.exit;
