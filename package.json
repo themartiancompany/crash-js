@@ -63,7 +63,7 @@
   },
   "devDependencies": {
     "crash-js-webpack":
-      "^0.0.37",
+      "^0.0.41",
     "eslint":
       "^10.3.0",
     "@eslint/js":
@@ -73,9 +73,9 @@
     "safely-serve":
       "^0.0.10",
     "webpack":
-      "^5.102.1",
+      "^5.109.2",
     "webpack-cli":
-      "^6.0.1"
+      "^7.2.2"
   },
   "dependencies": {
     "process":
@@ -83,7 +83,7 @@
     "tmcfs":
       "npm:@themartiancompany/fs@^0.0.18",
     "yargs":
-      "18.0.0"
+      "18.1.0"
   },
   "overrides": {
     "crash-js":
