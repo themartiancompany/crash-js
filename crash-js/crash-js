@@ -67,6 +67,9 @@ const
   _file_append =
     _fs_utils_module._file_append;
 const
+  _exit =
+    _fs_utils_module._exit;
+const
   _file_exists =
     _fs_utils_module._file_exists;
 const
@@ -163,35 +166,38 @@ function
 function
   _msg_error(
     _msg,
-    _exit) {
+    _exit_code) {
   let
+    _app_name,
     _template,
     _out;
+  _app_name =
+    app_name;
   if ( typeof(
-         app_name) == "undefined" ||
-         app_name == "" ) {
+         _app_name) == "undefined" ||
+         _app_name == "" ) {
     const
-      app_name =
+      _app_name =
         "";
   }
-  _exit =
+  _exit_code =
     String(
-      _exit);
+      _exit_code);
   _template =
     _msg_template(
       "ERROR",
-      app_name);
+      _app_name);
   _out =
     _template.replaceAll(
       "{_msg}",
       _msg);
-  if ( _exit === "1" ) {
+  if ( _exit_code === "1" ) {
     console.error(
       _out);
-    _process_exit(
+    _exit(
       1);
   }
-  else if ( _exit === "0" ) {
+  else if ( _exit_code === "0" ) {
     console.warn(
       _out);
   }
@@ -1015,6 +1021,15 @@ function
   const
     _global =
       _global_get();
+  const
+    _value_current =
+      _get(
+        _obj,
+        _var);
+  const
+    _value_current_type =
+      typeof(
+        _value_current);
   if ( Object.keys(
          _global).includes(
            `override_${_obj}_${_var}`) ) {
@@ -1023,13 +1038,25 @@ function
       _var,
       _get(
         `override_${_obj}`,
-        `${_var}`));
+        _var));
   }
-  else {
-    _set(
-      _obj,
-      _var,
-      _default)
+  else if ( _value_current_type != "undefined" &&
+            _value_current != "" ) {
+    if ( _default != "" ) {
+      _set(
+        _obj,
+        _var,
+        _default)
+    }
+  }
+  else if ( _value_current_type == "undefined" ||
+            _value_current == "" ) {
+    if ( _default != "" ) {
+      _set(
+        _obj,
+        _var,
+        _default)
+    }
   }
 }
 
