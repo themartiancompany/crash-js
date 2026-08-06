@@ -1130,6 +1130,8 @@ module.exports = {
     _path_join,
   _printf:
     _printf,
+  _process_argv:
+    _fs_utils_module._argv,
   _process_chdir:
     _fs_utils_module._cd,
   _process_cwd:

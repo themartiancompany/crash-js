@@ -302,6 +302,8 @@ _mktemp(
 }
 
 module.exports = {
+  _argv:
+    _process_module.argv,
   _basename:
     _basename,
   _cat:

@@ -40,9 +40,12 @@ function
     _msg,
     _url,
     _value;
-  if ( typeof _key_name === 'undefined' ) {
+  if ( typeof(
+         _key_name) === 'undefined' ||
+       _key_name == "" ||
+       _key_name == null ) {
     _msg =
-      "Getting all values."
+      "Getting all values.";
     _msg_info(
       _msg);
     _key_name =
