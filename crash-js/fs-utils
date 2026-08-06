@@ -60,6 +60,9 @@ const
   _fs_worker_start =
     _fs_module.fsWorkerStart;
 const
+  _is_dir =
+    _fs_module.isDir;
+const
   _mkdtemp =
     _fs_module.mkdtempSync;
 const
@@ -301,6 +304,30 @@ _mktemp(
   }
 }
 
+_dir_exists(
+  _dir) {
+  try {
+    _return =
+      _is_dir(
+        _dir);
+  }
+  catch(
+    _error) {
+    const
+      _code =
+        _error[
+          "code"];
+    if ( _code == "ENOENT" ) {
+      _return =
+        false
+    }
+    else {
+      throw _error;
+    }
+  }
+  return _return;
+}
+
 module.exports = {
   _argv:
     _process_module.argv,
@@ -325,7 +352,7 @@ module.exports = {
   _exit:
     _exit,
   _dir_exists:
-    _fs_module.isDir,
+    _dir_exists,
   _file_append:
     _file_append,
   _file_exists:
