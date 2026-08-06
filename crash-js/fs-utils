@@ -304,8 +304,9 @@ _mktemp(
   }
 }
 
-_dir_exists(
-  _dir) {
+function
+  _dir_exists(
+    _dir) {
   try {
     _return =
       _is_dir(
