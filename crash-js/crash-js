@@ -96,7 +96,7 @@ async function
       `found not as Node.js module ` +
       `nor as standalone library module in ` +
       `${_program_dirs}.`;
-    throw exception;
+    throw _exception;
   }
   return _module;
 }
