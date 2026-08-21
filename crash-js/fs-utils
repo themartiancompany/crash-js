@@ -35,8 +35,11 @@ const
   _os_tmpdir_get =
     _utils_module._os_tmpdir_get;
 const
+  _require =
+    _utils_module._require;
+const
   _fs_module =
-    require(
+    _require(
       "tmcfs");
 const
   _fs_read_dir_sync =

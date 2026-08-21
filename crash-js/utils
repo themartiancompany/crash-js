@@ -270,6 +270,80 @@ function
   return _child_process_spawn;
 }
 
+async function
+  _require(
+    _module_name) {
+  let
+    _exception,
+    _found,
+    _module,
+    _module_file,
+    _msg,
+    _not_found;
+  _found =
+    false;
+  _not_found =
+    false;
+  try {
+    _module =
+      import(
+        _module_name);
+    _found =
+      true;
+  }
+  catch(
+    _error) {
+    if ( _error.code == "MODULE_NOT_FOUND" ) {
+      _msg =
+        `Program '${_module_name}' ` +
+        `not found as module.`;
+      _msg_info(
+        _msg);
+      _not_found =
+        true;
+    }
+    else {
+      _display_error(
+        _error);
+      _exception =
+        _error;
+    }
+  }
+  if ( _not_found ) {
+    const
+      _lib =
+        await _lib_get();
+    const
+      _program_dirs = [
+        `${_lib}/${_module_name}`,
+        `${_lib}/${_module_name}/nodejs`,
+      ];
+    for ( _dir of _program_dirs ) {
+      _module_file =
+        `${_dir}/package.json`;
+      if ( _file_exists(
+             _module_file) ) {
+        _module =
+          import(
+            _module_file);
+        _found =
+          true;
+        break;
+      }
+    }
+  }
+  if ( ! _found ) {
+    _exception[
+      "shortMessage"] =
+      `Module '${_module_name}'` +
+      `found not as Node.js module ` +
+      `nor as standalone library module in ` +
+      `${_program_dirs}.`;
+    throw _exception;
+  }
+  return _module;
+}
+
 module.exports = {
   _argv_get:
     _argv_get,
@@ -281,6 +355,8 @@ module.exports = {
     _global_get,
   _os_tmpdir_get:
     _os_tmpdir_get,
+  _require:
+    _require,
   _yargv_get:
     _yargv_get
 };

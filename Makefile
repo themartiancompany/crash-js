@@ -19,8 +19,10 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+_NPM ?= true
 PREFIX ?= /usr/local
 _PROJECT=crash-js
+_PROJECT_NPM=$(_PROJECT)
 DOC_DIR=$(DESTDIR)$(PREFIX)/share/doc/$(_PROJECT)
 USR_DIR=$(DESTDIR)$(PREFIX)
 BIN_DIR=$(DESTDIR)$(PREFIX)/bin
@@ -73,18 +75,46 @@ install: install-scripts install-doc install-examples install-man
 
 install-scripts:
 
-	$(_INSTALL_EXE) \
-	  "$(_PROJECT)/$(_PROJECT)" \
-	  "$(LIB_DIR)/$(_PROJECT)"
-	$(_INSTALL_EXE) \
-	  "$(_PROJECT)/fs-utils" \
-	  "$(LIB_DIR)/fs-utils"
-	$(_INSTALL_EXE) \
-	  "$(_PROJECT)/utils" \
-	  "$(LIB_DIR)/utils"
-	$(_INSTALL_EXE) \
-	  "$(_PROJECT)/fs-worker" \
-	  "$(LIB_DIR)/fs-worker"
+	if [[ "$(_NPM)" == "false" ]]; then \
+	  $(_INSTALL_DIR) \
+	    "$(LIB_DIR)/nodejs"; \
+	  cp \
+	    -r \
+	    $$(printf \
+	         "$${PWD}/%s " \
+	         $$(cat \
+	              "$${PWD}/package.json" | \
+	              jq \
+	                --raw-output \
+	                '.files[]')) \
+	    "$(LIB_DIR)/nodejs"; \
+	  ln \
+	    -s \
+	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs/$(_PROJECT)/$(_PROJECT)" \
+	    "$(LIB_DIR)/$(_PROJECT)"; \
+	  ln \
+	    -s \
+	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs/$(_PROJECT)/fs-utils" \
+	    "$(LIB_DIR)/fs-utils"; \
+	  ln \
+	    -s \
+	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs/$(_PROJECT)/utils" \
+	    "$(LIB_DIR)/utils"; \
+	  rm \
+	    -r \
+            "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)"; \
+	  ln \
+	    -s \
+	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs" \
+	    "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)"; \
+	elif [[ "$(_NPM)" == "true" ]]; then \
+	  make \
+	    install-npm; \
+	  ln \
+	   -s \
+	   "$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)" \
+	   "$(LIB_DIR)/nodejs"; \
+	fi
 
 build-man:
 
