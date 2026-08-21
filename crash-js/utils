@@ -286,7 +286,7 @@ async function
     false;
   try {
     _module =
-      import(
+      await import(
         _module_name);
     _found =
       true;
@@ -324,7 +324,7 @@ async function
       if ( _file_exists(
              _module_file) ) {
         _module =
-          import(
+          await import(
             _module_file);
         _found =
           true;
@@ -340,6 +340,11 @@ async function
       `nor as standalone library module in ` +
       `${_program_dirs}.`;
     throw _exception;
+  }
+  if ( "default" in _module ) {
+    _module =
+      _module[
+        "default"];
   }
   return _module;
 }
