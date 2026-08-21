@@ -325,7 +325,7 @@ async function
              _module_file) ) {
         _module =
           await import(
-            _module_file);
+            _dir);
         _found =
           true;
         break;
