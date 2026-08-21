@@ -88,32 +88,45 @@ install-scripts:
 	                --raw-output \
 	                '.files[]')) \
 	    "$(LIB_DIR)/nodejs"; \
+	  rm \
+	    "$(LIB_DIR)/nodejs/node_modules" || \
+	    true; \
+	  ln \
+	    -s \
+	    "$(PREFIX)/lib/node_modules" \
+	    "$(LIB_DIR)/nodejs/node_modules" || \
+	    true; \
 	  ln \
 	    -s \
 	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs/$(_PROJECT)/$(_PROJECT)" \
-	    "$(LIB_DIR)/$(_PROJECT)"; \
+	    "$(LIB_DIR)/$(_PROJECT)" || \
+	    true; \
 	  ln \
 	    -s \
 	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs/$(_PROJECT)/fs-utils" \
-	    "$(LIB_DIR)/fs-utils"; \
+	    "$(LIB_DIR)/fs-utils" || \
+	    true; \
 	  ln \
 	    -s \
 	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs/$(_PROJECT)/utils" \
-	    "$(LIB_DIR)/utils"; \
+	    "$(LIB_DIR)/utils" || \
+	    true; \
 	  rm \
-	    -r \
+	    -rf \
             "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)"; \
 	  ln \
 	    -s \
 	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs" \
-	    "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)"; \
+	    "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)" || \
+	    true; \
 	elif [[ "$(_NPM)" == "true" ]]; then \
 	  make \
 	    install-npm; \
 	  ln \
 	   -s \
-	   "$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)" \
-	   "$(LIB_DIR)/nodejs"; \
+	    "$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)" \
+	    "$(LIB_DIR)/nodejs" || \
+	  true; \
 	fi
 
 build-man:
