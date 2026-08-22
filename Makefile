@@ -62,7 +62,7 @@ NPM_FILES=\
   "package.json" \
   "webpack.config.cjs"
 
-all: build-man build-npm
+all: build
 
 check: eslint
 
@@ -89,6 +89,8 @@ build:
 	   exit \
 	     1; \
 	fi
+	make \
+	  build-man
 
 install-scripts:
 
@@ -301,4 +303,4 @@ install-man:
 	  "man/lib$(_PROJECT).1.rst" \
 	  "$(MAN_DIR)/man1/lib$(_PROJECT).1"
 
-.PHONY: check install build-npm build-webpack install-doc install-examples install-man build-npm install-npm install-scripts shellcheck
+.PHONY: build check install build-npm build-webpack install-doc install-examples install-man build-npm install-npm install-scripts shellcheck
