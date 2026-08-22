@@ -77,9 +77,9 @@ const
   _cwd =
     _fs_utils_module._cwd;
 /* global
-     _cwd */
+     _dir_exists */
 const
-  _dir_exists:
+  _dir_exists =
     _fs_utils_module._dir_exists;
 /* global
      _dirname */
