@@ -27,6 +27,65 @@
  *     If not, see <https://www.gnu.org/licenses/>.
  */
 
+const
+  _utils =
+    await import(
+      "./utils");
+/* global
+     _display_error */
+const
+  _display_error =
+    _utils._error_display;
+/* global
+     _error_display */
+const
+  _error_display =
+    _display_error;
+/* global
+     _msg_error */
+const
+  _msg_error =
+    _utils._msg_error;
+/* global
+     _msg_info */
+const
+  _msg_info =
+    _utils._msg_info;
+/* global
+     _os_tmpdir_get */
+const
+  _os_tmpdir_get =
+    _utils_module._os_tmpdir_get;
+const
+  _process_module =
+    await import(
+      "process");
+/* global
+     _argv */
+const
+  _argv =
+    _process_module.argv;
+/* global
+     _exit */
+const
+  _exit =
+    _process_module.exit;
+/* global
+     _cd */
+const
+  _cd =
+    _process_module.chdir;
+/* global
+     _cwd */
+const
+  _cwd =
+    _process_module.cwd;
+/* global
+     _pwd */
+const
+  _pwd =
+    _cwd;
+
 async function
   _require(
     _module_name) {
@@ -118,35 +177,6 @@ async function
   return _module;
 }
 
-const
-  _utils =
-    await _require(
-      "./utils");
-/* global
-     _display_error */
-const
-  _display_error =
-    _utils._error_display;
-/* global
-     _error_display */
-const
-  _error_display =
-    _display_error;
-/* global
-     _msg_error */
-const
-  _msg_error =
-    _utils._msg_error;
-/* global
-     _msg_info */
-const
-  _msg_info =
-    _utils._msg_info;
-/* global
-     _os_tmpdir_get */
-const
-  _os_tmpdir_get =
-    _utils_module._os_tmpdir_get;
 const
   _fs =
     await _require(
@@ -268,35 +298,6 @@ const
 const
   _path_module_parse =
     _path_module.parse;
-const
-  _process_module =
-    await _require(
-      "process");
-/* global
-     _argv */
-const
-  _argv =
-    _process_module.argv;
-/* global
-     _exit */
-const
-  _exit =
-    _process_module.exit;
-/* global
-     _cd */
-const
-  _cd =
-    _process_module.chdir;
-/* global
-     _cwd */
-const
-  _cwd =
-    _process_module.cwd;
-/* global
-     _pwd */
-const
-  _pwd =
-    _cwd;
 
 function
   _basename(

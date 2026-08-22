@@ -411,7 +411,7 @@ function
 
 // ES module export
 
-exports {
+export {
   _argv_get,
   _argv_url_get,
   _child_process_spawn_get,
