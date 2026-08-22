@@ -33,6 +33,9 @@ NODE_DIR=$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)
 AHSI_DIR=$(PREFIX)/lib/node_modules/ahsi
 BUILD_NPM_DIR=build
 
+_MAKE_LINK=\
+  ln \
+    -s
 _INSTALL_FILE=\
   install \
     -vDm644
@@ -110,41 +113,43 @@ install-scripts:
 	  rm \
 	    "$(LIB_DIR)/nodejs/node_modules" || \
 	    true; \
-	  ln \
-	    -s \
+	  $(_MAKE_LINK) \
 	    "$(PREFIX)/lib/node_modules" \
 	    "$(LIB_DIR)/nodejs/node_modules" || \
 	    true; \
-	  ln \
-	    -s \
+	  $(_MAKE_LINK) \
 	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs/$(_PROJECT)/$(_PROJECT)" \
 	    "$(LIB_DIR)/$(_PROJECT)" || \
 	    true; \
-	  ln \
-	    -s \
+	  $(_MAKE_LINK) \
 	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs/$(_PROJECT)/fs-utils" \
 	    "$(LIB_DIR)/fs-utils" || \
 	    true; \
-	  ln \
-	    -s \
+	  $(_MAKE_LINK) \
 	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs/$(_PROJECT)/utils" \
 	    "$(LIB_DIR)/utils" || \
 	    true; \
 	  rm \
 	    -rf \
             "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)"; \
-	  ln \
-	    -s \
+	  $(_MAKE_LINK) \
 	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs" \
 	    "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)" || \
+	    true; \
+	  $(_MAKE_LINK) \
+	    "$(PREFIX)/lib/lib$(_PROJECT)/nodejs" \
+	    "$(DESTDIR)$(PREFIX)/lib/node_modules/lib$(_PROJECT_NPM)" || \
 	    true; \
 	elif [[ "$(_NPM)" == "true" ]]; then \
 	  make \
 	    install-npm; \
-	  ln \
-	   -s \
+	  $(_MAKE_LINK) \
 	    "$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)" \
 	    "$(LIB_DIR)/nodejs" || \
+	  true; \
+	  $(_MAKE_LINK) \
+	    "$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)" \
+	    "$(DESTDIR)$(PREFIX)/lib/node_modules/lib$(_PROJECT_NPM)" || \
 	  true; \
 	fi
 
@@ -260,23 +265,19 @@ install-npm:
 	    "$(_PROJECT)-$${_version}.tgz"; \
 	$(_INSTALL_DIR) \
 	  "$(LIB_DIR)"; \
-	ln \
-	  -s \
+	$(_MAKE_LINK) \
 	  "$(NODE_DIR)/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)" || \
 	true; \
-	ln \
-	  -s \
+	$(_MAKE_LINK) \
 	  "$(NODE_DIR)/fs-utils" \
 	  "$(LIB_DIR)/fs-utils" || \
 	true; \
-	ln \
-	  -s \
+	$(_MAKE_LINK) \
 	  "$(NODE_DIR)/fs-worker" \
 	  "$(LIB_DIR)/fs-worker" || \
 	true; \
-	ln \
-	  -s \
+	$(_MAKE_LINK) \
 	  "$(NODE_DIR)/utils" \
 	  "$(LIB_DIR)/utils" || \
 	true
