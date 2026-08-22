@@ -89,25 +89,6 @@ function
 }
 
 function
-  _argv_get(
-    _args) {
-  let
-    _argv;
-  if ( typeof window === 'undefined' &&
-       ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ !== 'function' ) {
-    _argv =
-      _yargv_get(
-        _args);
-  }
-  else {
-    _argv =
-      _argv_url_get();
-  }
-  return _argv;
-}
-
-function
   _global_get() {
   let
     _global;
@@ -291,7 +272,6 @@ function
 // ES module export
 
 export {
-  _argv_get,
   _argv_url_get,
   _display_error,
   _error_display,
@@ -306,8 +286,6 @@ export {
 // Common Javascript export
 
 // module.exports = {
-//   _argv_get:
-//     _argv_get,
 //   _argv_url_get:
 //     _argv_url_get,
 //   _display_error:

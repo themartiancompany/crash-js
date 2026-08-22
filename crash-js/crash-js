@@ -200,7 +200,7 @@ const
      _os_tmpdir */
 const
   _os_tmpdir =
-    _fs_utils_module._os_tmpdir_get();
+    await _fs_utils_module._os_tmpdir_get();
 /* global
      _utils */
 const
@@ -210,11 +210,6 @@ const
 // const
 //   _utils =
 //     _utils_module.default;
-/* global
-     _argv_get */
-const
-  _argv_get =
-    _utils._argv_get;
 /* global
      _argv_url_get */
 const
@@ -269,6 +264,25 @@ const
 const
   _split =
     _split_module._split;
+
+async function
+  _argv_get(
+    _args) {
+  let
+    _argv;
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
+    _argv =
+      await _yargv_get(
+        _args);
+  }
+  else {
+    _argv =
+      _argv_url_get();
+  }
+  return _argv;
+}
 
 function
   _globals() {
@@ -348,13 +362,13 @@ async function
      _spawn */
 const
   _spawn =
-    _child_process_spawn_get();
+    await _child_process_spawn_get();
 
 /* global
      _spawn_async */
 const
   _spawn_async =
-    _child_process_spawn_get(
+    await _child_process_spawn_get(
       "async");
 
 function

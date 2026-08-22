@@ -573,7 +573,7 @@ _mktemp(
        _prefix == "" ) {
     const
       _os_tmpdir =
-        _os_tmpdir_get();
+        await _os_tmpdir_get();
     _prefix =
       `${_os_tmpdir}/tmp.`;
   }
@@ -629,11 +629,11 @@ const
   _source =
     _require;
 
-function
+async function
   _usr_get() {
   const
     _lib =
-      _lib_get();
+      await _lib_get();
   const
     _usr =
       _dirname(
