@@ -15,6 +15,7 @@
     "AUTHORS.rst",
     "COPYING",
     "README.md",
+    "docs",
     "eslint.config.mjs",
     "fs-worker.webpack.config.cjs",
     "crash-js",
