@@ -270,83 +270,167 @@ function
   return _child_process_spawn;
 }
 
-async function
-  _require(
-    _module_name) {
-  let
-    _exception,
-    _found,
-    _module,
-    _module_file,
-    _msg,
-    _not_found;
-  _found =
-    false;
-  _not_found =
-    false;
-  try {
-    _module =
-      await import(
-        _module_name);
-    _found =
-      true;
-  }
-  catch(
+function
+  _display_error(
     _error) {
-    if ( _error.code == "MODULE_NOT_FOUND" ) {
-      _msg =
-        `Program '${_module_name}' ` +
-        `not found as module.`;
-      _msg_info(
-        _msg);
-      _not_found =
-        true;
+  let
+    _message;
+  if ( typeof(error) == "object" ) {
+    if ( 'error' in _error && 
+         _error[
+           'error'] != undefined &&
+         'message' in _error[
+                        'error'] ) {
+      _message =
+        _error[
+          'error'][
+            'message'];
+    }
+    else if ( 'shortMessage' in _error ) {
+      _message =
+        _error[
+          'shortMessage'];
     }
     else {
-      _display_error(
-        _error);
-      _exception =
+      _message =
         _error;
     }
+    console.error(
+      _error);
   }
-  if ( _not_found ) {
+  else {
+    _message =
+      _error;
+    console.error(
+      _error);
+  }
+  _msg_error(
+    _message,
+    0);
+}
+
+const
+  _error_display =
+    _display_error;
+
+function 
+  _msg_template(
+    _type,
+    _app_name) {
+  let
+    _template;
+  if ( typeof(
+         _app_name) == "undefined" ||
+       _app_name == "" ) {
+    _template =
+      `${_type}: {_msg}`;
+  }
+  else if ( typeof(
+              _app_name) == "string" ||
+            _app_name != "" ) {
+      _template =
+        `[${_app_name}] ${_type}: {_msg}`;
+  }
+  return _template;
+}
+
+function
+  _msg_warning(
+    _msg) {
+  let
+    _out;
+  if ( quiet == "n" ) {
+    _template =
+      _msg_template(
+        "WARNING",
+        app_name);
+    _out =
+      _template.replaceAll(
+        "{_msg}",
+        _msg);
+    console.warn(
+      _out);
+  }
+}
+
+function
+  _msg_info(
+    _msg) {
+  let
+    _out;
+  if ( typeof(
+         quiet) == "undefined" ||
+       quiet == "" ) {
+    quiet =
+      "y";
+  }
+  if ( quiet == "n" ) {
     const
-      _lib =
-        await _lib_get();
+      _template =
+        _msg_template(
+          "INFO",
+          app_name);
+    _out =
+      _template.replaceAll(
+        "{_msg}",
+        _msg);
+    console.log(
+      _out);
+  }
+}
+
+function
+  _msg_error(
+    _msg,
+    _exit_code) {
+  let
+    _app_name,
+    _template,
+    _out;
+  _app_name =
+    app_name;
+  if ( typeof(
+         _app_name) == "undefined" ||
+         _app_name == "" ) {
     const
-      _program_dirs = [
-        `${_lib}/${_module_name}`,
-        `${_lib}/${_module_name}/nodejs`,
-      ];
-    for ( _dir of _program_dirs ) {
-      _module_file =
-        `${_dir}/package.json`;
-      if ( _file_exists(
-             _module_file) ) {
-        _module =
-          await import(
-            _dir);
-        _found =
-          true;
-        break;
-      }
-    }
+      _app_name =
+        "";
   }
-  if ( ! _found ) {
-    _exception[
-      "shortMessage"] =
-      `Module '${_module_name}'` +
-      `found not as Node.js module ` +
-      `nor as standalone library module in ` +
-      `${_program_dirs}.`;
-    throw _exception;
+  _exit_code =
+    String(
+      _exit_code);
+  _template =
+    _msg_template(
+      "ERROR",
+      _app_name);
+  _out =
+    _template.replaceAll(
+      "{_msg}",
+      _msg);
+  if ( _exit_code === "1" ) {
+    console.error(
+      _out);
+    _exit(
+      1);
   }
-  if ( "default" in _module ) {
-    _module =
-      _module[
-        "default"];
+  else if ( _exit_code === "0" ) {
+    console.warn(
+      _out);
   }
-  return _module;
+}
+
+function 
+  _msg_info_obj(
+    _name,
+    _obj) {
+  let
+    _template,
+    _partial,
+    _msg;
+  _msg =
+    `${_name}: '${_obj}'`;
+  _msg_info(
+    _msg);
 }
 
 module.exports = {
@@ -356,12 +440,24 @@ module.exports = {
     _argv_url_get,
   _child_process_spawn_get:
     _child_process_spawn_get,
+  _display_error:
+    _display_error,
+  _error_display:
+    _error_display,
   _global_get:
     _global_get,
   _os_tmpdir_get:
     _os_tmpdir_get,
-  _require:
-    _require,
+  _msg_error:
+    _msg_error,
+  _msg_info:
+    _msg_info,
+  _msg_info_obj:
+    _msg_info_obj,
+  _msg_template:
+    _msg_template,
+  _msg_warning:
+    _msg_warning,
   _yargv_get:
     _yargv_get
 };

@@ -29,48 +29,57 @@
 
 const
   _utils_module =
-    require(
+    await import(
       "./utils");
+const
+  _error_display =
+    _utils._error_display;
+const
+  _msg_error =
+    _utils._msg_error;
+const
+  _msg_info =
+    _utils._msg_info;
 const
   _os_tmpdir_get =
     _utils_module._os_tmpdir_get;
 const
-  _require =
-    _utils_module._require;
-const
   _fs_module =
-    _require(
+    await import(
       "tmcfs");
 const
+  _fs =
+    _fs_module.default;
+const
   _fs_read_dir_sync =
-      _fs_module.readdirSync;
+      _fs.readdirSync;
 const
   _fs_exists_sync =
-    _fs_module.existsSync;
+    _fs.existsSync;
 const
   _fs_append_file_sync =
-    _fs_module.appendFileSync;
+    _fs.appendFileSync;
 const
   _fs_read_file_sync =
-    _fs_module.readFileSync;
+    _fs.readFileSync;
 const
   _fs_write_file_sync =
-    _fs_module.writeFileSync;
+    _fs.writeFileSync;
 const
   _fs_worker_new =
-    _fs_module.fsWorkerNew;
+    _fs.fsWorkerNew;
 const
   _fs_worker_start =
-    _fs_module.fsWorkerStart;
+    _fs.fsWorkerStart;
 const
   _is_dir =
-    _fs_module.isDir;
+    _fs.isDir;
 const
   _mkdtemp =
-    _fs_module.mkdtempSync;
+    _fs.mkdtempSync;
 const
   _stat =
-    _fs_module.statSync;
+    _fs.statSync;
 const
   _json_parse =
     JSON.parse;
@@ -110,6 +119,31 @@ function
     _path_module_basename(
       _file_path);
   return _dir;
+}
+
+function
+  _dir_exists(
+    _dir) {
+  try {
+    _return =
+      _is_dir(
+        _dir);
+  }
+  catch(
+    _error) {
+    const
+      _code =
+        _error[
+          "code"];
+    if ( _code == "ENOENT" ) {
+      _return =
+        false
+    }
+    else {
+      throw _error;
+    }
+  }
+  return _return;
 }
 
 function
@@ -233,6 +267,76 @@ function
   return _json;
 }
 
+async function
+  _lib_get() {
+  let
+    _lib,
+    _lib_path,
+    _line,
+    _out,
+    _path,
+    _words;
+  const
+    _paths =
+      new Set();
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
+    const
+      _out =
+        await _run(
+         "sync",
+          [ "ldconfig",
+            "-p" ]);
+    // console.log(_out);
+    const
+      _tail =
+        _out.slice(
+          1,
+          _out.length - 2);
+    for ( _line of _tail ) {
+      _words =
+        _line.split(" ");
+      _lib_path =
+        _words[
+          3];
+      _lib =
+        _dirname(
+          _lib_path);
+      _paths.add(
+        _lib);
+    }
+    if ( typeof(
+           process.env.NODE_PATH) == "undefined" ||
+         process.env.NODE_PATH == "" ) {
+      const
+        _msg =
+          "Environment variable NODE_PATH undefined.";
+      _msg_info(
+        _msg);
+    }
+    else {
+      _lib =
+        _path_join(
+          [ process.env.NODE_PATH,
+            "../lib" ]);
+      if ( _file_exists(
+             _lib) ) {
+        _paths.add(
+          _lib);
+      }
+    }
+    for ( _path of _paths ) {
+      return _path;
+    }
+  }
+  else {
+    _lib =
+      "/usr/lib";
+  }
+  return _lib
+}
+
 function
   _ls(
     _args) {
@@ -243,18 +347,6 @@ function
         [_args]);
   return _return;
 } 
-
-function
-  _path_join(
-    _paths) {
-  let
-    _path;
-  _path =
-    _path_module_join.apply(
-      null,
-      _paths);
-  return _path;
-}
 
 async function
 _mktemp(
@@ -308,29 +400,119 @@ _mktemp(
 }
 
 function
-  _dir_exists(
-    _dir) {
+  _path_join(
+    _paths) {
+  let
+    _path;
+  _path =
+    _path_module_join.apply(
+      null,
+      _paths);
+  return _path;
+}
+
+async function
+  _require(
+    _module_name) {
+  let
+    _exception,
+    _found,
+    _module,
+    _module_file,
+    _msg,
+    _not_found;
+  _found =
+    false;
+  _not_found =
+    false;
   try {
-    _return =
-      _is_dir(
-        _dir);
+    _module =
+      await import(
+        _module_name);
+    _found =
+      true;
   }
   catch(
     _error) {
-    const
-      _code =
-        _error[
-          "code"];
-    if ( _code == "ENOENT" ) {
-      _return =
-        false
+    if ( _error.code == "MODULE_NOT_FOUND" ) {
+      _msg =
+        `Program '${_module_name}' ` +
+        `not found as module.`;
+      _msg_info(
+        _msg);
+      _not_found =
+        true;
     }
     else {
-      throw _error;
+      _error_display(
+        _error);
+      _exception =
+        _error;
     }
   }
-  return _return;
+  if ( _not_found ) {
+    const
+      _lib =
+        await _lib_get();
+    const
+      _program_dirs = [
+        `${_lib}/${_module_name}`,
+        `${_lib}/${_module_name}/nodejs`,
+      ];
+    const
+      _oldpwd =
+        _pwd();
+    for ( _dir of _program_dirs ) {
+      _module_file =
+        `${_dir}/package.json`;
+      if ( _file_exists(
+             _module_file) ) {
+        _cd(
+          _lib);
+        _module =
+          await import(
+            _module_name);
+        _cd(
+          _oldpwd);
+        _found =
+          true;
+        break;
+      }
+    }
+  }
+  if ( ! _found ) {
+    _msg =
+      `Module '${_module_name}'` +
+      `found not as Node.js module ` +
+      `nor as standalone library module in ` +
+      `${_program_dirs}.`;
+    _msg_error(
+      _msg,
+      0);
+    _exception[
+      "shortMessage"] =
+      _msg;
+    throw _exception;
+  }
+  if ( "default" in _module ) {
+    _module =
+      _module[
+        "default"];
+  }
+  return _module;
 }
+
+function
+  _usr_get() {
+  const
+    _lib =
+      _lib_get();
+  const
+    _usr =
+      _dirname(
+        _lib);
+}
+
 
 module.exports = {
   _argv:
@@ -340,21 +522,25 @@ module.exports = {
   _cat:
     _file_read,
   _chmod:
-    _fs_module.chmodSync,
+    _fs.chmodSync,
   _chown:
-    _fs_module.chownSync,
+    _fs.chownSync,
   _cd:
     _process_module.chdir,
   _cp:
-    _fs_module.cpSync,
+    _fs.cpSync,
   _cwd:
     _process_module.cwd,
   _dirname:
     _dirname,
-  _ext_rm:
-    _ext_rm,
+  _display_error:
+    _display_error,
+  _error_display:
+    _error_display,
   _exit:
     _exit,
+  _ext_rm:
+    _ext_rm,
   _dir_exists:
     _dir_exists,
   _file_append:
@@ -373,20 +559,30 @@ module.exports = {
     _json_display,
   _json_read:
     _json_read,
+  _lib_get:
+    _lib_get,
   _ls:
     _ls,
   _mkdir:
-    _fs_module.mkdirSync,
+    _fs.mkdirSync,
   _mktemp:
     _mktemp,
+  _msg_error:
+    _msg_error,
+  _msg_info:
+    _msg_info,
   _mv:
-    _fs_module.renameSync,
+    _fs.renameSync,
   _path_join:
     _path_join,
   _pwd:
     _process_module.cwd,
+  _require:
+    _require,
   _rm:
-    _fs_module.rmSync,
+    _fs.rmSync,
   _stat:
-    _stat
+    _stat,
+  _usr_get:
+    _usr_get
 };
