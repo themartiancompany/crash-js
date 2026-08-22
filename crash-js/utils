@@ -409,6 +409,8 @@ function
     _msg);
 }
 
+// ES module export
+
 exports {
   _argv_get,
   _argv_url_get,
@@ -424,6 +426,8 @@ exports {
   _msg_warning,
   _yargv_get
 };
+
+// Common Javascript export
 
 // module.exports = {
 //   _argv_get:

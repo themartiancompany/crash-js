@@ -27,9 +27,100 @@
  *     If not, see <https://www.gnu.org/licenses/>.
  */
 
+async function
+  _require(
+    _module_name) {
+  let
+    _exception,
+    _found,
+    _module,
+    _module_file,
+    _msg,
+    _not_found;
+  _found =
+    false;
+  _not_found =
+    false;
+  try {
+    _module =
+      await import(
+        _module_name);
+    _found =
+      true;
+  }
+  catch(
+    _error) {
+    if ( _error.code == "MODULE_NOT_FOUND" ) {
+      _msg =
+        `Program '${_module_name}' ` +
+        `not found as module.`;
+      _msg_info(
+        _msg);
+      _not_found =
+        true;
+    }
+    else {
+      _error_display(
+        _error);
+      _exception =
+        _error;
+    }
+  }
+  if ( _not_found ) {
+    const
+      _lib =
+        await _lib_get();
+    const
+      _program_dirs = [
+        `${_lib}/${_module_name}`,
+        `${_lib}/${_module_name}/nodejs`,
+      ];
+    const
+      _oldpwd =
+        _pwd();
+    for ( _dir of _program_dirs ) {
+      _module_file =
+        `${_dir}/package.json`;
+      if ( _file_exists(
+             _module_file) ) {
+        _cd(
+          _lib);
+        _module =
+          await import(
+            _module_name);
+        _cd(
+          _oldpwd);
+        _found =
+          true;
+        break;
+      }
+    }
+  }
+  if ( ! _found ) {
+    _msg =
+      `Module '${_module_name}'` +
+      `found not as Node.js module ` +
+      `nor as standalone library module in ` +
+      `${_program_dirs}.`;
+    _msg_error(
+      _msg,
+      0);
+    _exception[
+      "shortMessage"] =
+      _msg;
+    throw _exception;
+  }
+  if ( "default" in _module ) {
+    _module =
+      _module[
+        "default"];
+  }
+  return _module;
+}
+
 const
   _utils_module =
-    await import(
+    await _require(
       "./utils");
 const
   _error_display =
@@ -45,7 +136,7 @@ const
     _utils_module._os_tmpdir_get;
 const
   _fs_module =
-    await import(
+    await _require(
       "tmcfs");
 const
   _fs =
@@ -122,7 +213,7 @@ const
     _path_module.parse;
 const
   _process_module =
-    await import(
+    await _require(
       "process");
 const
   _argv =
@@ -445,96 +536,11 @@ function
   return _path;
 }
 
-async function
-  _require(
-    _module_name) {
-  let
-    _exception,
-    _found,
-    _module,
-    _module_file,
-    _msg,
-    _not_found;
-  _found =
-    false;
-  _not_found =
-    false;
-  try {
-    _module =
-      await import(
-        _module_name);
-    _found =
-      true;
-  }
-  catch(
-    _error) {
-    if ( _error.code == "MODULE_NOT_FOUND" ) {
-      _msg =
-        `Program '${_module_name}' ` +
-        `not found as module.`;
-      _msg_info(
-        _msg);
-      _not_found =
-        true;
-    }
-    else {
-      _error_display(
-        _error);
-      _exception =
-        _error;
-    }
-  }
-  if ( _not_found ) {
-    const
-      _lib =
-        await _lib_get();
-    const
-      _program_dirs = [
-        `${_lib}/${_module_name}`,
-        `${_lib}/${_module_name}/nodejs`,
-      ];
-    const
-      _oldpwd =
-        _pwd();
-    for ( _dir of _program_dirs ) {
-      _module_file =
-        `${_dir}/package.json`;
-      if ( _file_exists(
-             _module_file) ) {
-        _cd(
-          _lib);
-        _module =
-          await import(
-            _module_name);
-        _cd(
-          _oldpwd);
-        _found =
-          true;
-        break;
-      }
-    }
-  }
-  if ( ! _found ) {
-    _msg =
-      `Module '${_module_name}'` +
-      `found not as Node.js module ` +
-      `nor as standalone library module in ` +
-      `${_program_dirs}.`;
-    _msg_error(
-      _msg,
-      0);
-    _exception[
-      "shortMessage"] =
-      _msg;
-    throw _exception;
-  }
-  if ( "default" in _module ) {
-    _module =
-      _module[
-        "default"];
-  }
-  return _module;
-}
+/* global
+     _source */
+const
+  _source =
+    _require;
 
 function
   _usr_get() {
@@ -546,6 +552,8 @@ function
       _dirname(
         _lib);
 }
+
+// ES export
 
 exports  {
     _argv,
@@ -581,9 +589,12 @@ exports  {
     _pwd,
     _require,
     _rm,
+    _source,
     _stat,
     _usr_get
 };
+
+// Common Javascript export
 
 // module.exports = {
 //   _argv:
@@ -652,6 +663,8 @@ exports  {
 //     _require,
 //   _rm:
 //     _rm,
+//   _source:
+//     _source,
 //   _stat:
 //     _stat,
 //   _usr_get:

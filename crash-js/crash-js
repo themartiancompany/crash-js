@@ -28,14 +28,183 @@
  */
 
 const
-_utils_module =
-  await import(
-    "./utils");
+  _fs_utils_module =
+    await import(
+      "./fs-utils");
+/* global
+     _argv */
+const
+  _argv =
+    _fs_utils_module._argv;
+/* global
+     _basename */
+const
+  _basename =
+    _fs_utils_module._basename;
+/* global
+     _cat */
+const
+  _cat =
+    _fs_utils_module._cat;
+/* global
+     _chmod */
+const
+  _chmod =
+    _fs_utils_module._chmod;
+/* global
+     _chown */
+const
+  _chown =
+    _fs_utils_module._chown;
+/* global
+     _cd */
+const
+  _cd =
+    _fs_utils_module._cd;
+/* global
+     _cp */
+const
+  _cp =
+    _fs_utils_module._cp;
+/* global
+     _chdir */
+const
+  _chdir =
+    _fs_utils_module._cd;
+/* global
+     _cwd */
+const
+  _cwd =
+    _fs_utils_module._cwd;
+/* global
+     _cwd */
+const
+  _dir_exists:
+    _fs_utils_module._dir_exists;
+/* global
+     _dirname */
+const
+  _dirname =
+    _fs_utils_module._dirname;
+/* global
+     _exit */
+const
+  _exit =
+    _fs_utils_module._exit;
+/* global
+     _ext_rm */
+const
+  _ext_rm =
+    _fs_utils_module._ext_rm;
+/* global
+     _file_append */
+const
+  _file_append =
+    _fs_utils_module._file_append;
+/* global
+     _file_exists */
+const
+  _file_exists =
+    _fs_utils_module._file_exists;
+/* global
+     _file_read */
+const
+  _file_read =
+    _fs_utils_module._file_read;
+/* global
+     _file_write */
+const
+  _file_write =
+    _fs_utils_module._file_write;
+/* global
+     _fs_worker_new */
+const
+  _fs_worker_new =
+    _fs_utils_module._fs_worker_new;
+/* global
+     _fs_worker_start */
+const
+  _fs_worker_start =
+    _fs_utils_module._fs_worker_start;
+/* global
+     _json_display */
+const
+  _json_display =
+    _fs_utils_module._json_display;
+/* global
+     _json_read */
+const
+  _json_read =
+    _fs_utils_module._json_read;
+/* global
+     _lib_get */
+const
+  _lib_get =
+    _fs_utils_module._lib_get;
+/* global
+     _ls */
+const
+  _ls =
+    _fs_utils_module._ls;
+/* global
+     _mkdir */
+const
+  _mkdir =
+    _fs_utils_module._mkdir;
+/* global
+     _mktemp */
+const
+  _mktemp =
+    _fs_utils_module._mktemp;
+/* global
+     _mv */
+const
+  _mv =
+    _fs_utils_module._mv;
+/* global
+     _path_join */
+const
+  _path_join =
+    _fs_utils_module._path_join;
+/* global
+     _pwd */
+const
+  _pwd =
+    _fs_utils_module._pwd;
+/* global
+     _require */
+const
+  _require =
+    _fs_utils_module._require;
+/* global
+     _rm */
+const
+  _rm =
+    _fs_utils_module._rm;
+/* global
+     _source */
+const
+  _source =
+    _fs_utils_module._source;
+/* global
+     _stat */
+const
+  _stat =
+    _fs_utils_module._stat;
+/* global
+     _usr_get */
+const
+  _usr_get =
+    _fs_utils_module._usr_get;
 /* global
      _utils */
 const
   _utils =
-    _utils_module.default;
+    await _require(
+      "./utils");
+// const
+//   _utils =
+//     _utils_module.default;
 /* global
      _argv_get */
 const
@@ -51,6 +220,16 @@ const
 const
   _child_process_spawn_get =
     _utils._child_process_spawn_get;
+/* global
+     _display_error */
+const
+  _display_error =
+    _utils._display_error;
+/* global
+     _error_display */
+const
+  _error_display =
+    _display_error,
 /* global
      _global_get */
 const
@@ -102,70 +281,6 @@ const
 const
   _yargv_get =
     _utils._yargv_get;
-const
-  _fs_utils_module =
-    await import(
-      "./fs-utils");
-/* global
-     _argv */
-const
-  _argv =
-    _fs_utils_module._argv;
-/* global
-     _basename */
-const
-  _basename =
-    _fs_utils_module._basename;
-/* global
-     _dirname */
-const
-  _dirname =
-    _fs_utils_module._dirname;
-/* global
-     _file_append */
-const
-  _file_append =
-    _fs_utils_module._file_append;
-/* global
-     _exit */
-const
-  _exit =
-    _fs_utils_module._exit;
-/* global
-     _file_exists */
-const
-  _file_exists =
-    _fs_utils_module._file_exists;
-/* global
-     _lib_get */
-const
-  _lib_get =
-    _fs_utils_module._lib_get;
-/* global
-     _path_join */
-const
-  _path_join =
-    _fs_utils_module._path_join;
-/* global
-     _pwd */
-const
-  _pwd =
-    _fs_utils_module._pwd;
-/* global
-     _require */
-const
-  _require =
-    _fs_utils_module._require;
-/* global
-     _stat */
-const
-  _stat =
-    _fs_utils_module._stat;
-/* global
-     _usr_get */
-const
-  _usr_get =
-    _fs_utils_module._usr_get;
 const
   _split_module =
     _require(
@@ -861,6 +976,36 @@ function
   }
 }
 
+/* global
+     _process_argv */
+const
+  _process_argv =
+    _argv;
+
+/* global
+     _process_chdir */
+const
+  _process_chdir =
+    _cd;
+
+/* global
+     _process_cwd */
+const
+  _process_cwd =
+    _cwd;
+
+/* global
+     _process_exit */
+const
+  _process_exit =
+    _exit;
+
+/* global
+     _process_pwd */
+const
+  _process_pwd =
+    _pwd;
+
 function
   _set(
     _obj,
@@ -932,147 +1077,225 @@ const
   _set_override =
     _override_set;
 
+// ES module export
+
 module.exports = {
-  _argv:
-    _argv,
-  _argv_get:
-    _argv_get,
-  _argv_url_get:
-    _argv_url_get,
-  _app_name_get:
-    _app_name_get,
-  _basename:
-    _fs_utils_module._basename,
-  _cat:
-    _fs_utils_module._cat,
-  _chmod:
-    _fs_utils_module._chmod,
-  _chown:
-    _fs_utils_module._chown,
-  _cmdline_check:
-    _cmdline_check,
-  _chdir:
-    _fs_utils_module.cd,
-  _cd:
-    _fs_utils_module.cd,
-  _cp:
-    _fs_utils_module._cp,
-  _cwd:
-    _fs_utils_module._cwd,
-  _dirname:
-    _dirname,
-  _display_error:
-    _utils._display_error,
-  _echo:
-    _echo,
-  _error_display:
-    _utils._error_display,
-  _exit:
-    _fs_utils_module._exit,
-  _ext_rm:
-    _fs_utils_module._ext_rm,
-  _dir_exists:
-    _fs_utils_module._dir_exists,
-  _file_append:
-    _fs_utils_module._file_append,
-  _file_exists:
-    _file_exists,
-  _file_read:
-    _fs_utils_module._file_read,
-  _file_write:
-    _fs_utils_module._file_write,
-  _from_bash_ass_array:
-    _from_bash_ass_array,
-  _fs_worker_new:
-    _fs_utils_module._fs_worker_new,
-  _fs_worker_start:
-    _fs_utils_module._fs_worker_start,
-  _get:
-    _get,
-  _get_date_human:
-    _get_date_human,
-  _get_lib:
-    _lib_get,
-  _get_usr:
-    _usr_get,
-  _globals:
-    _globals,
-  _global_get:
-    _global_get,
-  _homedir_get:
-    _homedir_get,
-  _json_display:
-    _fs_utils_module._json_display,
-  _json_read:
-    _fs_utils_module._json_read,
-  _lib_get:
-    _lib_get,
-  _ls:
-    _fs_utils_module._ls,
-  _mkdir:
-    _fs_utils_module._mkdir,
-  _mktemp:
-    _fs_utils_module._mktemp,
-  _msg_error:
-    _msg_error,
-  _msg_info:
-    _msg_info,
-  _msg_info_obj:
-    _msg_info_obj,
-  _msg_template:
-    _msg_template,
-  _msg_warning:
-    _msg_warning,
-  _mv:
-    _fs_utils_module._mv,
-  _override_set:
-    _override_set,
-  _path_join:
-    _path_join,
-  _printf:
-    _printf,
-  _process_argv:
-    _fs_utils_module._argv,
-  _process_chdir:
-    _fs_utils_module._cd,
-  _process_cwd:
-    _fs_utils_module._cwd,
-  _process_exit:
-    _fs_utils_module._exit,
-  _process_pwd:
-    _pwd,
-  _pwd:
-    _pwd,
-  _range:
-    _range,
-  _require:
-    _require,
-  _rm:
-    _fs_utils_module._rm,
-  _run:
-    _run,
-  _seq:
-    _seq,
-  _set:
-    _set,
-  _set_override:
-    _set_override,
-  _source:
-    _utils._source,
-  _sleep:
-    _sleep,
-  _spawn_async:
-    _spawn_async,
-  _spawn:
-    _spawn,
-  _split:
-    _split,
-  _stat:
-    _stat,
-  _to_bash_ass_array:
-    _to_bash_ass_array,
-  _usr_get:
-    _usr_get,
-  _yargv_get:
-    _yargv_get
+  _argv,
+  _argv_get,
+  _argv_url_get,
+  _app_name_get,
+  _basename,
+  _cat,
+  _chmod,
+  _chown,
+  _cmdline_check,
+  _chdir,
+  _cd,
+  _cp,
+  _cwd,
+  _dir_exists,
+  _dirname,
+  _display_error,
+  _echo,
+  _display_error,
+  _exit,
+  _ext_rm,
+  _file_append,
+  _file_exists,
+  _file_read,
+  _file_write,
+  _from_bash_ass_array,
+  _fs_worker_new,
+  _fs_worker_start,
+  _get,
+  _get_date_human,
+  _lib_get,
+  _usr_get,
+  _globals,
+  _global_get,
+  _homedir_get,
+  _json_display,
+  _json_read,
+  _lib_get,
+  _ls,
+  _mkdir,
+  _mktemp,
+  _msg_error,
+  _msg_info,
+  _msg_info_obj,
+  _msg_template,
+  _msg_warning,
+  _mv,
+  _override_set,
+  _path_join,
+  _printf,
+  _process_argv,
+  _process_chdir,
+  _process_cwd,
+  _process_exit,
+  _process_pwd,
+  _pwd,
+  _range,
+  _require,
+  _rm,
+  _run,
+  _seq,
+  _set,
+  _set_override,
+  _source,
+  _sleep,
+  _spawn_async,
+  _spawn,
+  _split,
+  _stat,
+  _to_bash_ass_array,
+  _usr_get,
+  _yargv_get
 };
+
+// Common Javascript export
+
+// module.exports = {
+//   _argv:
+//     _argv,
+//   _argv_get:
+//     _argv_get,
+//   _argv_url_get:
+//     _argv_url_get,
+//   _app_name_get:
+//     _app_name_get,
+//   _basename:
+//     _basename,
+//   _cat:
+//     _cat,
+//   _chmod:
+//     _chmod,
+//   _chown:
+//     _chown,
+//   _cmdline_check:
+//     _cmdline_check,
+//   _chdir:
+//     _chdir,
+//   _cd:
+//     _cd,
+//   _cp:
+//     _cp,
+//   _cwd:
+//     _cwd,
+//   _dir_exists:
+//     _dir_exists,
+//   _dirname:
+//     _dirname,
+//   _display_error:
+//     _display_error,
+//   _echo:
+//     _echo,
+//   _error_display:
+//     _display_error,
+//   _exit:
+//     _exit,
+//   _ext_rm:
+//     _ext_rm,
+//   _file_append:
+//     _fs_utils_module._file_append,
+//   _file_exists:
+//     _file_exists,
+//   _file_read:
+//     _file_read,
+//   _file_write:
+//     _file_write,
+//   _from_bash_ass_array:
+//     _from_bash_ass_array,
+//   _fs_worker_new:
+//     _fs_worker_new,
+//   _fs_worker_start:
+//     _fs_worker_start,
+//   _get:
+//     _get,
+//   _get_date_human:
+//     _get_date_human,
+//   _get_lib:
+//     _lib_get,
+//   _get_usr:
+//     _usr_get,
+//   _globals:
+//     _globals,
+//   _global_get:
+//     _global_get,
+//   _homedir_get:
+//     _homedir_get,
+//   _json_display:
+//     _json_display,
+//   _json_read:
+//     _json_read,
+//   _lib_get:
+//     _lib_get,
+//   _ls:
+//     _ls,
+//   _mkdir:
+//     _mkdir,
+//   _mktemp:
+//     _mktemp,
+//   _msg_error:
+//     _msg_error,
+//   _msg_info:
+//     _msg_info,
+//   _msg_info_obj:
+//     _msg_info_obj,
+//   _msg_template:
+//     _msg_template,
+//   _msg_warning:
+//     _msg_warning,
+//   _mv:
+//     _mv,
+//   _override_set:
+//     _override_set,
+//   _path_join:
+//     _path_join,
+//   _printf:
+//     _printf,
+//   _process_argv:
+//     _process_argv,
+//   _process_chdir:
+//     _process_chdir,
+//   _process_cwd:
+//     _process_cwd,
+//   _process_exit:
+//     _process_exit,
+//   _process_pwd:
+//     _process_pwd,
+//   _pwd:
+//     _pwd,
+//   _range:
+//     _range,
+//   _require:
+//     _require,
+//   _rm:
+//     _rm,
+//   _run:
+//     _run,
+//   _seq:
+//     _seq,
+//   _set:
+//     _set,
+//   _set_override:
+//     _set_override,
+//   _source:
+//     _source,
+//   _sleep:
+//     _sleep,
+//   _spawn_async:
+//     _spawn_async,
+//   _spawn:
+//     _spawn,
+//   _split:
+//     _split,
+//   _stat:
+//     _stat,
+//   _to_bash_ass_array:
+//     _to_bash_ass_array,
+//   _usr_get:
+//     _usr_get,
+//   _yargv_get:
+//     _yargv_get
+// };
