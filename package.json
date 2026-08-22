@@ -85,6 +85,10 @@
     "yargs":
       "18.1.0"
   },
+  "optionalDependencies": {
+    "tmcsplit":
+      "^0.0.11"
+  },
   "overrides": {
     "crash-js":
       "./crash-js/crash-js"

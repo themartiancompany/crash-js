@@ -531,6 +531,8 @@ module.exports = {
     _fs.cpSync,
   _cwd:
     _process_module.cwd,
+  _dir_exists:
+    _dir_exists,
   _dirname:
     _dirname,
   _display_error:
@@ -541,8 +543,6 @@ module.exports = {
     _exit,
   _ext_rm:
     _ext_rm,
-  _dir_exists:
-    _dir_exists,
   _file_append:
     _file_append,
   _file_exists:

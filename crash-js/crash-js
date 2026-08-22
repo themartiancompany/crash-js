@@ -62,6 +62,9 @@ const
   _msg_warning =
     _utils._msg_warning;
 const
+  _os_tmpdir =
+    _utils._os_tmpdir_get();
+const
   _spawn =
     _child_process_spawn_get();
 const
@@ -100,11 +103,21 @@ const
   _pwd =
     _fs_utils_module._pwd;
 const
+  _require =
+    _fs_utils_module._require;
+const
   _stat =
     _fs_utils_module._stat;
 const
   _usr_get =
     _fs_utils_module._usr_get;
+const
+  _split_module =
+    _require(
+      "split");
+const
+  _split =
+    _split_module._split;
 
 function
   _globals() {
@@ -980,6 +993,12 @@ module.exports = {
     _utils._source,
   _sleep:
     _sleep,
+  _spawn_async:
+    _spawn_async,
+  _spawn:
+    _spawn,
+  _split:
+    _split;
   _stat:
     _stat,
   _to_bash_ass_array:

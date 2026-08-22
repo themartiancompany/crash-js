@@ -38,6 +38,10 @@ module
   https://github.com/themartiancompany/tmcfs)
 override.
 
+The `node:process` module is provided by
+[`process-browserify`](
+  https://github.com/themartiancompany/process-browserify).
+
 Some GNU coreutils utilities like the `split` function
 are provided by
 [`tmcsplit`](
@@ -92,14 +96,19 @@ ur \
 ```
 
 A censorable HTTP Github mirror of the recipe published there
-is hosted on
+(its
+[Gur](
+  https://github.com/themartiancompany/gur) is hosted on
 [libcrash-js-ur](
   https://github.com/themartiancompany/libcrash-js-ur).
 Be aware it could go offline any time.
 
 ## Documentation
 
-The manual can be accessed with
+Documentation is available in the
+[`docs`](
+  docs) directory and it's written
+in Markdown; manpages can be accessed with
 
 ```bash
 man \

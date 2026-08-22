@@ -209,29 +209,17 @@ function
   return _global;
 }
 
-function
-  _os_tmpdir_get() {
-  let
-    _os_tmpdir;
-  if ( typeof window === 'undefined' &&
-       ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ !== 'function' ) {
-    const
-      _os =
-        require(
-          "os");
-    _os_tmpdir =
-      _os.tmpdir;
-  }
-  else {
-    _os_tmpdir =
-      function
-        () {
-        return "/tmp";
-     };
-  }
-  return _os_tmpdir;
-}
+const
+  _split_module =
+    await import(
+      "split");
+const
+  _split_module =
+    _split_module.default;
+const
+  _split =
+    _split
+
 
 function
   _child_process_spawn_get(
