@@ -1,3 +1,6 @@
 [submodule "examples/ahsi"]
 	path = examples/ahsi
 	url = https://github.com/themartiancompany/ahsi
+[submodule "docs"]
+	path = docs
+	url = https://github.com/themartiancompany/crash-js-docs
