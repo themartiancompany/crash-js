@@ -209,18 +209,6 @@ function
   return _global;
 }
 
-const
-  _split_module =
-    await import(
-      "split");
-const
-  _split_module =
-    _split_module.default;
-const
-  _split =
-    _split
-
-
 function
   _child_process_spawn_get(
     _spawn_type) {

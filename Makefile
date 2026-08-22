@@ -19,6 +19,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+SHELL ?= bash
 _NPM ?= true
 PREFIX ?= /usr/local
 _PROJECT=crash-js
@@ -72,6 +73,22 @@ eslint:
 	    lint
 
 install: install-scripts install-doc install-examples install-man
+
+build:
+
+	if [[ "$(_NPM)" == "false" ]]; then \
+	  make \
+	    build-webpack; \
+	elif [[ "$(_NPM)" == "true" ]]; then \
+	  make \
+	    build-npm; \
+	else \
+	  echo \
+	   "Invalid value for '$(_NPM)'." \
+	   1>&2; \
+	   exit \
+	     1; \
+	fi
 
 install-scripts:
 
@@ -138,6 +155,45 @@ build-man:
 	  "man/lib$(_PROJECT).1.rst" \
 	  "build/man/lib$(_PROJECT).1"
 
+build-webpack:
+
+	$(INSTALL_DIR) \
+	  "build/dist/crash-js"
+	cp \
+	  -r \
+	  "$(_PROJECT)" \
+	  "webpack.config.cjs" \
+	  "build"
+	_webpack=( \
+	  "$$(command \
+	        -v \
+	        "webpack")"; \
+	if [[ "${_webpack}" == "" ]]; then \
+	  _webpack=(
+	    npx
+	      webpack); \
+	fi; \
+	cd \
+	  "build"; \
+        "${_webpack[@]}" \
+	  --mode \
+	    'production' \
+	  --config \
+	  'fs-worker.webpack.config.cjs' \
+	  --stats-error-details; \
+	mv \
+	  'fs-worker.js' \
+	  'dist/crash-js/fs-worker.js'; \
+        "${_webpack[@]}" \
+	  --mode \
+	    'production' \
+	  --config \
+	    'webpack.config.cjs' \
+	  --stats-error-details; \
+	mv \
+	  "$(_PROJECT).js" \
+	  "dist/$(_PROJECT)"
+
 build-npm:
 
 	mkdir \
@@ -160,6 +216,9 @@ build-npm:
 	npm \
 	  install \
 	    --save-dev; \
+	npm \
+	  install \
+	    --include="optional"; \
 	rm \
 	  -rf \
 	  "$(_PROJECT).js"; \
@@ -242,4 +301,4 @@ install-man:
 	  "man/lib$(_PROJECT).1.rst" \
 	  "$(MAN_DIR)/man1/lib$(_PROJECT).1"
 
-.PHONY: check install install-doc install-examples install-man build-npm install-npm install-scripts shellcheck
+.PHONY: check install build-npm build-webpack install-doc install-examples install-man build-npm install-npm install-scripts shellcheck

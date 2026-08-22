@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "0.11111111111.1111111111111111",
+    "0.111111111111.1111111111111111",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -86,8 +86,8 @@
       "18.1.0"
   },
   "optionalDependencies": {
-    "tmcsplit":
-      "^0.0.11"
+    "split":
+      "npm:tmcsplit@^0.0.11"
   },
   "overrides": {
     "crash-js":

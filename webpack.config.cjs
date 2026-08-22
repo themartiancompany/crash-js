@@ -7,8 +7,11 @@ const
     _path.resolve(
       __dirname);
 const
-  _input_file_name =
+  _project =
     "crash-js";
+const
+  _input_file_name =
+    _project;
 const
   _output_file_name =
     `${_input_file_name}.js`;
@@ -63,6 +66,10 @@ module.exports = {
   },
   resolve: {
     alias: {
+      _project:
+        _path.resolve(
+          __dirname,
+          `${_project}/${_project}`),
       "path":
         _path.resolve(
           __dirname,

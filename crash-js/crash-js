@@ -998,7 +998,7 @@ module.exports = {
   _spawn:
     _spawn,
   _split:
-    _split;
+    _split,
   _stat:
     _stat,
   _to_bash_ass_array:
