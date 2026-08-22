@@ -51,11 +51,6 @@ const
 const
   _msg_info =
     _utils._msg_info;
-/* global
-     _os_tmpdir_get */
-const
-  _os_tmpdir_get =
-    _utils_module._os_tmpdir_get;
 const
   _process_module =
     await import(
@@ -276,7 +271,7 @@ const
     JSON.stringify;
 const
   _path_module =
-    require(
+    await _require(
       "path");
 /* global
      _path_module_basename */
@@ -542,6 +537,30 @@ function
 } 
 
 async function
+  _os_tmpdir_get() {
+  let
+    _os_tmpdir;
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
+    const
+      _os =
+        await import(
+          "os");
+    _os_tmpdir =
+      _os.tmpdir;
+  }
+  else {
+    _os_tmpdir =
+      function
+        () {
+        return "/tmp";
+     };
+  }
+  return _os_tmpdir;
+}
+
+async function
 _mktemp(
   _prefix,
   _directory) {
@@ -653,6 +672,7 @@ export {
     _msg_error,
     _msg_info,
     _mv,
+    _os_tmpdir_get,
     _path_join,
     _pwd,
     _require,
@@ -723,6 +743,8 @@ export {
 //     _msg_info,
 //   _mv:
 //     _mv,
+//   _os_tmpdir_get:
+//     _os_tmpdir_get,
 //   _path_join:
 //     _path_join,
 //   _pwd:

@@ -197,6 +197,11 @@ const
   _usr_get =
     _fs_utils_module._usr_get;
 /* global
+     _os_tmpdir */
+const
+  _os_tmpdir =
+    _fs_utils_module._os_tmpdir_get();
+/* global
      _utils */
 const
   _utils =
@@ -215,11 +220,6 @@ const
 const
   _argv_url_get =
     _utils._argv_url_get;
-/* global
-     _child_process_spawn_get */
-const
-  _child_process_spawn_get =
-    _utils._child_process_spawn_get;
 /* global
      _display_error */
 const
@@ -260,27 +260,6 @@ const
 const
   _msg_warning =
     _utils._msg_warning;
-/* global
-     _os_tmpdir */
-const
-  _os_tmpdir =
-    _utils._os_tmpdir_get();
-/* global
-     _spawn */
-const
-  _spawn =
-    _child_process_spawn_get();
-/* global
-     _spawn_async */
-const
-  _spawn_async =
-    _child_process_spawn_get(
-      "async");
-/* global
-     _yargv_get */
-const
-  _yargv_get =
-    _utils._yargv_get;
 const
   _split_module =
     _require(
@@ -327,6 +306,56 @@ function
       __filename);
   return _filename;
 }
+
+async function
+  _child_process_spawn_get(
+    _spawn_type) {
+  let
+    _child_process_spawn;
+  if ( typeof(
+         _spawn_type) == "undefined" ||
+       _spawn_type == "" ) {
+    _spawn_type =
+      "sync";
+  }
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
+    const
+      _child_process_module =
+        await _require(
+          "node:child_process");
+    if ( _spawn_type == "sync" ) {
+      _child_process_spawn =
+        _child_process_module.spawnSync;
+    }
+    else if ( _spawn_type == "async" ) {
+      _child_process_spawn =
+        _child_process_module.spawn;
+    }
+  }
+  else {
+    _child_process_spawn =
+      function
+        (_cmd, _args, _exit) {
+        return _exit;
+     };
+  }
+  return _child_process_spawn;
+}
+
+/* global
+     _spawn */
+const
+  _spawn =
+    _child_process_spawn_get();
+
+/* global
+     _spawn_async */
+const
+  _spawn_async =
+    _child_process_spawn_get(
+      "async");
 
 function
   _cmdline_check(
@@ -1084,6 +1113,90 @@ function
 const
   _set_override =
     _override_set;
+
+async function
+  _yargv_get(
+    _args) {
+  let
+    _boolean;
+  const
+    _yargs_opts =
+      {};
+  const
+    _parser_opts =
+      {};
+  if ( typeof(
+          _args) == "undefined" ||
+       _args == {} ||
+       _args == "" ) {
+    _args = {
+      "booleans": [],
+      "string": true
+    };
+  }
+  const
+    _booleans =
+      _args[
+        "booleans"];
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) ) {
+    const
+      _yargs =
+        await _require(
+          "yargs");
+    _yargs_helpers_module =
+      await _require(
+        "yargs/helpers");
+    const
+      _hide_bin =
+        _yargs_helpers_module.hideBin;
+    if ( "string" in _args &&
+         _args[
+           "string"] ) {
+      _yargs_opts[
+        "_"] = {
+        "type":
+          "string",
+        "string":
+          true
+      };
+      _parser_opts[
+        "parse-numbers"] =
+        false;
+      _parser_opts[
+        "parse-positional-numbers"] =
+        false;
+    }
+    if ( _booleans.length > 0 ) {
+      for ( _boolean of _booleans) {
+        _yargs_opts[
+          _boolean] = {
+            "demand":
+              false,
+            "default":
+              false,
+            "type":
+              "boolean",
+         };
+      }
+    }
+    if ( 0 < _booleans.length ||
+         _args[
+           "string"] ) {
+      return _yargs(
+               _hide_bin(
+                 process.argv)).parserConfiguration(
+                   _parser_opts).options(
+                _yargs_opts).string(
+                  "_").parse();
+    }
+    else {
+      return _yargs(
+        _hide_bin(
+          process.argv));
+    }
+  }
+}
 
 // ES module export
 
