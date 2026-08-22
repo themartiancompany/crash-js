@@ -69,4 +69,25 @@ export default defineConfig([
    languageOptions:
      { sourceType:
          "commonjs" } },
+ {
+   ignores:
+     _ignores,
+   rules:
+     { semi:
+         "error",
+       "prefer-const":
+         "error" },
+   files:
+     [ "**/*.{js,mjs,cjs}",
+       `**/${_project}/*`,
+     ],
+   plugins:
+     { js },
+   extends:
+     [ "js/recommended" ],
+   languageOptions:
+     { globals:
+         {  ...globals.browser,
+            ...globals.node } } },
+
 ]);

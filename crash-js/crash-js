@@ -31,46 +31,74 @@ const
 _utils_module =
   await import(
     "./utils");
+/* global
+     _utils */
 const
   _utils =
     _utils_module.default;
+/* global
+     _argv_get */
 const
   _argv_get =
     _utils._argv_get;
+/* global
+     _argv_url_get */
 const
   _argv_url_get =
     _utils._argv_url_get;
+/* global
+     _child_process_spawn_get */
 const
   _child_process_spawn_get =
     _utils._child_process_spawn_get;
+/* global
+     _global_get */
 const
   _global_get =
     _utils._global_get;
+/* global
+     _msg_info */
 const
   _msg_info =
     _utils._msg_info;
+/* global
+     _msg_info_obj */
 const
   _msg_info_obj =
     _utils._msg_info_obj;
+/* global
+     _msg_error */
 const
   _msg_error =
     _utils._msg_error;
+/* global
+     _msg_template */
 const
   _msg_template =
     _utils._msg_template;
+/* global
+     _msg_warning */
 const
   _msg_warning =
     _utils._msg_warning;
+/* global
+     _os_tmpdir */
 const
   _os_tmpdir =
     _utils._os_tmpdir_get();
+/* global
+     _spawn */
 const
   _spawn =
     _child_process_spawn_get();
+/* global
+     _spawn_async */
 const
   _spawn_async =
     _child_process_spawn_get(
       "async");
+/* global
+     _yargv_get */
 const
   _yargv_get =
     _utils._yargv_get;
@@ -78,36 +106,58 @@ const
   _fs_utils_module =
     await import(
       "./fs-utils");
+/* global
+     _basename */
 const
   _basename =
     _fs_utils_module._basename;
+/* global
+     _dirname */
 const
   _dirname =
     _fs_utils_module._dirname;
+/* global
+     _file_append */
 const
   _file_append =
     _fs_utils_module._file_append;
+/* global
+     _exit */
 const
   _exit =
     _fs_utils_module._exit;
+/* global
+     _file_exists */
 const
   _file_exists =
     _fs_utils_module._file_exists;
+/* global
+     _lib_get */
 const
   _lib_get =
     _fs_utils_module._lib_get;
+/* global
+     _path_join */
 const
   _path_join =
     _fs_utils_module._path_join;
+/* global
+     _pwd */
 const
   _pwd =
     _fs_utils_module._pwd;
+/* global
+     _require */
 const
   _require =
     _fs_utils_module._require;
+/* global
+     _stat */
 const
   _stat =
     _fs_utils_module._stat;
+/* global
+     _usr_get */
 const
   _usr_get =
     _fs_utils_module._usr_get;
@@ -115,14 +165,27 @@ const
   _split_module =
     _require(
       "split");
+/* global
+     _split */
 const
   _split =
     _split_module._split;
 
 function
   _globals() {
+  /* global
+       app_name:
+         writable */
   app_name =
     "";
+  /* global
+       runtime_environment:
+         writable */
+  runtime_environment =
+    [];
+  /* global
+       quiet:
+         writable */
   quiet =
     "y";
   }

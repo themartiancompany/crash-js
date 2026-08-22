@@ -160,7 +160,7 @@ build-man:
 build-webpack:
 
 	$(INSTALL_DIR) \
-	  "build/dist/crash-js"
+	  "build/dist/$(_PROJECT)"
 	cp \
 	  -r \
 	  "$(_PROJECT)" \
@@ -185,7 +185,7 @@ build-webpack:
 	  --stats-error-details; \
 	mv \
 	  'fs-worker.js' \
-	  'dist/crash-js/fs-worker.js'; \
+	  'dist/$(_PROJECT)/fs-worker.js'; \
         "${_webpack[@]}" \
 	  --mode \
 	    'production' \
