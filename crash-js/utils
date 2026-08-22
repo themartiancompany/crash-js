@@ -409,31 +409,47 @@ function
     _msg);
 }
 
-module.exports = {
-  _argv_get:
-    _argv_get,
-  _argv_url_get:
-    _argv_url_get,
-  _child_process_spawn_get:
-    _child_process_spawn_get,
-  _display_error:
-    _display_error,
-  _error_display:
-    _error_display,
-  _global_get:
-    _global_get,
-  _os_tmpdir_get:
-    _os_tmpdir_get,
-  _msg_error:
-    _msg_error,
-  _msg_info:
-    _msg_info,
-  _msg_info_obj:
-    _msg_info_obj,
-  _msg_template:
-    _msg_template,
-  _msg_warning:
-    _msg_warning,
-  _yargv_get:
-    _yargv_get
+exports {
+  _argv_get,
+  _argv_url_get,
+  _child_process_spawn_get,
+  _display_error,
+  _error_display,
+  _global_get,
+  _os_tmpdir_get,
+  _msg_error,
+  _msg_info,
+  _msg_info_obj,
+  _msg_template,
+  _msg_warning,
+  _yargv_get
 };
+
+// module.exports = {
+//   _argv_get:
+//     _argv_get,
+//   _argv_url_get:
+//     _argv_url_get,
+//   _child_process_spawn_get:
+//     _child_process_spawn_get,
+//   _display_error:
+//     _display_error,
+//   _error_display:
+//     _error_display,
+//   _global_get:
+//     _global_get,
+//   _os_tmpdir_get:
+//     _os_tmpdir_get,
+//   _msg_error:
+//     _msg_error,
+//   _msg_info:
+//     _msg_info,
+//   _msg_info_obj:
+//     _msg_info_obj,
+//   _msg_template:
+//     _msg_template,
+//   _msg_warning:
+//     _msg_warning,
+//   _yargv_get:
+//     _yargv_get
+// };

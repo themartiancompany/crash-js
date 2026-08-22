@@ -51,6 +51,15 @@ const
   _fs =
     _fs_module.default;
 const
+  _chmod =
+    _fs.chmodSync;
+const
+  _chown =
+    _fs.chownSync;
+const
+  _cp =
+    _fs.cpSync;
+const
   _fs_read_dir_sync =
       _fs.readdirSync;
 const
@@ -75,8 +84,17 @@ const
   _is_dir =
     _fs.isDir;
 const
+  _mkdir =
+    _fs.mkdirSync;
+const
+  _mv =
+    _fs.renameSync;
+const
   _mkdtemp =
     _fs.mkdtempSync;
+const
+  _rm =
+    _fs.rmSync;
 const
   _stat =
     _fs.statSync;
@@ -104,11 +122,23 @@ const
     _path_module.parse;
 const
   _process_module =
-    require(
+    await import(
       "process");
+const
+  _argv =
+    _process_module.argv,
 const
   _exit =
     _process_module.exit;
+const
+  _cd =
+    _process_module.chdir;
+const
+  _cwd =
+    _process_module.cwd,
+const
+  _pwd =
+    _cwd;
 
 function
   _basename(
@@ -219,6 +249,10 @@ function
         _read_opts);
   return _return;
 }
+
+const
+  _cat =
+    _file_read;
 
 function
   _file_append(
@@ -513,76 +547,113 @@ function
         _lib);
 }
 
-
-module.exports = {
-  _argv:
-    _process_module.argv,
-  _basename:
+exports  {
+    _argv,
     _basename,
-  _cat:
-    _file_read,
-  _chmod:
-    _fs.chmodSync,
-  _chown:
-    _fs.chownSync,
-  _cd:
-    _process_module.chdir,
-  _cp:
-    _fs.cpSync,
-  _cwd:
-    _process_module.cwd,
-  _dir_exists:
+    _cat,
+    _chmod,
+    _chown,
+    _cd,
+    _cp,
+    _cwd,
     _dir_exists,
-  _dirname:
     _dirname,
-  _display_error:
     _display_error,
-  _error_display:
     _error_display,
-  _exit:
     _exit,
-  _ext_rm:
     _ext_rm,
-  _file_append:
     _file_append,
-  _file_exists:
     _file_exists,
-  _file_read:
     _file_read,
-  _file_write:
     _file_write,
-  _fs_worker_new:
     _fs_worker_new,
-  _fs_worker_start:
     _fs_worker_start,
-  _json_display:
     _json_display,
-  _json_read:
     _json_read,
-  _lib_get:
     _lib_get,
-  _ls:
     _ls,
-  _mkdir:
-    _fs.mkdirSync,
-  _mktemp:
+    _mkdir,
     _mktemp,
-  _msg_error:
     _msg_error,
-  _msg_info:
     _msg_info,
-  _mv:
-    _fs.renameSync,
-  _path_join:
+    _mv,
     _path_join,
-  _pwd:
-    _process_module.cwd,
-  _require:
+    _pwd,
     _require,
-  _rm:
-    _fs.rmSync,
-  _stat:
+    _rm,
     _stat,
-  _usr_get:
     _usr_get
 };
+
+// module.exports = {
+//   _argv:
+//     _argv,
+//   _basename:
+//     _basename,
+//   _cat:
+//     _cat,
+//   _chmod:
+//     _chmod,
+//   _chown:
+//     _chown,
+//   _cd:
+//     _cd,
+//   _cp:
+//     _cp,
+//   _cwd:
+//     _cwd,
+//   _dir_exists:
+//     _dir_exists,
+//   _dirname:
+//     _dirname,
+//   _display_error:
+//     _display_error,
+//   _error_display:
+//     _error_display,
+//   _exit:
+//     _exit,
+//   _ext_rm:
+//     _ext_rm,
+//   _file_append:
+//     _file_append,
+//   _file_exists:
+//     _file_exists,
+//   _file_read:
+//     _file_read,
+//   _file_write:
+//     _file_write,
+//   _fs_worker_new:
+//     _fs_worker_new,
+//   _fs_worker_start:
+//     _fs_worker_start,
+//   _json_display:
+//     _json_display,
+//   _json_read:
+//     _json_read,
+//   _lib_get:
+//     _lib_get,
+//   _ls:
+//     _ls,
+//   _mkdir:
+//     _mkdir,
+//   _mktemp:
+//     _mktemp,
+//   _msg_error:
+//     _msg_error,
+//   _msg_info:
+//     _msg_info,
+//   _mv:
+//     _mv,
+//   _path_join:
+//     _path_join,
+//   _pwd:
+//     _pwd,
+//   _require:
+//     _require,
+//   _rm:
+//     _rm,
+//   _stat:
+//     _stat,
+//   _usr_get:
+//     _usr_get
+// };

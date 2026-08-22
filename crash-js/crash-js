@@ -107,6 +107,11 @@ const
     await import(
       "./fs-utils");
 /* global
+     _argv */
+const
+  _argv =
+    _fs_utils_module._argv;
+/* global
      _basename */
 const
   _basename =
@@ -929,7 +934,7 @@ const
 
 module.exports = {
   _argv:
-    _fs_utils_module._argv,
+    _argv,
   _argv_get:
     _argv_get,
   _argv_url_get:
