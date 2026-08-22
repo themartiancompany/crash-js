@@ -119,79 +119,128 @@ async function
 }
 
 const
-  _utils_module =
+  _utils =
     await _require(
       "./utils");
+/* global
+     _display_error */
+const
+  _display_error =
+    _utils._error_display;
+/* global
+     _error_display */
 const
   _error_display =
-    _utils._error_display;
+    _display_error;
+/* global
+     _msg_error */
 const
   _msg_error =
     _utils._msg_error;
+/* global
+     _msg_info */
 const
   _msg_info =
     _utils._msg_info;
+/* global
+     _os_tmpdir_get */
 const
   _os_tmpdir_get =
     _utils_module._os_tmpdir_get;
 const
-  _fs_module =
+  _fs =
     await _require(
       "tmcfs");
-const
-  _fs =
-    _fs_module.default;
+// const
+//   _fs =
+//     _fs_module.default;
+/* global
+     _chmod */
 const
   _chmod =
     _fs.chmodSync;
+/* global
+     _chown */
 const
   _chown =
     _fs.chownSync;
+/* global
+     _cp */
 const
   _cp =
     _fs.cpSync;
+/* global
+     _fs_read_dir_sync */
 const
   _fs_read_dir_sync =
       _fs.readdirSync;
+/* global
+     _fs_exists_sync */
 const
   _fs_exists_sync =
     _fs.existsSync;
+/* global
+     _fs_append_file_sync */
 const
   _fs_append_file_sync =
     _fs.appendFileSync;
+/* global
+     _fs_read_file_sync */
 const
   _fs_read_file_sync =
     _fs.readFileSync;
+/* global
+     _fs_read_write_sync */
 const
   _fs_write_file_sync =
     _fs.writeFileSync;
+/* global
+     _fs_worker_new */
 const
   _fs_worker_new =
     _fs.fsWorkerNew;
+/* global
+     _fs_worker_start */
 const
   _fs_worker_start =
     _fs.fsWorkerStart;
+/* global
+     _is_dir */
 const
   _is_dir =
     _fs.isDir;
+/* global
+     _mkdir */
 const
   _mkdir =
     _fs.mkdirSync;
+/* global
+     _mv */
 const
   _mv =
     _fs.renameSync;
+/* global
+     _mkdtemp */
 const
   _mkdtemp =
     _fs.mkdtempSync;
+/* global
+     _rm */
 const
   _rm =
     _fs.rmSync;
+/* global
+     _stat */
 const
   _stat =
     _fs.statSync;
+/* global
+     _json_parse */
 const
   _json_parse =
     JSON.parse;
+/* global
+     _json_display */
 const
   _json_display =
     JSON.stringify;
@@ -199,15 +248,23 @@ const
   _path_module =
     require(
       "path");
+/* global
+     _path_module_basename */
 const
   _path_module_basename =
     _path_module.basename;
+/* global
+     _path_module_dirname */
 const
   _path_module_dirname =
     _path_module.dirname;
+/* global
+     _path_module_join */
 const
   _path_module_join =
     _path_module.join;
+/* global
+     _path_module_parse */
 const
   _path_module_parse =
     _path_module.parse;
@@ -215,18 +272,28 @@ const
   _process_module =
     await _require(
       "process");
+/* global
+     _argv */
 const
   _argv =
-    _process_module.argv,
+    _process_module.argv;
+/* global
+     _exit */
 const
   _exit =
     _process_module.exit;
+/* global
+     _cd */
 const
   _cd =
     _process_module.chdir;
+/* global
+     _cwd */
 const
   _cwd =
-    _process_module.cwd,
+    _process_module.cwd;
+/* global
+     _pwd */
 const
   _pwd =
     _cwd;
@@ -555,7 +622,7 @@ function
 
 // ES export
 
-exports  {
+export {
     _argv,
     _basename,
     _cat,

@@ -229,7 +229,7 @@ const
      _error_display */
 const
   _error_display =
-    _display_error,
+    _display_error;
 /* global
      _global_get */
 const
@@ -296,17 +296,25 @@ function
   /* global
        app_name:
          writable */
-  app_name =
-    "";
+  _set(
+    "app",
+    "name",
+    "");
   /* global
        runtime_environment:
          writable */
-  runtime_environment =
-    [];
+  _set(
+    "runtime",
+    "environment",
+    []);
   /* global
        quiet:
          writable */
-  quiet =
+  const
+    _global =
+      _global_get();
+  _global[
+    "quiet"] =
     "y";
   }
 
