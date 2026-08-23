@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "101.1000000000000001.1000000000000001",
+    "1001.1000000000000001.1000000000000001",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "crash-js-webpack":
-      "^0.0.54",
+      "^0.0.56",
     "eslint":
       "^10.3.0",
     "@eslint/js":
@@ -72,7 +72,7 @@
     "globals":
       "^17.3.0",
     "safely-serve":
-      "^0.0.12",
+      "^0.0.14",
     "webpack":
       "^5.109.2",
     "webpack-cli":
@@ -88,7 +88,7 @@
   },
   "optionalDependencies": {
     "split":
-      "npm:tmcsplit@^0.0.11"
+      "npm:tmcsplit@^0.0.13"
   },
   "overrides": {
     "crash-js":

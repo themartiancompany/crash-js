@@ -371,7 +371,7 @@ const
     await _child_process_spawn_get(
       "async");
 
-function
+async function
   _cmdline_check(
     _app_name) {
   let
@@ -380,7 +380,7 @@ function
     _program_name;
   if ( typeof window === 'undefined' ) {
     _argv =
-      _argv_get();
+      await _argv_get();
     _program =
       _argv[
         1];
@@ -431,6 +431,18 @@ function
       `${_year}-${_month}-${_day}T${_time}+${_zone}`;
   return _date_human;
 }
+
+/* global
+     _get_lib */
+const
+  _get_lib =
+    _lib_get;
+
+/* global
+     _get_usr */
+const
+  _get_usr =
+    _usr_get;
 
 // This function is actually not a format
 // print, but just how the author of this
@@ -1232,7 +1244,7 @@ export {
   _dirname,
   _display_error,
   _echo,
-  _display_error,
+  _error_display,
   _exit,
   _ext_rm,
   _file_append,
@@ -1244,8 +1256,8 @@ export {
   _fs_worker_start,
   _get,
   _get_date_human,
-  _lib_get,
-  _usr_get,
+  _get_lib,
+  _get_usr,
   _globals,
   _global_get,
   _homedir_get,
