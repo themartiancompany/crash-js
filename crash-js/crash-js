@@ -1214,7 +1214,7 @@ async function
 
 // ES module export
 
-module.exports = {
+export {
   _argv,
   _argv_get,
   _argv_url_get,
