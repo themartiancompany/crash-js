@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "1001.1000000000000001.1000000000000001",
+    "10001.1000000000000001.1000000000000001",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "crash-js-webpack":
-      "^0.0.56",
+      "^0.0.57",
     "eslint":
       "^10.3.0",
     "@eslint/js":

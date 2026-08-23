@@ -1170,9 +1170,10 @@ async function
       _yargs =
         await _require(
           "yargs");
-    _yargs_helpers_module =
-      await _require(
-        "yargs/helpers");
+    const
+      _yargs_helpers_module =
+        await _require(
+          "yargs/helpers");
     const
       _hide_bin =
         _yargs_helpers_module.hideBin;
