@@ -36,7 +36,8 @@ const
      "build/**",
      "dist/*",
      `**/fs-worker.js`,
-     `**/${_project}.js`,
+     `**/*.${_project}.js`,
+     `**/*.fs-worker.js`,
      `**/*.${_project}.js`,
      "eslint.config.js"
    ];

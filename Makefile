@@ -29,7 +29,7 @@ USR_DIR=$(DESTDIR)$(PREFIX)
 BIN_DIR=$(DESTDIR)$(PREFIX)/bin
 LIB_DIR=$(DESTDIR)$(PREFIX)/lib/lib$(_PROJECT)
 MAN_DIR?=$(DESTDIR)$(PREFIX)/share/man
-NODE_DIR=$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)
+NODE_DIR=$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)
 AHSI_DIR=$(PREFIX)/lib/node_modules/ahsi
 BUILD_NPM_DIR=build
 
@@ -266,19 +266,15 @@ install-npm:
 	$(_INSTALL_DIR) \
 	  "$(LIB_DIR)"; \
 	$(_MAKE_LINK) \
-	  "$(NODE_DIR)/$(_PROJECT)" \
+          "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)" || \
 	true; \
 	$(_MAKE_LINK) \
-	  "$(NODE_DIR)/fs-utils" \
+          "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)/fs-utils" \
 	  "$(LIB_DIR)/fs-utils" || \
 	true; \
 	$(_MAKE_LINK) \
-	  "$(NODE_DIR)/fs-worker" \
-	  "$(LIB_DIR)/fs-worker" || \
-	true; \
-	$(_MAKE_LINK) \
-	  "$(NODE_DIR)/utils" \
+          "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)/utils" \
 	  "$(LIB_DIR)/utils" || \
 	true
 
@@ -304,4 +300,19 @@ install-man:
 	  "man/lib$(_PROJECT).1.rst" \
 	  "$(MAN_DIR)/man1/lib$(_PROJECT).1"
 
-.PHONY: build check install build-npm build-webpack install-doc install-examples install-man build-npm install-npm install-scripts shellcheck
+uninstall-scripts:
+
+	rm \
+	  -rf \
+	  "$(LIB_DIR)" \
+	  "$(NODE_DIR)" \
+	  "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)" \
+	  "$(DESTDIR)$(PREFIX)/lib/node_modules/lib$(_PROJECT_NPM)"
+
+
+uninstall-man:
+
+	rm \
+	  "$(MAN_DIR)/man1/lib$(_PROJECT).1"
+
+.PHONY: build check install build-npm build-webpack install-doc install-examples install-man build-npm install-npm install-scripts shellcheck uninstall-scripts
