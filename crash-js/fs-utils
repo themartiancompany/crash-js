@@ -461,6 +461,259 @@ function
 }
 
 async function
+  _child_process_spawn_get(
+    _spawn_type) {
+  let
+    _child_process_spawn;
+  if ( typeof(
+         _spawn_type) == "undefined" ||
+       _spawn_type == "" ) {
+    _spawn_type =
+      "sync";
+  }
+  if ( typeof window === 'undefined' &&
+       ( typeof global !== 'undefined' && global.global === global ) &&
+       typeof __webpack_require__ !== 'function' ) {
+    const
+      _child_process_module =
+        await _require(
+          "node:child_process");
+    if ( _spawn_type == "sync" ) {
+      _child_process_spawn =
+        _child_process_module.spawnSync;
+    }
+    else if ( _spawn_type == "async" ) {
+      _child_process_spawn =
+        _child_process_module.spawn;
+    }
+  }
+  else {
+    _child_process_spawn =
+      function
+        (_cmd, _args, _exit) {
+        return _exit;
+     };
+  }
+  return _child_process_spawn;
+}
+
+/* global
+     _spawn */
+const
+  _spawn =
+    await _child_process_spawn_get();
+/* global
+     _spawn_async */
+const
+  _spawn_async =
+    await _child_process_spawn_get(
+      "async");
+
+async function
+  _run(
+    _run_mode,
+    _cmd,
+    _name,
+    _timeout,
+    _run_type,
+    _method) {
+  let
+    _array,
+    _index,
+    _msg,
+    _out;
+  if ( typeof(
+         _cmd) == "undefined" ||
+       _cmd == "" ||
+       _cmd == [] ) {
+    _msg =
+      "No command given in input.";
+    _msg_error(
+        _msg,
+        1);
+  }
+  const
+    _program =
+      _cmd[
+        0];
+  const
+    _args =
+      _cmd.slice(
+        1,
+        _cmd.length);
+  if ( typeof(
+         _run_mode) == "undefined" ||
+       _run_mode == "" ) {
+    _run_mode =
+      "sync";
+  }
+  if ( typeof(
+         _name) == "undefined" ||
+       _name == "" ) {
+    _name =
+      "";
+  }
+  if ( typeof(
+         _timeout) == "undefined" ||
+       _timeout == "" ) {
+    _timeout =
+      "0";
+  }
+  if ( typeof(
+         _run_type) == "undefined" ||
+       _run_type == "" ) {
+    _run_type =
+      "spawn";
+  }
+  if ( typeof(
+         _method) == "undefined" ||
+       _method == "" ) {
+    _method =
+      "";
+  }
+  _msg =
+    `Running '${_program}' ` +
+    `with arguments '${_args}'.`;
+  _msg_info(
+    _msg);
+  _out =
+    "";
+  if ( _run_mode == "async" ) {
+    // currently not working well id say
+    const
+      _print =
+        function
+          (_data) {
+          _out = 
+            _out +
+            _data.toString();
+        };
+    const
+      _close =
+        function(
+          _code) {
+          let
+            _array,
+            _msg;
+          if ( _code != 0 ) {
+            _msg =
+              `Process exited with code '${_code}'`;
+            _msg_error(
+              _msg,
+              1);
+          }
+          else {
+            _msg =
+              `Process exited normally.`;
+            _msg_info(
+              _msg);
+          }
+          _array =
+            _out.split("\n");
+          return _array;
+        };
+    const
+      _process =
+        _spawn_async(
+          _program,
+          _args);
+    _process.stdout.on(
+      'data',
+      _print);
+    _process.on(
+      'close',
+      _close);
+    _array =
+      _out.split(
+        "\n");
+    _msg_info(
+      _array.length);
+    return _array;
+  }
+  else if ( _run_mode == "sync" ) {
+    if ( _run_type == "spawn" ) {
+      const
+        _process =
+          _spawn(
+            _program,
+            _args,
+            { "encoding":
+                "utf-8" });
+      _array =
+        _process.stdout.split(
+          "\n");
+      return _array;
+    }
+    else if ( _run_type == "native" ) {
+      if ( 0 < _timeout ) {
+        _msg_timeout =
+          `Timeout of length ` +
+          `'${_timeout}' ms reached for task '${_name}'.`;
+        _time_over =
+          false;
+        try {
+          const
+            _timeout_promise =
+              new Promise(
+                (resolve,
+                 reject) => {
+                  setTimeout(
+                    () => {
+                      return;
+                    },
+                    _timeout,
+                    "hurr")
+                });
+          if ( _method != "" ) {
+            _out =
+              await Promise.race( [
+                _sleep(
+                  _timeout),
+                  _program[
+                    _method].apply(
+                    _program,
+                    _args)
+              ]);
+            if ( typeof(
+                   _out) == "undefined" ) {
+              throw _msg_timeout;
+	    }
+          }
+          else {
+            _out =
+              await _program.apply(
+                _program,
+                _args);
+          }
+        }
+        catch(
+          _error) {
+          _time_over =
+            true;
+        }
+        if ( _time_over ) {
+          _msg_warning(
+            _msg_timeout);
+          return;
+        }
+        else {
+          return _out;
+        }
+      }
+      else {
+        _out =
+          await _program[
+            _method].apply(
+            _program,
+            _args);
+      }
+    }
+  }
+}
+
+
+
+async function
   _lib_get() {
   let
     _lib,
@@ -677,6 +930,7 @@ export {
     _argv,
     _basename,
     _cat,
+    _child_process_spawn_get,
     _chmod,
     _chown,
     _cd,
@@ -710,6 +964,8 @@ export {
     _require,
     _rm,
     _source,
+    _spawn,
+    _spawn_async,
     _stat,
     _usr_get
 };
@@ -723,6 +979,8 @@ export {
 //     _basename,
 //   _cat:
 //     _cat,
+//   _child_process_spawn_get:
+//     _child_process_spawn_get,
 //   _chmod:
 //     _chmod,
 //   _chown:
@@ -789,6 +1047,10 @@ export {
 //     _rm,
 //   _source:
 //     _source,
+//   _spawn:
+//     _spawn,
+//   _spawn_async:
+//     _spawn_async,
 //   _stat:
 //     _stat,
 //   _usr_get:

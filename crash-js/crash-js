@@ -47,6 +47,11 @@ const
   _cat =
     _fs_utils_module._cat;
 /* global
+     _child_process_spawn_get */
+const
+  _child_process_spawn_get =
+    _fs_utils_module._child_process_spawn_get;
+/* global
      _chmod */
 const
   _chmod =
@@ -192,6 +197,17 @@ const
   _source =
     _fs_utils_module._source;
 /* global
+     _spawn */
+const
+  _spawn =
+    await _child_process_spawn_get();
+/* global
+     _spawn_async */
+const
+  _spawn_async =
+    await _child_process_spawn_get(
+      "async");
+/* global
      _stat */
 const
   _stat =
@@ -332,56 +348,6 @@ function
       __filename);
   return _filename;
 }
-
-async function
-  _child_process_spawn_get(
-    _spawn_type) {
-  let
-    _child_process_spawn;
-  if ( typeof(
-         _spawn_type) == "undefined" ||
-       _spawn_type == "" ) {
-    _spawn_type =
-      "sync";
-  }
-  if ( typeof window === 'undefined' &&
-       ( typeof global !== 'undefined' && global.global === global ) &&
-       typeof __webpack_require__ !== 'function' ) {
-    const
-      _child_process_module =
-        await _require(
-          "node:child_process");
-    if ( _spawn_type == "sync" ) {
-      _child_process_spawn =
-        _child_process_module.spawnSync;
-    }
-    else if ( _spawn_type == "async" ) {
-      _child_process_spawn =
-        _child_process_module.spawn;
-    }
-  }
-  else {
-    _child_process_spawn =
-      function
-        (_cmd, _args, _exit) {
-        return _exit;
-     };
-  }
-  return _child_process_spawn;
-}
-
-/* global
-     _spawn */
-const
-  _spawn =
-    await _child_process_spawn_get();
-
-/* global
-     _spawn_async */
-const
-  _spawn_async =
-    await _child_process_spawn_get(
-      "async");
 
 async function
   _cmdline_check(
