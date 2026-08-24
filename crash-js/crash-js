@@ -474,12 +474,13 @@ function
   return _home;
 }
 
-function
-  _echo(
-    _text) {
-  console.log(
-    _text);
-}
+const
+  _echo =
+    console.log;
+
+const
+  _echo2 =
+    console.error;
 
 function
   _range(
@@ -1234,6 +1235,7 @@ export {
   _dirname,
   _display_error,
   _echo,
+  _echo2,
   _error_display,
   _exit,
   _ext_rm,
@@ -1327,6 +1329,8 @@ export {
 //     _display_error,
 //   _echo:
 //     _echo,
+//   _echo2:
+//     _echo2,
 //   _error_display:
 //     _display_error,
 //   _exit:
