@@ -1054,17 +1054,20 @@ function
     _global =
       _global_get();
   const
-    _value_current =
+    _override =
       _get(
-        _obj,
-        _var);
+        `override`,
+        `${_obj}_${_var}`);
   const
-    _value_current_type =
+    _override_type =
       typeof(
-        _value_current);
-  if ( Object.keys(
-         _global).includes(
-           `override_${_obj}_${_var}`) ) {
+        _override);
+  const
+    _override_defined =
+      Object.keys(
+        _global).includes(
+          `override_${_obj}_${_var}`)
+  if ( _override_defined ) {
     _set(
       _obj,
       _var,
@@ -1072,22 +1075,33 @@ function
         `override_${_obj}`,
         _var));
   }
-  else if ( _value_current_type != "undefined" &&
-            _value_current != "" ) {
-    if ( _default != "" ) {
-      _set(
-        _obj,
-        _var,
-        _default)
-    }
-  }
-  else if ( _value_current_type == "undefined" ||
-            _value_current == "" ) {
-    if ( _default != "" ) {
-      _set(
-        _obj,
-        _var,
-        _default)
+  else {
+    const
+      _value_current =
+        _get(
+          _obj,
+          _var);
+    const
+      _value_current_type =
+        typeof(
+          _value_current);
+    // if ( _value_current_type != "undefined" &&
+    //      _value_current != "" ) {
+    //   if ( _default != "" ) {
+    //     _set(
+    //       _obj,
+    //       _var,
+    //       _default)
+    //   }
+    // }
+    if ( _value_current_type == "undefined" ||
+              _value_current == "" ) {
+      // if ( _default != "" ) {
+        _set(
+          _obj,
+          _var,
+          _default)
+      // }
     }
   }
 }
