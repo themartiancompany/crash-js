@@ -167,6 +167,11 @@ const
   _path_join =
     _fs_utils_module._path_join;
 /* global
+     _printf */
+const
+  _printf =
+    _fs_utils_module._printf;
+/* global
      _pwd */
 const
   _pwd =
@@ -294,12 +299,19 @@ function
     "name",
     "");
   /* global
+       app_opts:
+         writable */
+  _set(
+    "app",
+    "opts",
+    "");
+  /* global
        runtime_environment:
          writable */
   _set(
     "runtime",
     "environment",
-    []);
+    "");
   /* global
        quiet:
          writable */
@@ -309,7 +321,7 @@ function
   _global[
     "quiet"] =
     "y";
-  }
+}
 
 function
   _app_name_get() {
@@ -443,29 +455,6 @@ const
 const
   _get_usr =
     _usr_get;
-
-// This function is actually not a format
-// print, but just how the author of this
-// library calls a display function which
-// does not add a goddamn newline at the
-// end of the input text to display
-async function
-  _printf(
-    _text) {
-  let
-    _stdout_write;
-  if ( typeof window === 'undefined' ) {
-    _stdout =
-      process.stdout;
-  }
-  if ( typeof window != 'undefined' ) {
-    _stdout =
-      await import(
-        "stream-browserify");
-  }
-  _stdout.write(
-    _text);
-}
 
 function
   _homedir_get() {

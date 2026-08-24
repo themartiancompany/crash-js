@@ -80,6 +80,11 @@ const
 const
   _pwd =
     _cwd;
+/* global
+     _stdout */
+const
+  _stdout =
+    _process_module.stdout;
 
 async function
   _require(
@@ -623,6 +628,32 @@ function
   return _path;
 }
 
+async function
+  _printf(
+    _text,
+    _array) {
+  let
+    _text_display;
+  _text_display =
+    _text;
+  const
+    _array_type =
+      typeof(
+        _array);
+  if ( _array_type == "undefined" ) {
+    _array =
+      [];
+  }
+  for ( _item of _array ) {
+    _text_display =
+      _text_display.replace(
+        "%s",
+        _item);
+  }
+  _stdout.write(
+    _text_display);
+}
+
 /* global
      _source */
 const
@@ -674,6 +705,7 @@ export {
     _mv,
     _os_tmpdir_get,
     _path_join,
+    _printf,
     _pwd,
     _require,
     _rm,
@@ -747,6 +779,8 @@ export {
 //     _os_tmpdir_get,
 //   _path_join:
 //     _path_join,
+//   _printf:
+//     _printf,
 //   _pwd:
 //     _pwd,
 //   _require:
