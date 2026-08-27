@@ -32,6 +32,21 @@ const
     await import(
       "./utils");
 /* global
+     _argv */
+const
+  _argv =
+    _utils._argv;
+/* global
+     _cd */
+const
+  _cd =
+    _utils._cd;
+/* global
+     _cwd */
+const
+  _cwd =
+    _utils._cwd;
+/* global
      _display_error */
 const
   _display_error =
@@ -42,6 +57,11 @@ const
   _error_display =
     _display_error;
 /* global
+     _exit */
+const
+  _exit =
+    _utils._exit;
+/* global
      _msg_error */
 const
   _msg_error =
@@ -51,30 +71,6 @@ const
 const
   _msg_info =
     _utils._msg_info;
-const
-  _process_module =
-    await import(
-      "process");
-/* global
-     _argv */
-const
-  _argv =
-    _process_module.argv;
-/* global
-     _exit */
-const
-  _exit =
-    _process_module.exit;
-/* global
-     _cd */
-const
-  _cd =
-    _process_module.chdir;
-/* global
-     _cwd */
-const
-  _cwd =
-    _process_module.cwd;
 /* global
      _pwd */
 const
@@ -84,7 +80,7 @@ const
      _stdout */
 const
   _stdout =
-    _process_module.stdout;
+    _utils._stdout;
 
 async function
   _require(

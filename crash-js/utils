@@ -27,6 +27,41 @@
  *     If not, see <https://www.gnu.org/licenses/>.
  */
 
+const
+  _process_module =
+    await import(
+      "process");
+/* global
+     _argv */
+const
+  _argv =
+    _process_module.argv;
+/* global
+     _exit */
+const
+  _exit =
+    _process_module.exit;
+/* global
+     _cd */
+const
+  _cd =
+    _process_module.chdir;
+/* global
+     _cwd */
+const
+  _cwd =
+    _process_module.cwd;
+/* global
+     _pwd */
+const
+  _pwd =
+    _cwd;
+/* global
+     _stdout */
+const
+  _stdout =
+    _process_module.stdout;
+
 function
   _argv_url_get(
     _key_name) {
@@ -272,26 +307,40 @@ function
 // ES module export
 
 export {
+  _argv,
   _argv_url_get,
+  _cd,
+  _cwd,
   _display_error,
   _error_display,
+  _exit,
   _global_get,
   _msg_error,
   _msg_info,
   _msg_info_obj,
   _msg_template,
-  _msg_warning
+  _msg_warning,
+  _pwd,
+  _stdout
 };
 
 // Common Javascript export
 
 // module.exports = {
+//   _argv:
+//     _argv,
 //   _argv_url_get:
 //     _argv_url_get,
+//   _cd:
+//     _cd,
+//   _cwd:
+//     _cwd,
 //   _display_error:
 //     _display_error,
 //   _error_display:
 //     _error_display,
+//   _exit:
+//     _exit,
 //   _global_get:
 //     _global_get,
 //   _msg_error:
@@ -304,4 +353,8 @@ export {
 //     _msg_template,
 //   _msg_warning:
 //     _msg_warning,
+//   _pwd:
+//     _pwd,
+//   _stdout:
+//     _stdout,
 // };
