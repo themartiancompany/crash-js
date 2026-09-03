@@ -1182,7 +1182,7 @@ async function
            "string"] ) {
       return _yargs(
                _hide_bin(
-                 process.argv)).parserConfiguration(
+                 _argv)).parserConfiguration(
                    _parser_opts).options(
                 _yargs_opts).string(
                   "_").parse();
@@ -1190,7 +1190,7 @@ async function
     else {
       return _yargs(
         _hide_bin(
-          process.argv));
+          _argv));
     }
   }
 }

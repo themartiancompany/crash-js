@@ -91,7 +91,8 @@ async function
     _module,
     _module_file,
     _msg,
-    _not_found;
+    _not_found,
+    _program_dirs;
   _found =
     false;
   _not_found =
@@ -125,11 +126,10 @@ async function
     const
       _lib =
         await _lib_get();
-    const
-      _program_dirs = [
-        `${_lib}/${_module_name}`,
-        `${_lib}/${_module_name}/nodejs`,
-      ];
+    _program_dirs = [
+      `${_lib}/${_module_name}`,
+      `${_lib}/${_module_name}/nodejs`,
+    ];
     const
       _oldpwd =
         _pwd();
