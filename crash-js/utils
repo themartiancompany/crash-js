@@ -210,11 +210,18 @@ function
     _msg) {
   let
     _out;
+  const
+    _global =
+      _global_get();
+  const
+    _app_name =
+      _global[
+        "app_name"];
   if ( quiet == "n" ) {
     _template =
       _msg_template(
         "WARNING",
-        app_name);
+        _app_name);
     _out =
       _template.replaceAll(
         "{_msg}",
@@ -258,14 +265,17 @@ function
     _app_name,
     _template,
     _out;
+  const
+    _global =
+      _global_get();
   _app_name =
-    app_name;
+    _global[
+      "app_name"];
   if ( typeof(
          _app_name) == "undefined" ||
          _app_name == "" ) {
-    const
-      _app_name =
-        "";
+    _app_name =
+      "";
   }
   _exit_code =
     String(

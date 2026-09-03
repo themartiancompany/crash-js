@@ -306,40 +306,6 @@ async function
 }
 
 function
-  _globals() {
-  /* global
-       app_name:
-         writable */
-  _set(
-    "app",
-    "name",
-    "");
-  /* global
-       app_opts:
-         writable */
-  _set(
-    "app",
-    "opts",
-    "");
-  /* global
-       runtime_environment:
-         writable */
-  _set(
-    "runtime",
-    "environment",
-    "");
-  /* global
-       quiet:
-         writable */
-  const
-    _global =
-      _global_get();
-  _global[
-    "quiet"] =
-    "y";
-}
-
-function
   _app_name_get() {
   let
     _filename;
@@ -1039,6 +1005,40 @@ function
   _global[
     `${_obj}_${_var}`] =
     _value;
+}
+
+function
+  _globals() {
+  /* global
+       app_name:
+         writable */
+  _set(
+    "app",
+    "name",
+    "");
+  /* global
+       app_opts:
+         writable */
+  _set(
+    "app",
+    "opts",
+    []);
+  /* global
+       runtime_environment:
+         writable */
+  _set(
+    "runtime",
+    "environment",
+    "");
+  /* global
+       quiet:
+         writable */
+  const
+    _global =
+      _global_get();
+  _global[
+    "quiet"] =
+    "y";
 }
 
 function
