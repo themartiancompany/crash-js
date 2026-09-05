@@ -1,30 +1,32 @@
 [comment]: <> (SPDX-License-Identifier: AGPL-3.0)
 
-[comment]: <> (-------------------------------------------------------------)
+[comment]: <> (--------------------------------------------------)
 [comment]: <> (Copyright © 2024, 2025  Pellegrino Prevete)
 [comment]: <> (All rights reserved)
-[comment]: <> (-------------------------------------------------------------)
+[comment]: <> (--------------------------------------------------)
 
 [comment]: <> (This program is free software: you can redistribute)
 [comment]: <> (it and/or modify it under the terms of the GNU Affero)
 [comment]: <> (General Public License as published by the Free)
 [comment]: <> (Software Foundation, either version 3 of the License.)
 
-[comment]: <> (This program is distributed in the hope that it will be useful,)
-[comment]: <> (but WITHOUT ANY WARRANTY; without even the implied warranty of)
-[comment]: <> (MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the)
+[comment]: <> (This program is distributed in the hope that it)
+[comment]: <> (will be useful, but WITHOUT ANY WARRANTY;)
+[comment]: <> (without even the implied warranty of)
+[comment]: <> (MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.)
+[comment]: <> (See the)
 [comment]: <> (GNU Affero General Public License for more details.)
 
-[comment]: <> (You should have received a copy of the GNU Affero General Public)
+[comment]: <> (You should have received a copy of)
+[comment]: <> (the GNU Affero General Public)
 [comment]: <> (License along with this program.)
 [comment]: <> (If not, see <https://www.gnu.org/licenses/>.)
 
 # Crash JavaScript
 
-A collection of JavaScript utility functions.
-
-The Crash Javascript library allows to write Javascript
-applications written the same as Bash programs
+A collection of JavaScript utility functions and
+programs which allows one to write Javascript
+same as Bash programs, in particular,
 written using the
 [Crash Bash](
   https://github.com/themartiancompany/crash-bash)

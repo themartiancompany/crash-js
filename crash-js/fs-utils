@@ -882,6 +882,7 @@ async function
     _text,
     _array) {
   let
+    _item,
     _text_display;
   _text_display =
     _text;
