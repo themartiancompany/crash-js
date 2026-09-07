@@ -276,15 +276,6 @@ const
 const
   _msg_warning =
     _utils._msg_warning;
-const
-  _split_module =
-    await _require(
-      "split");
-/* global
-     _split */
-const
-  _split =
-    _split_module._split;
 
 async function
   _argv_get(
@@ -1265,7 +1256,6 @@ export {
   _sleep,
   _spawn_async,
   _spawn,
-  _split,
   _stat,
   _to_bash_ass_array,
   _usr_get,
@@ -1409,8 +1399,6 @@ export {
 //     _spawn_async,
 //   _spawn:
 //     _spawn,
-//   _split:
-//     _split,
 //   _stat:
 //     _stat,
 //   _to_bash_ass_array:
