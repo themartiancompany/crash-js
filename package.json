@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "1000000000000001.1000000000000001.1000000000000001",
+    "1000000000000002.1000000000000001.1000000000000001",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -83,12 +83,12 @@
       "npm:process-browserify@^0.0.5",
     "tmcfs":
       "npm:@themartiancompany/fs@^0.0.22",
+    "split":
+      "npm:tmcsplit@^0.0.17",
     "yargs":
       "18.1.0"
   },
   "optionalDependencies": {
-    "split":
-      "npm:tmcsplit@^0.0.17"
   },
   "overrides": {
     "crash-js":

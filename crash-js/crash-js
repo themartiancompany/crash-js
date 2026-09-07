@@ -278,7 +278,7 @@ const
     _utils._msg_warning;
 const
   _split_module =
-    _require(
+    await _require(
       "split");
 /* global
      _split */
