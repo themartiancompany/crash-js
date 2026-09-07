@@ -93,6 +93,8 @@
   "overrides": {
     "crash-js":
       "./crash-js/crash-js"
+    "libcrash-js":
+      "./crash-js/crash-js"
   },
   "yargs": {
     "parse-numbers":
