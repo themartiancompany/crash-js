@@ -67,6 +67,11 @@ const
   _exit =
     _utils._exit;
 /* global
+     _global_get */
+const
+  _global_get =
+    _utils._global_get;
+/* global
      _msg_error */
 const
   _msg_error =
@@ -89,7 +94,8 @@ const
 
 async function
   _require(
-    _module_name) {
+    _module_name,
+    _quiet) {
   let
     _exception,
     _found,
@@ -717,7 +723,8 @@ async function
 
 
 async function
-  _lib_get() {
+  _lib_get(
+    _quiet) {
   let
     _lib,
     _lib_path,
@@ -731,12 +738,29 @@ async function
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
        typeof __webpack_require__ !== 'function' ) {
+    if ( _quiet != "y" ||
+         _quiet != true ||
+         _quiet != "true" ) {
+      const
+        _global =
+          _global_get();
+      const
+        _quiet_old =
+          _global[
+            "quiet"];
+      _global[
+        "quiet"] =
+        "y";
+    }
     const
       _out =
         await _run(
          "sync",
           [ "ldconfig",
             "-p" ]);
+    _global[
+      "quiet"] =
+      "y";
     // console.log(_out);
     const
       _tail =
