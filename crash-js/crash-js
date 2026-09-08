@@ -247,6 +247,11 @@ const
   _echo =
     _utils._echo;
 /* global
+     _echo2 */
+const
+  _echo2 =
+    _utils._echo2;
+/* global
      _error_display */
 const
   _error_display =
