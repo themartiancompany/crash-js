@@ -735,15 +735,15 @@ async function
   const
     _paths =
       new Set();
+  const
+    _global =
+      _global_get();
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
        typeof __webpack_require__ !== 'function' ) {
     if ( _quiet != "y" ||
          _quiet != true ||
          _quiet != "true" ) {
-      const
-        _global =
-          _global_get();
       const
         _quiet_old =
           _global[
