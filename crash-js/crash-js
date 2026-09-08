@@ -242,6 +242,11 @@ const
   _display_error =
     _utils._display_error;
 /* global
+     _echo */
+const
+  _echo =
+    _utils._echo;
+/* global
      _error_display */
 const
   _error_display =
@@ -396,14 +401,6 @@ function
   }
   return _home;
 }
-
-const
-  _echo =
-    console.log;
-
-const
-  _echo2 =
-    console.error;
 
 function
   _range(

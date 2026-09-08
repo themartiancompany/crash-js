@@ -37,6 +37,16 @@ const
   _argv =
     _process_module.argv;
 /* global
+     _echo */
+const
+  _echo =
+    console.log;
+/* global
+     _echo2 */
+const
+  _echo2 =
+    console.error;
+/* global
      _exit */
 const
   _exit =
@@ -322,6 +332,8 @@ export {
   _cd,
   _cwd,
   _display_error,
+  _echo,
+  _echo2,
   _error_display,
   _exit,
   _global_get,
@@ -347,8 +359,12 @@ export {
 //     _cwd,
 //   _display_error:
 //     _display_error,
+//   _echo:
+//     _echo,
 //   _error_display:
 //     _error_display,
+//   _echo:
+//     _echo,
 //   _exit:
 //     _exit,
 //   _global_get:
