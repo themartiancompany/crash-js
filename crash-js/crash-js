@@ -713,6 +713,9 @@ function
     _msg,
     _string,
     _value,
+    _value_assignment,
+    _value_assignment_matches,
+    _value_re,
     _value_matches,
     _value_match;
   const
