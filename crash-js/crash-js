@@ -706,6 +706,7 @@ function
     _array_keys,
     _array_values,
     _key,
+    _key_name,
     _key_re,
     _keys_matches,
     _keys_re,
