@@ -47,6 +47,11 @@ const
   _echo2 =
     console.error;
 /* global
+     _env */
+const
+  _env =
+    _process_module.env;
+/* global
      _exit */
 const
   _exit =
@@ -334,6 +339,7 @@ export {
   _display_error,
   _echo,
   _echo2,
+  _env,
   _error_display,
   _exit,
   _global_get,
@@ -361,6 +367,8 @@ export {
 //     _display_error,
 //   _echo:
 //     _echo,
+//   _env:
+//     _env,
 //   _error_display:
 //     _error_display,
 //   _echo:

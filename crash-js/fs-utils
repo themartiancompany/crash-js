@@ -57,6 +57,11 @@ const
   _echo =
     _utils._echo;
 /* global
+     _env */
+const
+  _env =
+    _utils._env;
+/* global
      _error_display */
 const
   _error_display =
@@ -498,8 +503,10 @@ async function
   }
   else {
     _child_process_spawn =
-      function
-        (_cmd, _args, _exit) {
+      function(
+        _cmd,
+        _args,
+        _exit) {
         return _exit;
      };
   }
@@ -582,7 +589,11 @@ async function
   }
   _msg =
     `Running '${_program}' ` +
-    `with arguments '${_args}'.`;
+    `with arguments '${_args}' ` +
+    `in mode '${_run_mode}', ` +
+    `as task '${_name}' with run ` +
+    `method '${_run_type}' (method ` +
+    `'${_method}').`;
   _msg_info(
     _msg);
   _out =
@@ -720,53 +731,139 @@ async function
   }
 }
 
-
-
 async function
   _lib_get(
-    _quiet) {
+    _quiet,
+    _debug) {
   let
     _lib,
     _lib_path,
     _line,
+    _msg,
     _out,
     _path,
+    _quiet_old,
     _words;
+  const
+    _debug_type =
+      typeof(
+        _debug);
+  if ( _debug_type == "undefined" ||
+       _debug == "" ) {
+    _debug =
+      "n";
+  }
   const
     _paths =
       new Set();
   const
     _global =
       _global_get();
+  const
+    _quiet_type =
+      typeof(
+        _quiet);
+  if ( _quiet_type == "undefined" ||
+       _quiet == "" ) {
+    _quiet =
+      "y";
+  }
   if ( typeof window === 'undefined' &&
        ( typeof global !== 'undefined' && global.global === global ) &&
        typeof __webpack_require__ !== 'function' ) {
     if ( _quiet != "y" ||
          _quiet != true ||
          _quiet != "true" ) {
-      const
-        _quiet_old =
-          _global[
-            "quiet"];
-      _global[
-        "quiet"] =
-        "y";
+      _quiet_old =
+        _global[
+          "quiet"];
+      // _global[
+      //   "quiet"] =
+      //   "y";
     }
     const
+      _run_args = [
+        "sync",      // run mode
+        ["ldconfig",
+         "-p" ],     // command
+        "lib_get",
+        "spawn",
+        ""
+      ];
+    try {
       _out =
-        await _run(
-         "sync",
-          [ "ldconfig",
-            "-p" ]);
+        await _run.apply(
+         null,
+         _run_args);
+    }
+    catch(
+      _exception) {
+      _msg =
+        _exception;
+      _msg_error(
+        _exception,
+        0);
+      throw _exception;
+    }
+    const
+      _out_type =
+        typeof(
+          _out);
+    if ( _out_type == "undefined" ) {
+      _msg_error(
+        _msg,
+        0);
+      _msg =
+        "Error running 'ldconfig -p'.";
+      _msg_error(
+        _msg,
+        0);
+      const
+        _exception = {
+          "msg":
+            _msg
+        };
+      throw _exception;
+    }
     _global[
       "quiet"] =
-      "y";
+      _quiet_old;
     // console.log(_out);
     const
       _tail =
         _out.slice(
           1,
           _out.length - 2);
+    const
+      _tail_type =
+        typeof(
+          _tail);
+    if ( _tail_type == "undefined" ) {
+      _msg =
+        "Error running 'ldconfig -p'.";
+      _msg_error(
+        _msg,
+        0);
+      _msg_error(
+        _out,
+        0);
+      const
+        _exception = {
+          "msg":
+            _msg
+        };
+      throw _exception;
+    }
+    else {
+      _msg =
+        "Value of 'ldconfig -p' obtained."
+      _msg_info(
+        _msg);
+      if ( _debug == "y" ) {
+        _echo(
+          _tail);
+      }
+    }
     for ( _line of _tail ) {
       _words =
         _line.split(" ");
@@ -778,6 +875,14 @@ async function
           _lib_path);
       _paths.add(
         _lib);
+    }
+    _msg =
+      "Obtained paths.";
+    _msg_info(
+      _msg);
+    if ( _debug == "y" ) {
+      _echo(
+        _paths);
     }
     if ( typeof(
            process.env.NODE_PATH) == "undefined" ||
@@ -967,6 +1072,7 @@ export {
     _dir_exists,
     _dirname,
     _display_error,
+    _env,
     _error_display,
     _exit,
     _ext_rm,
@@ -1025,6 +1131,8 @@ export {
 //     _dirname,
 //   _display_error:
 //     _display_error,
+//   _env:
+//     _env,
 //   _error_display:
 //     _error_display,
 //   _exit:

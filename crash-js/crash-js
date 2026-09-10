@@ -92,6 +92,11 @@ const
   _dirname =
     _fs_utils_module._dirname;
 /* global
+     _env */
+const
+  _env =
+    _fs_utils_module._env;
+/* global
      _exit */
 const
   _exit =
@@ -1209,6 +1214,7 @@ export {
   _display_error,
   _echo,
   _echo2,
+  _env,
   _error_display,
   _exit,
   _ext_rm,
@@ -1303,6 +1309,8 @@ export {
 //     _echo,
 //   _echo2:
 //     _echo2,
+//   _env:
+//     _env,
 //   _error_display:
 //     _display_error,
 //   _exit:
