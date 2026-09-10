@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "1000000000000010.1000000000000001.1000000000000001",
+    "1000000000000011.1000000000000001.1000000000000001",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -80,7 +80,7 @@
   },
   "dependencies": {
     "process-browserify":
-      "npm:process-browserify@^0.0.9",
+      "npm:process-browserify@^0.0.11",
     "tmcfs":
       "npm:@themartiancompany/fs@^0.0.27",
     "yargs":
