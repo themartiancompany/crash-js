@@ -62,6 +62,11 @@ const
   _env =
     _utils._env;
 /* global
+     _env_get */
+const
+  _env_get =
+    _utils._env_get;
+/* global
      _error_display */
 const
   _error_display =
@@ -884,6 +889,15 @@ async function
       _echo(
         _paths);
     }
+    const
+      _env =
+        _env_get();
+    const
+      _env_type =
+        typeof(
+          _env);
+    _echo(
+      _env_type);
     if ( typeof(
            process.env.NODE_PATH) == "undefined" ||
          process.env.NODE_PATH == "" ) {
@@ -912,7 +926,7 @@ async function
     _lib =
       "/usr/lib";
   }
-  return _lib
+  return _lib;
 }
 
 function
@@ -1073,6 +1087,7 @@ export {
     _dirname,
     _display_error,
     _env,
+    _env_get,
     _error_display,
     _exit,
     _ext_rm,
@@ -1133,6 +1148,8 @@ export {
 //     _display_error,
 //   _env:
 //     _env,
+//   _env_get:
+//     _env_get,
 //   _error_display:
 //     _error_display,
 //   _exit:

@@ -31,11 +31,14 @@ const
   _process_module =
     await import(
       "process");
+const
+  _process =
+    _process_module.default;
 /* global
      _argv */
 const
   _argv =
-    _process_module.argv;
+    _process.argv;
 /* global
      _echo */
 const
@@ -50,22 +53,27 @@ const
      _env */
 const
   _env =
-    _process_module.env;
+    _process.env;
+/* global
+     _env */
+const
+  _env_get =
+    _process.envGet;
 /* global
      _exit */
 const
   _exit =
-    _process_module.exit;
+    _process.exit;
 /* global
      _cd */
 const
   _cd =
-    _process_module.chdir;
+    _process.chdir;
 /* global
      _cwd */
 const
   _cwd =
-    _process_module.cwd;
+    _process.cwd;
 /* global
      _pwd */
 const
@@ -75,7 +83,7 @@ const
      _stdout */
 const
   _stdout =
-    _process_module.stdout;
+    _process.stdout;
 
 function
   _argv_url_get(
@@ -340,6 +348,7 @@ export {
   _echo,
   _echo2,
   _env,
+  _env_get,
   _error_display,
   _exit,
   _global_get,
@@ -369,6 +378,8 @@ export {
 //     _echo,
 //   _env:
 //     _env,
+//   _env_get:
+//     _env_get,
 //   _error_display:
 //     _error_display,
 //   _echo:

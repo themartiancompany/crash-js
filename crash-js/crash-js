@@ -97,6 +97,11 @@ const
   _env =
     _fs_utils_module._env;
 /* global
+     _env_get */
+const
+  _env_get =
+    _fs_utils_module._env_get;
+/* global
      _exit */
 const
   _exit =
@@ -1311,6 +1316,8 @@ export {
 //     _echo2,
 //   _env:
 //     _env,
+//   _env_get:
+//     _env_get,
 //   _error_display:
 //     _display_error,
 //   _exit:
