@@ -234,8 +234,6 @@ function
 function
   _msg_warning(
     _msg) {
-  let
-    _out;
   const
     _global =
       _global_get();
@@ -243,15 +241,21 @@ function
     _app_name =
       _global[
         "app_name"];
-  if ( quiet == "n" ) {
-    _template =
-      _msg_template(
-        "WARNING",
-        _app_name);
-    _out =
-      _template.replaceAll(
-        "{_msg}",
-        _msg);
+  const
+    _quiet =
+      _global[
+        "quiet"];
+  if ( _quiet == "n" ) {
+    const
+      _template =
+        _msg_template(
+          "WARNING",
+          _app_name);
+    const
+      _out =
+        _template.replaceAll(
+          "{_msg}",
+          _msg);
     console.warn(
       _out);
   }
@@ -260,25 +264,35 @@ function
 function
   _msg_info(
     _msg) {
-  let
-    _out;
-  if ( typeof(
-         quiet) == "undefined" ||
-       quiet == "" ) {
-    quiet =
+  const
+    _global =
+      _global_get();
+  const
+    _quiet =
+      _global[
+        "quiet"];
+  const
+    _quiet_type =
+      typeof(
+        _quiet);
+  if ( _quiet_type === "undefined" ||
+       _quiet === "" ) {
+    _global[
+      "quiet"] =
       "y";
   }
-  if ( quiet == "n" ) {
+  if ( _quiet == "n" ) {
     const
       _template =
         _msg_template(
           "INFO",
           app_name);
-    _out =
-      _template.replaceAll(
-        "{_msg}",
-        _msg);
-    console.log(
+    const
+      _out =
+        _template.replaceAll(
+          "{_msg}",
+          _msg);
+    _echo(
       _out);
   }
 }
