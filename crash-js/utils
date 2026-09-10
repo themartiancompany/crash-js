@@ -30,7 +30,7 @@
 const
   _process_module =
     await import(
-      "process");
+      "process-browserify");
 const
   _process =
     _process_module.default;
@@ -38,7 +38,8 @@ const
      _argv */
 const
   _argv =
-    _process.argv;
+    _process[
+      "argv"];
 /* global
      _echo */
 const
@@ -53,12 +54,14 @@ const
      _env */
 const
   _env =
-    _process.env;
+    _process[
+      "env"];
 /* global
      _env */
 const
   _env_get =
-    _process.envGet;
+    _process[
+      "envGet"];
 /* global
      _exit */
 const

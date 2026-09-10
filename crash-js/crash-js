@@ -1220,6 +1220,7 @@ export {
   _echo,
   _echo2,
   _env,
+  _env_get,
   _error_display,
   _exit,
   _ext_rm,
