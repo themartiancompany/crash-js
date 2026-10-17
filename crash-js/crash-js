@@ -418,6 +418,25 @@ function
 }
 
 function
+  _cache_get(
+    _app) {
+  const
+    _home =
+      _homedir_get();
+  const
+    _cache =
+      _path_join(
+        _home,
+        ".cache",
+        _app);
+  return _cache;
+}
+
+const
+  _get_cache =
+    _cache_get;
+
+function
   _range(
     _start,
     _end) {
@@ -1202,6 +1221,161 @@ async function
   }
 }
 
+function
+  _config_dir_get(
+    _app) {
+  const
+    _home =
+      _homedir_get();
+  const
+    _config_dir =
+      _path_join([
+        _home,
+        ".config",
+        _app
+      ]);
+  return _config_dir; 
+}
+
+const
+  _cfg_dir_get =
+    _config_dir_get;
+const
+  _get_config_dir =
+    _config_dir_get;
+const
+  _get_cfg_dir =
+    _config_dir_get;
+
+function
+  _mkdir_user_private(
+    _path) {
+  let
+    _chmod_output,
+    _mkdir_output,
+    _msg;
+  const
+    _directory_permissions =
+      "700";
+  try {
+    _mkdir_output =
+      _mkdir(
+        _path);
+  }
+  catch(
+    _error) {
+    _msg =
+      `Error creating user private ` +
+      `directory at location '${_path}'.`;
+    _msg_error(
+      _msg,
+      0);
+    _echo2(
+      _error);
+    throw _error;
+  }
+  try {
+    _chmod_output =
+      _chmod(
+        _path,
+        _directory_permission);
+  }
+  catch(
+    _error) {
+    _msg =
+      "Error setting permissions " +
+      `${_directory_permission}' ` +
+      `on directory at location '${_path}'.`;
+    _msg_error(
+      _msg,
+      0);
+    throw _error;
+  }
+  const
+    _output = [
+      _mkdir_output,
+      _chmod_output
+    ];
+  return _output;
+}
+
+function
+  _config_dir_user_init(
+    _app) {
+  let
+    _mkdir_user_private_output,
+    _msg;
+  const
+    _directory_permissions =
+      "700";
+  const
+    _config_dir =
+      _config_dir_get(
+        _app);
+  try {
+    _mkdir_user_private_output =
+      _mkdir_user_private(
+        _config_dir);
+  }
+  catch(
+    _error) {
+    _msg =
+      `Error creating '${_app}' ` +
+      "application configuration directory " +
+      `'${_config_dir}'.`;
+    _msg_error(
+      _msg,
+      0);
+    _echo2(
+      _error);
+    throw _error;
+  }
+  return _mkdir_user_private_output;
+}
+
+function
+  _cache_user_init(
+    _app) {
+  let
+    _mkdir_user_private_output,
+    _msg;
+  const
+    _directory_permissions =
+      "700";
+  const
+    _cache_dir =
+      _cache_get(
+        _app);
+  try {
+    _mkdir_user_private_output =
+      _mkdir_user_private(
+        _cache_dir);
+  }
+  catch(
+    _error) {
+    _msg =
+      `Error creating '${_app}' ` +
+      "application cache directory " +
+      `'${_cache_dir}'.`;
+    _msg_error(
+      _msg,
+      0);
+    _echo2(
+      _error);
+    throw _error;
+  }
+  return _mkdir_user_private_output;
+}
+
+function
+  _app_user_init(
+    _app) {
+  _config_dir_user_init(
+    _app);
+  _cache_user_init(
+    _app);
+}
+
 // ES module export
 
 export {
@@ -1209,13 +1383,19 @@ export {
   _argv_get,
   _argv_url_get,
   _app_name_get,
+  _app_user_init,
   _basename,
+  _cache_get,
+  _cache_user_init,
   _cat,
+  _cfg_dir_get,
   _chmod,
   _chown,
   _cmdline_check,
   _chdir,
   _cd,
+  _config_dir_get,
+  _config_dir_user_init,
   _cp,
   _cwd,
   _dir_exists,
@@ -1236,6 +1416,9 @@ export {
   _fs_worker_new,
   _fs_worker_start,
   _get,
+  _get_cache,
+  _get_config_dir,
+  _get_cfg_dir,
   _get_date_human,
   _get_lib,
   _get_usr,
@@ -1247,6 +1430,7 @@ export {
   _lib_get,
   _ls,
   _mkdir,
+  _mkdir_user_private,
   _mktemp,
   _msg_error,
   _msg_info,
@@ -1295,6 +1479,8 @@ export {
 //     _basename,
 //   _cat:
 //     _cat,
+//   _cache_get:
+//     _cache_get,
 //   _chmod:
 //     _chmod,
 //   _chown:
@@ -1345,6 +1531,8 @@ export {
 //     _fs_worker_start,
 //   _get:
 //     _get,
+//   _get_cache:
+//     _get_cache,
 //   _get_date_human:
 //     _get_date_human,
 //   _get_lib:
