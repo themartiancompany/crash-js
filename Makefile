@@ -21,6 +21,7 @@
 
 SHELL ?= bash
 _NPM ?= true
+_DOCS ?= true
 PREFIX ?= /usr/local
 _PROJECT=crash-js
 _PROJECT_NPM=$(_PROJECT)
@@ -51,6 +52,7 @@ DOC_FILES=\
       *.rst) \
   $(wildcard \
       *.md)
+
 SCRIPT_FILES=\
   $(wildcard \
       $(_PROJECT)/*)
@@ -66,6 +68,21 @@ NPM_FILES=\
   "webpack.config.cjs"
 
 all: build
+
+prepare:
+
+	git \
+	  submodule \
+	    update \
+	      --init \
+	      "examples/ahsi"
+	if [[ "$(_DOCS)" == "true" ]]; then \
+	  git \
+	    submodule \
+	      update \
+	        --init \
+	        "docs"; \
+	fi
 
 check: eslint
 
@@ -94,6 +111,139 @@ build:
 	fi
 	make \
 	  build-man
+
+build-man:
+
+	make \
+	  prepare
+	mkdir \
+	  -p \
+	  "build/man"
+	rst2man \
+	  "man/lib$(_PROJECT).1.rst" \
+	  "build/man/lib$(_PROJECT).1"
+
+build-webpack:
+
+	make \
+	  prepare
+	$(INSTALL_DIR) \
+	  "build/dist/$(_PROJECT)"
+	cp \
+	  -r \
+	  "$(_PROJECT)" \
+	  "webpack.config.cjs" \
+	  "build"
+	_webpack=( \
+	  "$$(command \
+	        -v \
+	        "webpack")"; \
+	if [[ "${_webpack}" == "" ]]; then \
+	  _webpack=(
+	    npx
+	      webpack); \
+	fi; \
+	cd \
+	  "build"; \
+        "${_webpack[@]}" \
+	  --mode \
+	    'production' \
+	  --config \
+	  'fs-worker.webpack.config.cjs' \
+	  --stats-error-details; \
+	mv \
+	  'fs-worker.js' \
+	  'dist/$(_PROJECT)/fs-worker.js'; \
+        "${_webpack[@]}" \
+	  --mode \
+	    'production' \
+	  --config \
+	    'webpack.config.cjs' \
+	  --stats-error-details; \
+	mv \
+	  "$(_PROJECT).js" \
+	  "dist/$(_PROJECT)"
+
+build-npm:
+
+	make \
+	  prepare
+	mkdir \
+	  -p \
+	  "build/man"
+	rst2man \
+	  "man/lib$(_PROJECT).1.rst" \
+	  "build/lib$(_PROJECT).1"
+	_version="$$( \
+	  npm \
+	    view \
+	      "$${PWD}" \
+	      "version")"; \
+	cp \
+	  -r \
+	  $(NPM_FILES) \
+	  "build"; \
+	cd \
+	  "build"; \
+	npm \
+	  install \
+	    --save-dev; \
+	npm \
+	  install \
+	    --include="optional"; \
+	rm \
+	  -rf \
+	  "$(_PROJECT).js"; \
+	npm \
+	  run \
+	    build; \
+	npm \
+	  pack; \
+	mv \
+	  "$(_PROJECT)-$${_version}.tgz" \
+	  ".."
+
+install-examples:
+
+	make \
+	  prepare
+	cd \
+	  "examples/ahsi"; \
+	make \
+	 all; \
+	make \
+	  install;
+
+install-npm:
+
+	_npm_opts=( \
+	  -g \
+	  --prefix \
+	    "$(USR_DIR)" \
+	); \
+	_version="$$( \
+	  npm \
+	    view \
+	      "$${PWD}" \
+	      "version")"; \
+	npm \
+	  install \
+	    "$${_npm_opts[@]}" \
+	    "$(_PROJECT)-$${_version}.tgz"; \
+	$(_INSTALL_DIR) \
+	  "$(LIB_DIR)"; \
+	$(_MAKE_LINK) \
+          "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)/$(_PROJECT)" \
+	  "$(LIB_DIR)/$(_PROJECT)" || \
+	true; \
+	$(_MAKE_LINK) \
+          "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)/fs-utils" \
+	  "$(LIB_DIR)/fs-utils" || \
+	true; \
+	$(_MAKE_LINK) \
+          "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)/utils" \
+	  "$(LIB_DIR)/utils" || \
+	true
 
 install-scripts:
 
@@ -152,131 +302,6 @@ install-scripts:
 	    "$(DESTDIR)$(PREFIX)/lib/node_modules/lib$(_PROJECT_NPM)" || \
 	  true; \
 	fi
-
-build-man:
-
-	mkdir \
-	  -p \
-	  "build/man"
-	rst2man \
-	  "man/lib$(_PROJECT).1.rst" \
-	  "build/man/lib$(_PROJECT).1"
-
-build-webpack:
-
-	$(INSTALL_DIR) \
-	  "build/dist/$(_PROJECT)"
-	cp \
-	  -r \
-	  "$(_PROJECT)" \
-	  "webpack.config.cjs" \
-	  "build"
-	_webpack=( \
-	  "$$(command \
-	        -v \
-	        "webpack")"; \
-	if [[ "${_webpack}" == "" ]]; then \
-	  _webpack=(
-	    npx
-	      webpack); \
-	fi; \
-	cd \
-	  "build"; \
-        "${_webpack[@]}" \
-	  --mode \
-	    'production' \
-	  --config \
-	  'fs-worker.webpack.config.cjs' \
-	  --stats-error-details; \
-	mv \
-	  'fs-worker.js' \
-	  'dist/$(_PROJECT)/fs-worker.js'; \
-        "${_webpack[@]}" \
-	  --mode \
-	    'production' \
-	  --config \
-	    'webpack.config.cjs' \
-	  --stats-error-details; \
-	mv \
-	  "$(_PROJECT).js" \
-	  "dist/$(_PROJECT)"
-
-build-npm:
-
-	mkdir \
-	  -p \
-	  "build/man"
-	rst2man \
-	  "man/lib$(_PROJECT).1.rst" \
-	  "build/lib$(_PROJECT).1"
-	_version="$$( \
-	  npm \
-	    view \
-	      "$${PWD}" \
-	      "version")"; \
-	cp \
-	  -r \
-	  $(NPM_FILES) \
-	  "build"; \
-	cd \
-	  "build"; \
-	npm \
-	  install \
-	    --save-dev; \
-	npm \
-	  install \
-	    --include="optional"; \
-	rm \
-	  -rf \
-	  "$(_PROJECT).js"; \
-	npm \
-	  run \
-	    build; \
-	npm \
-	  pack; \
-	mv \
-	  "$(_PROJECT)-$${_version}.tgz" \
-	  ".."
-
-install-examples:
-
-	cd \
-	  "examples/ahsi"; \
-	make \
-	 all; \
-	make \
-	  install;
-
-install-npm:
-
-	_npm_opts=( \
-	  -g \
-	  --prefix \
-	    "$(USR_DIR)" \
-	); \
-	_version="$$( \
-	  npm \
-	    view \
-	      "$${PWD}" \
-	      "version")"; \
-	npm \
-	  install \
-	    "$${_npm_opts[@]}" \
-	    "$(_PROJECT)-$${_version}.tgz"; \
-	$(_INSTALL_DIR) \
-	  "$(LIB_DIR)"; \
-	$(_MAKE_LINK) \
-          "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)/$(_PROJECT)" \
-	  "$(LIB_DIR)/$(_PROJECT)" || \
-	true; \
-	$(_MAKE_LINK) \
-          "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)/fs-utils" \
-	  "$(LIB_DIR)/fs-utils" || \
-	true; \
-	$(_MAKE_LINK) \
-          "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)/$(_PROJECT)/utils" \
-	  "$(LIB_DIR)/utils" || \
-	true
 
 publish-npm:
 
