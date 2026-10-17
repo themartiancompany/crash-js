@@ -75,13 +75,15 @@ prepare:
 	  submodule \
 	    update \
 	      --init \
-	      "examples/ahsi"
+	      "examples/ahsi" || \
+	true
 	if [[ "$(_DOCS)" == "true" ]]; then \
 	  git \
 	    submodule \
 	      update \
 	        --init \
-	        "docs"; \
+	        "docs" || \
+	  true; \
 	fi
 
 check: eslint
