@@ -1369,7 +1369,12 @@ function
       _error);
     throw _error;
   }
-  return _mkdir_user_private_output;
+  const
+    _output = [
+      _cache_dir,
+      _mkdir_user_private_output
+    ];
+  return _output;
 }
 
 function
