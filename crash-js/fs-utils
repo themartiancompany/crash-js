@@ -366,6 +366,25 @@ function
 }
 
 function
+  _du(
+    _path) {
+  const
+    _file =
+      _stat(
+        _path);
+  const
+    _size =
+      _file[
+        "size"];
+  const
+    _out = [
+      _size,
+      _path
+    ];
+  return _out;
+}
+
+function
   _ext_rm(
     _path) {
   let
@@ -1088,6 +1107,7 @@ export {
     _dir_exists,
     _dirname,
     _display_error,
+    _du,
     _env,
     _env_get,
     _error_display,
@@ -1148,6 +1168,8 @@ export {
 //     _dirname,
 //   _display_error:
 //     _display_error,
+//   _du:
+//     _du,
 //   _env:
 //     _env,
 //   _env_get:

@@ -92,6 +92,11 @@ const
   _dirname =
     _fs_utils_module._dirname;
 /* global
+     _du */
+const
+  _du =
+    _fs_utils_module._du;
+/* global
      _env */
 const
   _env =
@@ -1401,6 +1406,7 @@ export {
   _dir_exists,
   _dirname,
   _display_error,
+  _du,
   _echo,
   _echo2,
   _env,
@@ -1501,6 +1507,8 @@ export {
 //     _dirname,
 //   _display_error:
 //     _display_error,
+//   _du:
+//     _du,
 //   _echo:
 //     _echo,
 //   _echo2:
