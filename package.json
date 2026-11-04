@@ -66,11 +66,13 @@
     "crash-js-webpack":
       "^0.0.77",
     "eslint":
-      "^10.9.0",
+      "^10.14.0",
     "@eslint/js":
       "^10.0.1",
     "globals":
       "^17.3.0",
+    "minimatch":
+      "^11.0.4",
     "safely-serve":
       "^0.0.21",
     "webpack":
@@ -92,7 +94,9 @@
     "crash-js":
       "./crash-js/crash-js",
     "libcrash-js":
-      "./crash-js/crash-js"
+      "./crash-js/crash-js",
+    "minimatch":
+      "^11.0.4"
   },
   "yargs": {
     "parse-numbers":
