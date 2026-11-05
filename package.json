@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "1000000000000019.1000000000000001.1000000000000001",
+    "1000000000000020.1000000000000001.1000000000000001",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -66,7 +66,7 @@
     "compression":
       "^1.8.2",
     "crash-js-webpack":
-      "^0.0.82",
+      "^0.0.83",
     "eslint":
       "^10.14.0",
     "@eslint/js":
@@ -86,7 +86,7 @@
     "process-browserify":
       "npm:process-browserify@^0.0.12",
     "tmcfs":
-      "npm:@themartiancompany/fs@^0.0.27",
+      "npm:@themartiancompany/fs@^0.0.28",
     "yargs":
       "18.1.0"
   },

@@ -207,6 +207,11 @@ const
   _rm =
     _fs_utils_module._rm;
 /* global
+     _rmdir */
+const
+  _rmdir =
+    _fs_utils_module._rmdir;
+/* global
      _source */
 const
   _source =
