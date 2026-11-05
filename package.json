@@ -2,7 +2,7 @@
   "name":
     "crash-js",
   "version":
-    "1000000000000018.1000000000000001.1000000000000001",
+    "1000000000000019.1000000000000001.1000000000000001",
   "description":
     "Crash Javascript library.",
   "funding":
@@ -63,6 +63,8 @@
         "https://github.com/tallero"
   },
   "devDependencies": {
+    "compression":
+      "^1.8.2",
     "crash-js-webpack":
       "^0.0.82",
     "eslint":
@@ -74,7 +76,7 @@
     "minimatch":
       "^11.0.4",
     "safely-serve":
-      "^0.0.21",
+      "^0.0.25",
     "webpack":
       "^5.109.2",
     "webpack-cli":
@@ -91,6 +93,8 @@
   "optionalDependencies": {
   },
   "overrides": {
+    "compression":
+      "^1.8.2",
     "crash-js":
       "./crash-js/crash-js",
     "libcrash-js":
