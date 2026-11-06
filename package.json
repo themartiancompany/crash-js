@@ -86,7 +86,7 @@
     "process-browserify":
       "npm:process-browserify@^0.0.12",
     "tmcfs":
-      "npm:@themartiancompany/fs@^0.0.28",
+      "npm:@themartiancompany/fs@^0.0.30",
     "yargs":
       "18.1.0"
   },

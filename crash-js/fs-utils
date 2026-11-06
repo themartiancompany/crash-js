@@ -280,7 +280,7 @@ const
      _rmdir */
 const
   _rmdir =
-    _fs.rmdir;
+    _fs.rmdirSync;
 /* global
      _stat */
 const
