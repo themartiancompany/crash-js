@@ -1466,6 +1466,7 @@ export {
   _range,
   _require,
   _rm,
+  _rmdir,
   _run,
   _seq,
   _set,
@@ -1611,6 +1612,8 @@ export {
 //     _require,
 //   _rm:
 //     _rm,
+//   _rmdir:
+//     _rmdir,
 //   _run:
 //     _run,
 //   _seq:
