@@ -197,6 +197,11 @@ const
   _pwd =
     _fs_utils_module._pwd;
 /* global
+     _realpath */
+const
+  _realpath =
+    _fs_utils_module._realpath;
+/* global
      _require */
 const
   _require =
