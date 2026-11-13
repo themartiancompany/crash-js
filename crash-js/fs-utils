@@ -237,6 +237,11 @@ const
   _fs_read_file_sync =
     _fs.readFileSync;
 /* global
+     _fs_realpath_sync */
+const
+  _realpath =
+    _fs.realpathSync;
+/* global
      _fs_read_write_sync */
 const
   _fs_write_file_sync =
@@ -1160,6 +1165,7 @@ export {
     _path_join,
     _printf,
     _pwd,
+    _realpath,
     _require,
     _rm,
     _rmdir,
@@ -1247,6 +1253,8 @@ export {
 //     _printf,
 //   _pwd:
 //     _pwd,
+//   _realpath:
+//     _realpath,
 //   _require:
 //     _require,
 //   _rm:
