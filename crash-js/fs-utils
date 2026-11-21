@@ -57,6 +57,11 @@ const
   _echo =
     _utils._echo;
 /* global
+     _echo2 */
+const
+  _echo2 =
+    _utils._echo2;
+/* global
      _env */
 const
   _env =
@@ -91,6 +96,9 @@ const
 const
   _msg_info =
     _utils._msg_info;
+const
+  _msg_warning =
+    _utils._msg_warning;
 /* global
      _pwd */
 const
@@ -269,7 +277,7 @@ const
 /* global
      _mv */
 const
-  _mv =
+  _rename_sync =
     _fs.renameSync;
 /* global
      _mkdtemp */
@@ -1066,6 +1074,66 @@ async function
       _msg);
     _exit(
       1);
+  }
+}
+
+function
+  _mv(
+    _src,
+    _dest) {
+  let
+    _msg;
+  const
+    _args = [
+      _src,
+      _dest
+    ];
+  try {
+    _rename_sync.apply(
+      null,
+      _args);
+  }
+  catch(
+    _error) {
+    const
+      _code =
+        _error[
+          "code"];
+    if ( _code === "EXDEV" ) {
+      _msg =
+        "Cross-link not permitted, " +
+        "copying the file and deleting the original.";
+      _msg_warning(
+        _msg);
+      try {
+        _cp.apply(
+          null,
+          _args);
+        _rm(
+          _src);
+      }
+      catch(
+        _error) {
+        _msg =
+          "Error copying file over.";
+        _msg_error(
+          _msg,
+          0);
+        _echo2(
+          _error);
+        throw _error;
+      }
+    }
+    else {
+      _msg =
+        "Error moving file.";
+      _msg_error(
+        _msg,
+        0);
+      _echo2(
+        _error);
+      throw _error;
+    }
   }
 }
 
