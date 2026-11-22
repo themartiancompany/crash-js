@@ -616,6 +616,7 @@ async function
     _array,
     _index,
     _msg,
+    _msg_timeout,
     _out;
   if ( typeof(
          _cmd) == "undefined" ||
