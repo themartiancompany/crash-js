@@ -604,6 +604,18 @@ const
     await _child_process_spawn_get(
       "async");
 
+function
+  _sleep(
+    _time) {
+  const
+    _promise =
+      new Promise(
+        resolve => setTimeout(
+                     resolve,
+                     _time));
+  return _promise;
+}
+
 async function
   _run(
     _run_mode,
@@ -768,9 +780,9 @@ async function
           if ( _method != "" ) {
             _out =
               await Promise.race( [
-                _sleep(
+                await _sleep(
                   _timeout),
-                  _program[
+                await _program[
                     _method].apply(
                     _program,
                     _args)
@@ -789,6 +801,8 @@ async function
         }
         catch(
           _error) {
+          _echo2(
+            _error);
           _time_over =
             true;
         }
@@ -1277,6 +1291,7 @@ export {
     _rm,
     _rmdir,
     _run,
+    _sleep,
     _source,
     _spawn,
     _spawn_async,
@@ -1373,6 +1388,8 @@ export {
 //     _run,
 //   _source:
 //     _source,
+//   _sleep:
+//     _sleep,
 //   _spawn:
 //     _spawn,
 //   _spawn_async:

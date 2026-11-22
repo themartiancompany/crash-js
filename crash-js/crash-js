@@ -222,6 +222,11 @@ const
   _run =
     _fs_utils_module._run;
 /* global
+     _sleep */
+const
+  _sleep =
+    _fs_utils_module._sleep;
+/* global
      _source */
 const
   _source =
@@ -521,15 +526,6 @@ function
       _item);
   }
   return _list;
-}
-
-function
-  _sleep(
-    _time) {
-  return new Promise(
-               resolve => setTimeout(
-                            resolve,
-                            _time));
 }
 
 function
