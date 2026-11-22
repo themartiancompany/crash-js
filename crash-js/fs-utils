@@ -780,9 +780,9 @@ async function
           if ( _method != "" ) {
             _out =
               await Promise.race( [
-                await _sleep(
+                _sleep(
                   _timeout),
-                await _program[
+                _program[
                     _method].apply(
                     _program,
                     _args)
