@@ -486,9 +486,24 @@ function
     _fs_append_file_sync_args.push(
       _options);
   }
-  _fs_append_file_sync.apply(
-    null,
-    _fs_append_file_sync_args);
+  try {
+    _fs_append_file_sync.apply(
+      null,
+      _fs_append_file_sync_args);
+  }
+  catch(
+    _error) {
+    const
+      _msg =
+        "Error appending content at path " +
+        `'${_path}'.`;
+    _msg_error(
+      _msg,
+      0);
+    _echo2(
+      _error);
+     throw _error;
+  }
 }
 
 function
@@ -496,9 +511,31 @@ function
     _path,
     _content,
     _append) {
-  _fs_write_file_sync(
-    _path,
-    _content);
+  try {
+    if ( _append === true ) {
+      _file_append(
+        _path,
+        _content);
+    }
+    else {
+      _fs_write_file_sync(
+        _path,
+        _content);
+    }
+  }
+  catch(
+    _error) {
+    const
+      _msg =
+        "Error writing content at path " +
+        `'${_path}'.`;
+    _msg_error(
+      _msg,
+      0);
+    _echo2(
+      _error);
+     throw _error;
+  }
 }
 
 function
