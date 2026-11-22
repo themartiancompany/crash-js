@@ -617,7 +617,8 @@ async function
     _index,
     _msg,
     _msg_timeout,
-    _out;
+    _out,
+    _time_over;
   if ( typeof(
          _cmd) == "undefined" ||
        _cmd == "" ||
@@ -1275,6 +1276,7 @@ export {
     _require,
     _rm,
     _rmdir,
+    _run,
     _source,
     _spawn,
     _spawn_async,
@@ -1367,6 +1369,8 @@ export {
 //     _rm,
 //   _rmdir:
 //     _rmdir,
+//   _run:
+//     _run,
 //   _source:
 //     _source,
 //   _spawn:
